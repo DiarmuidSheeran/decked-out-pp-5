@@ -51,13 +51,14 @@ form.addEventListener('submit', function(ev) {
     var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
     var postData = {
         'csrfmiddlewaretoken': csrfToken,
-        'client_secret': clientSecret,
+        'client_secret': client_secret,
         'save_info': saveInfo,
+        'country': 'IE',
     };
     var url = '/checkout/cache_checkout_data/';
 
     $.post(url, postData).done(function () {
-        stripe.confirmCardPayment(clientSecret, {
+        stripe.confirmCardPayment(client_secret, {
             payment_method: {
                 card: card,
                 billing_details: {
