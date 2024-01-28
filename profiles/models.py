@@ -29,6 +29,8 @@ class UserProfile(models.Model):
         Create or update the user profile
         """
         
-        UserProfile.objects.create(user=instance)
+        if created:
+            UserProfile.objects.create(user=instance)
         # Existing users: just save the profile
+        instance.userprofile.save()
      
