@@ -49,9 +49,6 @@ class StripeWH_Handler:
         bag = intent.metadata.bag
         save_info = intent.metadata.save_info
 
-        # Get the Charge object
-        stripe_charge = stripe.Charge.retrieve(intent.latest_charge)
-
         billing_details = stripe_charge.billing_details # updated
         shipping_details = intent.shipping
         grand_total = round(stripe_charge.amount / 100, 2) # updated
