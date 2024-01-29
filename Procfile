@@ -1,0 +1,1 @@
+web: gunicorn decked_out.wsgi:application
