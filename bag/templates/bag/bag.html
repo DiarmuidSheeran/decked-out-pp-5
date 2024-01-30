@@ -26,7 +26,7 @@
                 {% if bag_items %}
                     <div class="table-responsive rounded">
                         <table class="table table-sm table-borderless">
-                            <thead class="text-black">
+                            <thead class="text-white">
                                 <tr>
                                     <th scope="col">Product Info</th>
                                     <th scope="col"></th>
@@ -37,7 +37,7 @@
                             </thead>
 
                             {% for item in bag_items %}
-                                <tr>
+                                <tr class="text-white">
                                     <td class="p-3 w-25">
                                         <img class="img-fluid rounded" src="{{ item.product.image.url }}">
                                     </td>
@@ -46,7 +46,15 @@
                                         <p class="my-0 small text-muted">SKU: {{ item.product.sku|upper }}</p>
                                     </td>
                                     <td class="py-3">
-                                        <p class="my-0">${{ item.product.price }}</p>
+                                        <p class="my-0">
+                                            {% if item.product.is_on_promotion and item.product.promotion_price %}
+                                                <span class="special-offer-badge text-white">Special Offer</span>
+                                                <br>
+                                                <span class="promotion-price text-danger">${{ item.product.promotion_price }}</span>
+                                            {% else %}
+                                                ${{ item.product.price }}
+                                            {% endif %}
+                                        </p>
                                     </td>
                                     <td class="py-3 w-25">
                                         <form class="form update-form" method="POST" action="{% url 'adjust_bag' item.item_id %}">
@@ -80,15 +88,21 @@
                                         <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}" data-product-size="{{ item.size }}"><small>Remove</small></a>
                                     </td>
                                     <td class="py-3">
-                                        <p class="my-0">${{ item.product.price | calc_subtotal:item.quantity }}</p>
+                                        {% with product=item.product %}
+                                            {% if product.is_on_promotion and product.promotion_price %}
+                                                <p class="my-0">${{ product.promotion_price|calc_subtotal:item.quantity }}</p>
+                                            {% else %}
+                                                <p class="my-0">${{ product.price|calc_subtotal:item.quantity }}</p>
+                                            {% endif %}
+                                        {% endwith %}
                                     </td>
                                 </tr>
                             {% endfor %}
-                            <tr>
+                            <tr class="text-white">
                                 <td colspan="5" class="pt-5 text-right">
                                     <h6><strong>Bag Total: ${{ total|floatformat:2 }}</strong></h6>
                                     <h6>Delivery: ${{ delivery|floatformat:2 }}</h6>
-                                    <h4 class="mt-4"><strong>Grand Total: ${{ grand_total|floatformat:2 }}</strong></h4>
+                                    <h4 class="mt-4" style="color: gold;"><strong>Grand Total: ${{ grand_total|floatformat:2 }}</strong></h4>
                                     {% if free_delivery_delta > 0 %}
                                         <p class="mb-1 text-danger">
                                             You could get free delivery by spending just <strong>${{ free_delivery_delta }}</strong> more!

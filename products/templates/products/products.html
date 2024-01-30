@@ -69,7 +69,15 @@
                                 <div class="card-footer bg-white pt-0 border-0 text-left">
                                     <div class="row">
                                         <div class="col">
-                                            <p class="lead mb-0 text-left font-weight-bold" style="color:black">${{ product.price }}</p>
+                                            <p class="lead mb-0 text-left font-weight-bold" style="color:black">
+                                                {% if product.is_on_promotion and product.promotion_price %}
+                                                    <span class="original-price text-muted"><del>${{ product.price }}</del></span>
+                                                    <span class="promotion-price text-danger">${{ product.promotion_price }}</span>
+                                                    <span class="special-offer-badge">Special Offer</span>
+                                                {% else %}
+                                                    ${{ product.price }}
+                                                {% endif %}
+                                            </p>
                                             {% if product.category %}
                                             <p class="small mt-1 mb-0">
                                                 <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">

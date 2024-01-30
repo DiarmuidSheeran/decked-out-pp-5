@@ -12,12 +12,18 @@ def bag_contents(request):
 
     for item_id, quantity in bag.items():
         product = get_object_or_404(Product, pk=item_id)
-        total += quantity * product.price
+        item_price = product.price
+
+        if product.is_on_promotion and product.promotion_price is not None:
+            item_price = product.promotion_price
+
+        total += quantity * item_price
         product_count += quantity
         bag_items.append({
             'item_id': item_id,
             'quantity': quantity,
             'product': product,
+            'item_price':item_price
         })
 
     if total < settings.FREE_DELIVERY_THRESHOLD:
