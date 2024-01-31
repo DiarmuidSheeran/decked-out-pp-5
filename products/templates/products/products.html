@@ -68,12 +68,18 @@
                                 </div>
                                 <div class="card-footer bg-white pt-0 border-0 text-left">
                                     <div class="row">
-                                        <div class="col">
+                                        <div class="col mt-2">
                                             <p class="lead mb-0 text-left font-weight-bold" style="color:black">
-                                                {% if product.is_on_promotion and product.promotion_price %}
+                                                {% if product.is_on_promotion and product.promotion_price and product.clearance %}
                                                     <span class="original-price text-muted"><del>${{ product.price }}</del></span>
                                                     <span class="promotion-price text-danger">${{ product.promotion_price }}</span>
-                                                    <span class="special-offer-badge">Special Offer</span>
+                                                    
+                                                    <span class="special-offer-badge text-danger" style="background-color: gold; padding-left: 10px; padding-right: 10px; border-style: solid; border-width: 2px; border-color: black;">Clearance!</span>
+                                                {% elif product.is_on_promotion and product.promotion_price %}
+                                                    <span class="original-price text-muted"><del>${{ product.price }}</del></span>
+                                                    <span class="promotion-price text-danger">${{ product.promotion_price }}</span>
+                                                    
+                                                    <span class="special-offer-badge text-danger" style="background-color: gold; padding-left: 10px; padding-right: 10px; border-style: solid; border-width: 2px; border-color: black;">Special Offer!</span>
                                                 {% else %}
                                                     ${{ product.price }}
                                                 {% endif %}
