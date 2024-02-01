@@ -194,6 +194,16 @@ a.category-badge > span.badge:hover {
     overflow-y: auto;
 }
 
+/* ------------------------------- Product Cards styles */
+
+.product-card {
+    border: solid; 
+    border-color: red; 
+    border-width: 3px;
+    border-radius: 6px; 
+    box-shadow: 10px 10px 10px rgb(141, 139, 139);
+}
+
 
 /* -------------------------------- Media Queries */
 
@@ -284,3 +294,4 @@ a.category-badge > span.badge:hover {
         height: calc(100vh - 116px);
     }
 }
+

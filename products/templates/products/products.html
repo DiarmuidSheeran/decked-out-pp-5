@@ -53,7 +53,15 @@
                 <div class="row">
                     {% for product in products %}
                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                            <div class="card h-100 border-0">
+                            <div class="card h-100 product-card">
+                                {% if product.new_arrival and product.is_on_promotion %}
+                                    <span class="badge badge-warning" style="width: 20%; margin-top: 5px; margin-left: 5px; padding-right: 10px;">New!</span>
+                                    <span class="badge badge-danger" style="width: 20%; margin-top: 5px; margin-left: 5px;">Sale!</span>
+                                {% elif product.new_arrival%}
+                                    <span class="badge badge-warning" style="width: 20%; margin-top: 5px; margin-left: 5px;">New!</span>
+                                {% elif product.is_on_promotion%}
+                                <span class="badge badge-danger" style="width: 20%; margin-top: 5px; margin-left: 5px;">Sale!</span>   
+                                {% endif %}
                                 {% if product.image %}
                                 <a href="{% url 'product_detail' product.id %}">
                                     <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
@@ -74,12 +82,12 @@
                                                     <span class="original-price text-muted"><del>${{ product.price }}</del></span>
                                                     <span class="promotion-price text-danger">${{ product.promotion_price }}</span>
                                                     
-                                                    <span class="special-offer-badge text-danger" style="background-color: gold; padding-left: 10px; padding-right: 10px; border-style: solid; border-width: 2px; border-color: black;">Clearance!</span>
+                                                    <span class="badge badge-warning text-black">Clearance!</span>
                                                 {% elif product.is_on_promotion and product.promotion_price %}
                                                     <span class="original-price text-muted"><del>${{ product.price }}</del></span>
                                                     <span class="promotion-price text-danger">${{ product.promotion_price }}</span>
                                                     
-                                                    <span class="special-offer-badge text-danger" style="background-color: gold; padding-left: 10px; padding-right: 10px; border-style: solid; border-width: 2px; border-color: black;">Special Offer!</span>
+                                                    <span class="badge badge-danger text-warning">Special Offer!</span>
                                                 {% else %}
                                                     ${{ product.price }}
                                                 {% endif %}
