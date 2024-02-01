@@ -48,10 +48,10 @@
                 Special Offers
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="specials-link">
-                <a href="" class="dropdown-item">New Arrivals</a>
-                <a href="" class="dropdown-item">Deals</a>
-                <a href="" class="dropdown-item">Clearance</a>
-                <a href="" class="dropdown-item">All Specials</a>
+                <a href="{% url 'products' %}?filter_type=special_offers" class="dropdown-item">Special Offers</a>
+                <a href="{% url 'products' %}?filter_type=clearance" class="dropdown-item">Clearance Items</a>
+                <a href="{% url 'products' %}?filter_type=new_arrivals" class="dropdown-item">New Arrivals</a>
+                <a href="{% url 'products' %}?filter_type=all_offers" class="dropdown-item">All Specials</a>
             </div>
         </li>
     </ul>

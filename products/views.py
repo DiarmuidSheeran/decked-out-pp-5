@@ -13,6 +13,19 @@ def all_products(request):
     categories = None
     sort = None
     direction = None
+    filter_type = None
+
+    if 'filter_type' in request.GET:
+        filter_type = request.GET['filter_type']
+
+    if filter_type == 'new_arrivals':
+        products = products.filter(new_arrival=True)
+    elif filter_type == 'special_offers':
+        products = products.filter(Q(is_on_promotion=True) & Q(clearance=False))
+    elif filter_type == 'clearance':
+        products = products.filter(clearance=True)
+    elif filter_type == 'all_offers':
+        products = products.filter(Q(is_on_promotion=True) | Q(clearance=True) | Q(new_arrival=True))
 
     if request.GET:
         if 'sort' in request.GET:
@@ -50,6 +63,7 @@ def all_products(request):
         'search_term': query,
         'current_categories': categories,
         'current_sorting': current_sorting,
+        'filter_type': filter_type,
     }
 
     return render(request, 'products/products.html', context)
