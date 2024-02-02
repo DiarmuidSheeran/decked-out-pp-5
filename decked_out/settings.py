@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['8000-diarmuidshe-deckedoutpp-07qedhcrluo.ws-eu107.gitpod.io', 'decked-out-tcg-store-b1147b8f9a0a.herokuapp.com']
 
@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'bag',
     'checkout',
     'profiles',
+    'wishlist',
     'crispy_forms',
     'storages',
 ]
