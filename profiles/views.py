@@ -4,10 +4,12 @@ from django.contrib import messages
 from .models import UserProfile
 from .forms import UserProfileForm
 from checkout.models import Order
+from products.models import Product
 
 def profile(request):
     """ Display the user's profile. """
     profile = get_object_or_404(UserProfile, user=request.user)
+    wishlist = profile.wishlist.all()
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=profile)
@@ -22,6 +24,7 @@ def profile(request):
     context = {
         'form': form,
         'orders': orders,
+        'wishlist': wishlist,
         'on_profile_page': True
     }
 
@@ -42,3 +45,16 @@ def order_history(request, order_number):
     }
 
     return render(request, template, context)
+
+def wishlist(request):
+    profile = get_object_or_404(UserProfile, user=request.user)
+    wishlist = profile.wishlist.all()
+
+    template = 'profiles/wishlist.html'
+    context = {
+        'wishlist': wishlist,
+        'profile': profile,
+    }
+
+    return render(request, template, context)
+    

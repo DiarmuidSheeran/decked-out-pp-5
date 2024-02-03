@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+<div class="container wishlist-container">
+    <div class="row">
+        <div class="col">
+            <hr>
+            <h2 class="logo-font mb-4">{{profile.user.username}}'s Wishlist</h2>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-6 wishlist-items">
+            <h4>Wishlist Items</h4>
+            {% if wishlist %}
+                {% for product in wishlist %}
+                <div class="wishlist-item mt-4 pb-2 pl-2 pr-2 pt-2" style="border-bottom: 1px solid #fff;">
+                    <div class="product-details">
+                        <div class="product-image">
+                            <a href="{% url 'product_detail' product.id %}" style="text-decoration: none; color: #fff;">
+                                <p class="product-name">{{ product.name }}</p>
+                                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid" style="width: 100px; height: 100px;">
+                            </a>
+                            <form class="d-inline like-form" action="{% url 'wishlist' sku=product.sku %}" method="POST" data-product-sku="{{ product.sku }}">
+                                {% csrf_token %}
+                                {% if request.user in product.wishlist.all %}
+                                <button type="submit" name="like" value="{{ product_wish.sku }}" class="btn-like btn btn-white btn-sm like-button like-btn ml-4" data-like-action="unlike">
+                                    <i class="fa-solid fa-heart fa-sm" style="color: #cc2b5e;"></i><span class="ml-1 like-text">Remove from Wishlist</span>
+                                </button>
+                                
+                                {% else %}
+                                <button type="submit" name="like" value="{{ product_wish.sku }}" class="btn-like btn btn-white btn-sm like-button like-btn ml-4" data-like-action="like">
+                                    <i class="fa-solid fa-heart fa-sm" style="color: #000;"></i><span class="ml-1 like-text">Add to Wishlist</span>
+                                </button>
+                                {% endif %}
+                            </form>
+                        </div>
+                        
+                    
+                        <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
+                            {% csrf_token %}
+                            <div class="form-row">
+                                <div class="col-12">
+                                    <div class="form-group w-100 mt-2">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <button class="decrement-qty btn btn-danger rounded-5" 
+                                                    data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
+                                                    <span class="icon">
+                                                        <i class="fas fa-minus"></i>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                            <input class="form-control qty_input" type="number" name="quantity" value="1" min="1" max="99" data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}">
+                                            <div class="input-group-append">
+                                                <button class="increment-qty btn btn-danger rounded-5"
+                                                    data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
+                                                    <span class="icon">
+                                                        <i class="fas fa-plus"></i>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <input type="submit" class="btn btn-danger rounded-5 text-uppercase mb-4" value="Add to Bag">
+                                </div>
+                                <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                            </div>
+                        </form>
+                    </div>
+                </div>  
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="wishlist-item mt-4 mb-4 pb-2" style="border-bottom: 1px solid #fff;">
+                <p>Your wishlist is empty.</p>
+                <a href="{% url 'products' %}" class="btn btn-info rounded-0 btn-lg">
+                    <span class="icon">
+                        <i class="fas fa-chevron-left"></i>
+                    </span>
+                    <span class="text-uppercase">Keep Shopping</span>
+                </a>
+            </div>
+        {% endif %}
+        <div class="col-12 col-lg-6">
+            <img src="{% static 'media/dark-magician.png' %}" alt="Slifer the sky dragon" class="img-fluid ml-4">
+        </div>
+    </div>
+</div>
+<div class="btt-button shadow-sm rounded-0 border border-white">
+    <a class="btt-link d-flex h-100">
+        <i class="fas fa-arrow-up text-white mx-auto my-auto"></i>
+    </a>	
+</div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    <script type="text/javascript">
+        $('#sort-selector').change(function() {
+            var selector = $(this);
+            var currentUrl = new URL(window.location);
+
+            var selectedVal = selector.val();
+            if(selectedVal != "reset"){
+                var sort = selectedVal.split("_")[0];
+                var direction = selectedVal.split("_")[1];
+
+                currentUrl.searchParams.set("sort", sort);
+                currentUrl.searchParams.set("direction", direction);
+
+                window.location.replace(currentUrl);
+            } else {
+                currentUrl.searchParams.delete("sort");
+                currentUrl.searchParams.delete("direction");
+
+                window.location.replace(currentUrl);
+            }
+        })
+    </script>
+    {% include 'products/includes/quantity_input_script.html' %}
+    {% include 'products/includes/wishlist_script.html' %}
+    
+{% endblock %}
