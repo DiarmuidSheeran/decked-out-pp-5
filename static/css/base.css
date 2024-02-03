@@ -73,6 +73,15 @@ body {
     border: 1px solid black !important;
 }
 
+.like-btn {
+    background-color: #fff;
+}
+
+.increment-qty,
+.decrement-qty {
+    border: 1px solid #000;
+}
+
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */
