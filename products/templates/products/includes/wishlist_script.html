@@ -1,0 +1,39 @@
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.like-form').on('submit', function(event) {
+        event.preventDefault();  
+
+        var form = $(this);
+        var url = form.attr('action');
+        var method = form.attr('method');
+        var productSku = form.data('product-sku');
+
+        $.ajax({
+            url: url,
+            method: method,
+            data: form.serialize(),
+            dataType: 'json',
+            success: function(response) {
+                var likeButton = form.find('.like-button'); 
+                var likeIcon = form.find('.fa-heart');
+                var likeText = form.find('.like-text'); 
+
+                if (response.liked) {
+                    likeIcon.css('color', '#cc2b5e');
+                    likeButton.data('like-action', 'unlike'); 
+                    likeText.text('Remove from Wishlist');
+                    likeText.addClass('text-secondary small');
+                } else {
+                    likeIcon.css('color', '#000'); 
+                    likeButton.data('like-action', 'like');
+                    likeText.text('Add to Wishlist');
+                    likeText.removeClass('text-secondary small'); 
+                }
+            },
+            error: function() {
+                alert('An error occurred. Please try again.');
+            }
+        });
+    });
+});
+</script>

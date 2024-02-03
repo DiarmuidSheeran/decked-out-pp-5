@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Category(models.Model):
@@ -29,9 +30,11 @@ class Product(models.Model):
     rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
-
-    def __str__(self):
-        return self.name
+    wishlist = models.ManyToManyField(
+        User,
+        related_name='wishlist_item',
+        blank=True
+    )
 
     def save(self, *args, **kwargs):
         if not self.sku:
@@ -42,3 +45,8 @@ class Product(models.Model):
                 last_sku = 0
             self.sku = str(last_sku + 1).zfill(6)  
         super(Product, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
+
+   

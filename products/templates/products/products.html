@@ -104,6 +104,19 @@
                                             {% else %}
                                                 <small class="text-muted">No Rating</small>
                                             {% endif %}
+                                            <form class="d-inline like-form" action="{% url 'wishlist' sku=product.sku %}" method="POST" data-product-sku="{{ product.sku }}">
+                                                {% csrf_token %}
+                                                {% if request.user in product.wishlist.all %}
+                                                <button type="submit" name="like" value="{{ product_wish.sku }}" class="btn-like btn btn-white like-button like-btn" data-like-action="unlike">
+                                                    <i class="fa-solid fa-heart fa-sm" style="color: #cc2b5e;"></i><span class="ml-1 like-text">Remove from Wishlist</span>
+                                                </button>
+                                                
+                                                {% else %}
+                                                <button type="submit" name="like" value="{{ product_wish.sku }}" class="btn-like btn btn-white like-button like-btn" data-like-action="like">
+                                                    <i class="fa-solid fa-heart fa-sm" style="color: #000;"></i><span class="ml-1 like-text">Add to Wishlist</span>
+                                                </button>
+                                                {% endif %}
+                                            </form>
                                         </div>
                                     </div>
                                     <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
@@ -174,14 +187,10 @@
     </div>
 {% endblock %}
 
+
+
 {% block postloadjs %}
     {{ block.super }}
-    <script type="text/javascript">
-		$('.btt-link').click(function(e) {
-			window.scrollTo(0,0)
-		})
-	</script>
-    
     <script type="text/javascript">
         $('#sort-selector').change(function() {
             var selector = $(this);
@@ -205,4 +214,6 @@
         })
     </script>
     {% include 'products/includes/quantity_input_script.html' %}
+    {% include 'products/includes/wishlist_script.html' %}
+    
 {% endblock %}

@@ -3,6 +3,10 @@ from django.contrib import messages
 from django.db.models import Q
 from .models import Product, Category
 from django.db.models.functions import Lower
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from profiles.models import UserProfile
 
 # Create your views here.
 
@@ -77,3 +81,22 @@ def product_detail(request, product_id):
     }
 
     return render(request, 'products/product_detail.html', context)
+
+@login_required
+def wishlist(request, sku, *args, **kwargs):
+    product_wish = get_object_or_404(Product, sku=sku)
+    user = request.user
+    user_profile = user.userprofile
+
+    liked = False
+
+    if product_wish.wishlist.filter(id=request.user.id).exists():
+        product_wish.wishlist.remove(request.user)
+        user_profile.wishlist.remove(product_wish)
+        liked = False
+    else:
+        product_wish.wishlist.add(request.user)
+        user_profile.wishlist.add(product_wish)
+        liked = True
+
+    return JsonResponse({'wishlist_count': product_wish.wishlist.count(), 'liked': liked})
