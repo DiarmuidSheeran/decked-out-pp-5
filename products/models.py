@@ -36,6 +36,15 @@ class Product(models.Model):
         blank=True
     )
 
+    def calculate_average_rating(self):
+        reviews = self.reviews.all()
+        if reviews:
+            total_rating = sum(review.rating for review in reviews)
+            average_rating = total_rating / len(reviews)
+            return round(average_rating, 2)
+        else:
+            return None
+
     def save(self, *args, **kwargs):
         if not self.sku:
             last_sku = Product.objects.order_by('-sku').first()

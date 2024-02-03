@@ -6,13 +6,18 @@ from django.db.models.functions import Lower
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from profiles.models import UserProfile
+from profiles.models import UserProfile#
+from reviews.models import Review
 
 # Create your views here.
 
 def all_products(request):
 
     products = Product.objects.all()
+
+    for product in products:
+        product.average_rating = product.calculate_average_rating()
+   
     query = None
     categories = None
     sort = None
@@ -75,9 +80,13 @@ def all_products(request):
 def product_detail(request, product_id):
 
     product = get_object_or_404(Product, pk=product_id)
+    reviews = product.reviews.all()
+    average_rating = product.calculate_average_rating()
 
     context = {
         'product': product,
+        'reviews': reviews,
+        'average_rating': average_rating,
     }
 
     return render(request, 'products/product_detail.html', context)

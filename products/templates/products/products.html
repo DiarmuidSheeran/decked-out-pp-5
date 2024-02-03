@@ -99,10 +99,10 @@
                                                 </a>
                                             </p>
                                             {% endif %}
-                                            {% if product.rating %}
-                                                <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
+                                            {% if product.average_rating %}
+                                                <small class="text-muted"><i class="fa-solid fa-star" style="color: #FFD43B;"></i> {{ product.average_rating }} / 5</small>
                                             {% else %}
-                                                <small class="text-muted">No Rating</small>
+                                                <small class="text-muted"><i class="fa-solid fa-star" style="color: #FFD43B;"></i> No Reviews Yet</small>
                                             {% endif %}
                                             <form class="d-inline like-form" action="{% url 'wishlist' sku=product.sku %}" method="POST" data-product-sku="{{ product.sku }}">
                                                 {% csrf_token %}

@@ -45,10 +45,8 @@
                         </a>
                         </p>
                     {% endif %}
-                    {% if product.rating %}
-                        <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
-                    {% else %}
-                        <small class="text-muted">No Rating</small>
+                    {% if average_rating %}
+                        <small class="text-muted"><i class="fa-solid fa-star" style="color: #FFD43B;"></i> {{ average_rating }} / 5</small>
                     {% endif %}
                     <br>
                     <form class="d-inline like-form" action="{% url 'wishlist' sku=product.sku %}" method="POST" data-product-sku="{{ product.sku }}">
@@ -105,6 +103,34 @@
                             <input type="hidden" name="redirect_url" value="{{ request.path }}">
                         </div>
                     </form>
+                    <div class="card text-black mt-4">
+                        <div class="card-header">
+                            <h2 class="text-center">Product Reviews</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="reviews">
+                                {% if reviews %}
+                                {% for review in reviews %}
+                                <div class="review">
+                                    <div class="rating">
+                                        <strong>Rating: {{ review.rating }}</strong>
+                                        <span class="star-rating">
+                                             <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                                        </span>
+                                    </div>
+                                    <p class="mb-0"><strong>Review:</strong> <i class="fa-solid fa-comment" style="color: #63E6BE;"></i></p>
+                                    <p >{{ review.comment }}</p>
+                                    <p class="text-muted small">Reviewed by: {{ review.reviewer_name }}</p>
+                                    <p class="text-muted small">Posted on {{ review.created_at }}</p>
+                                </div>
+                                {% endfor %}
+                                {% else %}
+                                <p>No reviews for this product yet.</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{% url 'product_reviews' product_id=product.id %}" class="btn btn-info mt-3">Add a Review</a>
                 </div>
             </div>
         </div>
