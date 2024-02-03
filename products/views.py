@@ -6,8 +6,9 @@ from django.db.models.functions import Lower
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from profiles.models import UserProfile#
+from profiles.models import UserProfile
 from reviews.models import Review
+from checkout.models import Order
 
 # Create your views here.
 
@@ -82,11 +83,14 @@ def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     reviews = product.reviews.all()
     average_rating = product.calculate_average_rating()
+    user = request.user
+    has_ordered_product = Order.objects.filter(user_profile=user.userprofile, lineitems__product=product).exists()
 
     context = {
         'product': product,
         'reviews': reviews,
         'average_rating': average_rating,
+        'has_ordered_product': has_ordered_product,
     }
 
     return render(request, 'products/product_detail.html', context)

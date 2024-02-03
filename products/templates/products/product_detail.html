@@ -130,7 +130,9 @@
                             </div>
                         </div>
                     </div>
-                    <a href="{% url 'product_reviews' product_id=product.id %}" class="btn btn-info mt-3">Add a Review</a>
+                    {% if user.is_authenticated and has_ordered_product %}
+                        <a href="{% url 'product_reviews' product_id=product.id %}" class="btn btn-info mt-3">Leave a Review</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
