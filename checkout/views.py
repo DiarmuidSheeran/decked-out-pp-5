@@ -53,23 +53,19 @@ def checkout(request):
             if discount_code_id:
                 try:
                     discount_code = DiscountCode.objects.get(id=discount_code_id)
-                    
-                    # Apply the discount based on its type
                     if discount_code.discount_type == 'percentage':
                         discount_amount = (order.order_total * discount_code.discount_amount) / 100
                     elif discount_code.discount_type == 'fixed':
                         discount_amount = discount_code.discount_amount
                     else:
                         discount_amount = 0
-
-                    # Adjust the order total
                     order.order_total -= discount_amount
                     order.save()
-                    del request.session['discount_code_id']  # Remove the discount code from the session
-                    
+                    del request.session['discount_code_id']
                     messages.success(request, f"Discount code applied successfully. Discount amount: ${discount_amount}")
                 except DiscountCode.DoesNotExist:
                     messages.error(request, "Error applying the discount code.")
+                
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
@@ -202,4 +198,5 @@ def apply_discount(request):
                 messages.error(request, "Invalid or expired discount code.")
         else:
             messages.error(request, "Invalid discount code.")
+
     return redirect(reverse('checkout'))

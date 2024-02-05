@@ -27,7 +27,7 @@ def bag_contents(request):
             'item_price':item_price
         })
 
-    discount_amount = 0  # Initialize discount amount
+    discount_amount = 0
     discount_code_id = request.session.get('discount_code_id', None)
     if discount_code_id:
         try:
@@ -37,9 +37,8 @@ def bag_contents(request):
             elif discount_code.discount_type == 'fixed':
                 discount_amount = discount_code.discount_amount
         except DiscountCode.DoesNotExist:
-            discount_amount = 0  # No discount if the code does not exist or is invalid
+            discount_amount = 0 
 
-    # Ensure the total isn't negative after applying the discount
     total = max(0, total - discount_amount)
 
     if total < settings.FREE_DELIVERY_THRESHOLD:
