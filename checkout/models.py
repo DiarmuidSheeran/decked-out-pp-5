@@ -4,7 +4,7 @@ from django.db import models
 from django.db.models import Sum
 from django.conf import settings
 from django_countries.fields import CountryField
-from products.models import Product
+from products.models import Product, ProductStatistics
 from profiles.models import UserProfile
 
 
@@ -91,6 +91,12 @@ class OrderLineItem(models.Model):
             self.lineitem_total = product.promotion_price * self.quantity
         else:
             self.lineitem_total = product.price * self.quantity
+
+        product_statistics, _ = ProductStatistics.objects.get_or_create(product=self.product)
+        product_statistics.total_sold += self.quantity
+        product_statistics.times_purchased += 1
+        product_statistics.save()
+
 
         super().save(*args, **kwargs)
 

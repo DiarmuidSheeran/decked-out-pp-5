@@ -58,4 +58,8 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+class ProductStatistics(models.Model):
+    product = models.OneToOneField(Product, on_delete=models.CASCADE)
+    total_sold = models.PositiveIntegerField(default=0)
+    times_purchased = models.PositiveIntegerField(default=0)
    
