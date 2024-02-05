@@ -37,3 +37,13 @@ class OrderForm(forms.ModelForm):
                 self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].widget.attrs['class'] = 'stripe-style-input'
             self.fields[field].label = False
+
+class DiscountCodeForm(forms.Form):
+    discount_code = forms.CharField(
+        label='Promotional Code', 
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Enter your discount code here'
+        })
+    )

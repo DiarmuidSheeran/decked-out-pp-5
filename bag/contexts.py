@@ -2,6 +2,7 @@ from decimal import Decimal
 from django.conf import settings
 from django.shortcuts import get_object_or_404
 from products.models import Product
+from checkout.models import DiscountCode
 
 def bag_contents(request):
 
@@ -26,6 +27,21 @@ def bag_contents(request):
             'item_price':item_price
         })
 
+    discount_amount = 0  # Initialize discount amount
+    discount_code_id = request.session.get('discount_code_id', None)
+    if discount_code_id:
+        try:
+            discount_code = DiscountCode.objects.get(id=discount_code_id)
+            if discount_code.discount_type == 'percentage':
+                discount_amount = (total * discount_code.discount_amount) / 100
+            elif discount_code.discount_type == 'fixed':
+                discount_amount = discount_code.discount_amount
+        except DiscountCode.DoesNotExist:
+            discount_amount = 0  # No discount if the code does not exist or is invalid
+
+    # Ensure the total isn't negative after applying the discount
+    total = max(0, total - discount_amount)
+
     if total < settings.FREE_DELIVERY_THRESHOLD:
         delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
         free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - total
@@ -43,6 +59,7 @@ def bag_contents(request):
         'free_delivery_delta': free_delivery_delta,
         'free_delivery_threshold': settings.FREE_DELIVERY_THRESHOLD,
         'grand_total': grand_total,
+        'discount_amount': discount_amount,
     }
 
     return context

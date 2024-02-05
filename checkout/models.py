@@ -102,3 +102,12 @@ class OrderLineItem(models.Model):
 
     def __str__(self):
         return f'SKU {self.product.sku} on order {self.order.order_number}'
+
+class DiscountCode(models.Model):
+    code = models.CharField(max_length=20, unique=True)
+    discount_type = models.CharField(max_length=10, choices=[('percentage', 'Percentage'), ('fixed', 'Fixed Amount')])
+    discount_amount = models.DecimalField(max_digits=10, decimal_places=2)
+    expiration_date = models.DateField()
+    
+    def __str__(self):
+        return self.code

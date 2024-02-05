@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpR
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
-from .forms import OrderForm
-from .models import Order, OrderLineItem
+from .forms import OrderForm, DiscountCodeForm
+from .models import Order, OrderLineItem, DiscountCode
 from products.models import Product
 from profiles.models import UserProfile
 from profiles.forms import UserProfileForm
@@ -46,8 +46,30 @@ def checkout(request):
             'county': request.POST['county'],
         }
         order_form = OrderForm(form_data)
+        discount_code_form = DiscountCodeForm(request.POST)
         if order_form.is_valid():
-            order = order_form.save()
+            order = order_form.save(commit=False)
+            discount_code_id = request.session.get('discount_code_id')
+            if discount_code_id:
+                try:
+                    discount_code = DiscountCode.objects.get(id=discount_code_id)
+                    
+                    # Apply the discount based on its type
+                    if discount_code.discount_type == 'percentage':
+                        discount_amount = (order.order_total * discount_code.discount_amount) / 100
+                    elif discount_code.discount_type == 'fixed':
+                        discount_amount = discount_code.discount_amount
+                    else:
+                        discount_amount = 0
+
+                    # Adjust the order total
+                    order.order_total -= discount_amount
+                    order.save()
+                    del request.session['discount_code_id']  # Remove the discount code from the session
+                    
+                    messages.success(request, f"Discount code applied successfully. Discount amount: ${discount_amount}")
+                except DiscountCode.DoesNotExist:
+                    messages.error(request, "Error applying the discount code.")
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
@@ -90,6 +112,7 @@ def checkout(request):
             amount=stripe_total,
             currency=settings.STRIPE_CURRENCY,
         )
+        discount_code_form = DiscountCodeForm()
 
         if request.user.is_authenticated:
             try:
@@ -117,6 +140,7 @@ def checkout(request):
     template = 'checkout/checkout.html'
     context = {
         'order_form': order_form,
+        'discount_code_form': discount_code_form,
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,
     }
@@ -164,3 +188,18 @@ def checkout_success(request, order_number):
     }
 
     return render(request, template, context)
+
+def apply_discount(request):
+    if request.method == 'POST':
+        discount_code_form = DiscountCodeForm(request.POST)
+        if discount_code_form.is_valid():
+            code = discount_code_form.cleaned_data['discount_code']
+            try:
+                discount_code = DiscountCode.objects.get(code=code)
+                request.session['discount_code_id'] = discount_code.id  
+                messages.success(request, f"Discount code '{code}' applied successfully.")
+            except DiscountCode.DoesNotExist:
+                messages.error(request, "Invalid or expired discount code.")
+        else:
+            messages.error(request, "Invalid discount code.")
+    return redirect(reverse('checkout'))
