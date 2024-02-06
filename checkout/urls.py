@@ -8,4 +8,5 @@ urlpatterns = [
     path('cache_checkout_data/', views.cache_checkout_data, name='cache_checkout_data'),
     path('wh/', webhook, name='webhook'),
     path('apply_discount/', views.apply_discount, name='apply_discount'),
+    path('remove_discount/', views.remove_discount, name='remove_discount'),
 ]

@@ -62,27 +62,32 @@
                         </div>
                     </div>
                 {% endfor %}
-                <form method="post" action="{% url 'apply_discount' %}" class="discount-code-form">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="id_discount_code">{{ discount_code_form.discount_code.label }}</label>
-                        {{ discount_code_form.discount_code }}
-                        {% if discount_code_form.discount_code.errors %}
-                            {% for error in discount_code_form.discount_code.errors %}
-                                <div class="text-danger">{{ error }}</div>
-                            {% endfor %}
-                        {% endif %}
-                    </div>
-                    <button type="submit" class="btn btn-danger">Apply Code</button>
-                    {% if discount_amount %}
-                        <button type="submit" name="remove_discount" class="btn btn-secondary">Remove Discount</button>
-                    {% endif %}
-                </form>
+                {% if discount_amount %}
+                    <form method="post" action="{% url 'remove_discount' %}">
+                        {% csrf_token %}
+                            <p class="text-warning">Discount Applied, You Saved €{{ discount_amount }}</p>
+                            <button type="submit" class="btn btn-secondary">Remove Discount</button>
+                    </form>
+                {% else %}
+                    <form method="post" action="{% url 'apply_discount' %}" class="discount-code-form">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="id_discount_code">{{ discount_code_form.discount_code.label }}</label>
+                            {{ discount_code_form.discount_code }}
+                            {% if discount_code_form.discount_code.errors %}
+                                {% for error in discount_code_form.discount_code.errors %}
+                                    <div class="text-danger">{{ error }}</div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        <button type="submit" class="btn btn-danger">Apply Code</button>
+                    </form>
+                {% endif %}
                 <div class="row text-black text-right">
                     <div class="col-7 offset-2 text-white">
                         {% if discount_amount %}
                             <p class="my-0 text-warning">Discount Applied:</p>
-                            <p class="my-0">Order Total:<small class="text-muted">-Discount</small></p>
+                            <p class="my-0">Order Total - Discount:</p>
                         {% elif discount_amount <= 0 %}
                             <p class="my-0">Order Total:</p>
                         {% endif %}
@@ -92,7 +97,7 @@
                     <div class="col-3 text-white">
                       
                         {% if discount_amount %}
-                            <p class="my-0 text-warning">-€{{ discount_amount | floatformat:2 }}</p>
+                            <p class="my-0 text-warning">€{{ discount_amount | floatformat:2 }}</p>
                             <p class="my-0">€{{ total | floatformat:2 }}</p>
                         {% elif discount_amount <= 0 %}
                             <p class="my-0">${{ total | floatformat:2 }}</p>

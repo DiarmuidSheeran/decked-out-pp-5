@@ -65,7 +65,7 @@ def checkout(request):
                     messages.success(request, f"Discount code applied successfully. Discount amount: ${discount_amount}")
                 except DiscountCode.DoesNotExist:
                     messages.error(request, "Error applying the discount code.")
-                
+             
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
@@ -133,6 +133,8 @@ def checkout(request):
         messages.warning(request, 'Stripe public key is missing. \
             Did you forget to set it in your environment?')
 
+         
+
     template = 'checkout/checkout.html'
     context = {
         'order_form': order_form,
@@ -199,4 +201,10 @@ def apply_discount(request):
         else:
             messages.error(request, "Invalid discount code.")
 
+    return redirect(reverse('checkout'))
+
+def remove_discount(request):
+    if 'discount_code_id' in request.session:
+        del request.session['discount_code_id']
+        messages.info(request, "Discount code removed.")
     return redirect(reverse('checkout'))
