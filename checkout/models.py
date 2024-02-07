@@ -7,6 +7,14 @@ from django_countries.fields import CountryField
 from products.models import Product, ProductStatistics
 from profiles.models import UserProfile
 
+class DiscountCode(models.Model):
+    code = models.CharField(max_length=20, unique=True)
+    discount_type = models.CharField(max_length=10, choices=[('percentage', 'Percentage'), ('fixed', 'Fixed Amount')])
+    discount_amount = models.DecimalField(max_digits=10, decimal_places=2)
+    expiration_date = models.DateField()
+    
+    def __str__(self):
+        return self.code
 
 class Order(models.Model):
     order_number = models.CharField(max_length=32, null=False, editable=False)
@@ -27,6 +35,7 @@ class Order(models.Model):
     grand_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
     original_bag = models.TextField(null=False, blank=False, default='')
     stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
+    discount_code = models.ForeignKey(DiscountCode, null=True, blank=True, on_delete=models.SET_NULL)
 
     def _generate_order_number(self):
         """
@@ -37,9 +46,8 @@ class Order(models.Model):
     def update_total(self):
         """
         Update grand total each time a line item is added,
-        accounting for delivery costs.
         """
-        order_total = Decimal('0')
+        order_total = Decimal('0.00')
 
         for line_item in self.lineitems.all():
             product = line_item.product
@@ -48,17 +56,26 @@ class Order(models.Model):
             else:
                 order_total += product.price * line_item.quantity
 
-        # Set the order total
-        self.order_total = order_total
+        discount_amount = Decimal('0.00')
+        if self.discount_code:
+            if self.discount_code.discount_type == 'percentage':
+                discount_amount = (order_total * self.discount_code.discount_amount) / 100
+            elif self.discount_code.discount_type == 'fixed':
+                discount_amount = self.discount_code.discount_amount
 
-        # Check if the order total is still less than the free delivery threshold
+            discount_amount = min(discount_amount, order_total)
+
+        adjusted_order_total = max(order_total - discount_amount, Decimal('0.00'))
+
+        self.order_total = adjusted_order_total
+
         if self.order_total < settings.FREE_DELIVERY_THRESHOLD:
-            self.delivery_cost = self.order_total * settings.STANDARD_DELIVERY_PERCENTAGE / 100
+            self.delivery_cost = self.order_total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE) / 100
         else:
-            self.delivery_cost = 0
+            self.delivery_cost = Decimal('0.00')
 
-        # Calculate the grand total
         self.grand_total = self.order_total + self.delivery_cost
+
         self.save()
 
     def save(self, *args, **kwargs):
@@ -103,11 +120,4 @@ class OrderLineItem(models.Model):
     def __str__(self):
         return f'SKU {self.product.sku} on order {self.order.order_number}'
 
-class DiscountCode(models.Model):
-    code = models.CharField(max_length=20, unique=True)
-    discount_type = models.CharField(max_length=10, choices=[('percentage', 'Percentage'), ('fixed', 'Fixed Amount')])
-    discount_amount = models.DecimalField(max_digits=10, decimal_places=2)
-    expiration_date = models.DateField()
-    
-    def __str__(self):
-        return self.code
+

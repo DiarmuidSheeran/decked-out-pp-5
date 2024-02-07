@@ -49,22 +49,9 @@ def checkout(request):
         discount_code_form = DiscountCodeForm(request.POST)
         if order_form.is_valid():
             order = order_form.save(commit=False)
-            discount_code_id = request.session.get('discount_code_id')
-            if discount_code_id:
-                try:
-                    discount_code = DiscountCode.objects.get(id=discount_code_id)
-                    if discount_code.discount_type == 'percentage':
-                        discount_amount = (order.order_total * discount_code.discount_amount) / 100
-                    elif discount_code.discount_type == 'fixed':
-                        discount_amount = discount_code.discount_amount
-                    else:
-                        discount_amount = 0
-                    order.order_total -= discount_amount
-                    order.save()
-                    del request.session['discount_code_id']
-                    messages.success(request, f"Discount code applied successfully. Discount amount: ${discount_amount}")
-                except DiscountCode.DoesNotExist:
-                    messages.error(request, "Error applying the discount code.")
+            if 'discount_code_id' in request.session:
+                discount_code = DiscountCode.objects.get(id=request.session['discount_code_id'])
+                order.discount_code = discount_code
              
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
@@ -149,6 +136,7 @@ def checkout_success(request, order_number):
     """
     Handle successful checkouts
     """
+    discount_code = None
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
 
@@ -158,7 +146,6 @@ def checkout_success(request, order_number):
         order.user_profile = profile
         order.save()
 
-        # Save the user's info
         if save_info:
             profile_data = {
                 'default_phone_number': order.phone_number,
@@ -177,12 +164,17 @@ def checkout_success(request, order_number):
         Your order number is {order_number}. A confirmation \
         email will be sent to {order.email}.')
 
+    if 'discount_code_id' in request.session:
+            discount_code = DiscountCode.objects.get(id=request.session['discount_code_id'])
+            del request.session['discount_code_id']
+
     if 'bag' in request.session:
         del request.session['bag']
 
     template = 'checkout/checkout_success.html'
     context = {
         'order': order,
+        'discount_code': discount_code,
     }
 
     return render(request, template, context)
@@ -202,6 +194,31 @@ def apply_discount(request):
             messages.error(request, "Invalid discount code.")
 
     return redirect(reverse('checkout'))
+
+def apply_discount_to_order(request, order_number):
+    if request.method == 'POST':
+        order = get_object_or_404(Order, order_number=order_number)
+        discount_code_form = DiscountCodeForm(request.POST)
+        if discount_code_form.is_valid():
+            code = discount_code_form.cleaned_data['discount_code']
+            try:
+                discount_code = DiscountCode.objects.get(code=code)
+                if discount_code.discount_type == 'percentage':
+                    discount_amount = (order.order_total * discount_code.discount_amount) / 100
+                elif discount_code.discount_type == 'fixed':
+                    discount_amount = discount_code.discount_amount
+                else:
+                    discount_amount = 0
+                order.order_total -= discount_amount
+                order.discount_code = discount_code
+                order.save()
+                messages.success(request, f"Discount code '{code}' applied successfully. Discount amount: ${discount_amount}")
+            except DiscountCode.DoesNotExist:
+                messages.error(request, "Invalid or expired discount code.")
+        else:
+            messages.error(request, "Invalid discount code.")
+
+    return redirect(reverse('checkout', args=[order_number]))
 
 def remove_discount(request):
     if 'discount_code_id' in request.session:

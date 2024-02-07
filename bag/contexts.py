@@ -10,6 +10,8 @@ def bag_contents(request):
     total = 0
     product_count = 0
     bag = request.session.get('bag', {})
+    discount_code_id = request.session.get('discount_code_id', None)
+    discount_amount = 0
 
     for item_id, quantity in bag.items():
         product = get_object_or_404(Product, pk=item_id)
@@ -27,8 +29,6 @@ def bag_contents(request):
             'item_price':item_price
         })
 
-    discount_amount = 0
-    discount_code_id = request.session.get('discount_code_id', None)
     if discount_code_id:
         try:
             discount_code = DiscountCode.objects.get(id=discount_code_id)
@@ -36,9 +36,9 @@ def bag_contents(request):
                 discount_amount = (total * discount_code.discount_amount) / 100
             elif discount_code.discount_type == 'fixed':
                 discount_amount = discount_code.discount_amount
+                discount_amount = min(discount_amount, total)
         except DiscountCode.DoesNotExist:
-            discount_amount = 0 
-
+            discount_amount = 0
     total = max(0, total - discount_amount)
 
     if total < settings.FREE_DELIVERY_THRESHOLD:

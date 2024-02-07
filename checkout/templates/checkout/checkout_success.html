@@ -177,6 +177,18 @@
                             <p class="mb-0">{{ order.order_total }}</p>
                         </div>
                     </div>
+                    {% if discount_code %}
+                    <div class="row">
+                        <div class="col-12 col-md-4">
+                            <p class="mb-0 text-white font-weight-bold">Discount Code Aplied</p>
+                        </div>
+                        <div class="col-12 col-md-8 text-md-right">
+                            <p class="mb-0">{{ order.discount_code }}</p>
+                        </div>
+                    </div>
+
+                    
+                    {% endif %}
 
                     <div class="row">
                         <div class="col-12 col-md-4">
