@@ -84,8 +84,11 @@ def product_detail(request, product_id):
     reviews = product.reviews.all()
     average_rating = product.calculate_average_rating()
     user = request.user
-    has_ordered_product = Order.objects.filter(user_profile=user.userprofile, lineitems__product=product).exists()
 
+    if user.is_authenticated:
+        has_ordered_product = Order.objects.filter(user_profile=user.userprofile, lineitems__product=product).exists()
+    else:
+        has_ordered_product = False
     context = {
         'product': product,
         'reviews': reviews,

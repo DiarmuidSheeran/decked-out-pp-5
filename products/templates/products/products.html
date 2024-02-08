@@ -104,19 +104,25 @@
                                             {% else %}
                                                 <small class="text-muted"><i class="fa-solid fa-star" style="color: #FFD43B;"></i> None</small>
                                             {% endif %}
-                                            <form class="d-inline like-form" action="{% url 'wishlist' sku=product.sku %}" method="POST" data-product-sku="{{ product.sku }}">
-                                                {% csrf_token %}
-                                                {% if request.user in product.wishlist.all %}
-                                                <button type="submit" name="like" value="{{ product_wish.sku }}" class="btn-like btn btn-white like-button like-btn" data-like-action="unlike">
-                                                    <i class="fa-solid fa-heart fa-sm" style="color: #cc2b5e;"></i><span class="ml-1 like-text">Remove from Wishlist</span>
-                                                </button>
-                                                
-                                                {% else %}
-                                                <button type="submit" name="like" value="{{ product_wish.sku }}" class="btn-like btn btn-white like-button like-btn" data-like-action="like">
+                                            {% if user.is_authenticated %}
+                                                <form class="d-inline like-form" action="{% url 'wishlist' sku=product.sku %}" method="POST" data-product-sku="{{ product.sku }}">
+                                                    {% csrf_token %}
+                                                    {% if request.user in product.wishlist.all %}
+                                                    <button type="submit" name="like" value="{{ product_wish.sku }}" class="btn-like btn btn-white like-button like-btn" data-like-action="unlike">
+                                                        <i class="fa-solid fa-heart fa-sm" style="color: #cc2b5e;"></i><span class="ml-1 like-text">Remove from Wishlist</span>
+                                                    </button>
+                                                    
+                                                    {% else %}
+                                                    <button type="submit" name="like" value="{{ product_wish.sku }}" class="btn-like btn btn-white like-button like-btn" data-like-action="like">
+                                                        <i class="fa-solid fa-heart fa-sm" style="color: #000;"></i><span class="ml-1 like-text">Add to Wishlist</span>
+                                                    </button>
+                                                    {% endif %}
+                                                </form>
+                                            {% else %}
+                                                <a href="{% url 'account_login' %}" class="btn-like btn btn-white like-button like-btn">
                                                     <i class="fa-solid fa-heart fa-sm" style="color: #000;"></i><span class="ml-1 like-text">Add to Wishlist</span>
-                                                </button>
-                                                {% endif %}
-                                            </form>
+                                                </a>
+                                            {% endif %}
                                         </div>
                                     </div>
                                     <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
