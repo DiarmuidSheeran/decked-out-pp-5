@@ -30,6 +30,12 @@ def cache_checkout_data(request):
 def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
+    discount_code = None
+    discount_percentage = None
+
+    if 'discount_code_id' in request.session:
+        discount_code = DiscountCode.objects.get(id=request.session['discount_code_id'])
+        discount_percentage = discount_code.discount_amount
 
     if request.method == 'POST':
         bag = request.session.get('bag', {})
@@ -95,7 +101,6 @@ def checkout(request):
             amount=stripe_total,
             currency=settings.STRIPE_CURRENCY,
         )
-        discount_code_form = DiscountCodeForm()
 
         if request.user.is_authenticated:
             try:
@@ -120,7 +125,7 @@ def checkout(request):
         messages.warning(request, 'Stripe public key is missing. \
             Did you forget to set it in your environment?')
 
-         
+    discount_code_form = DiscountCodeForm()
 
     template = 'checkout/checkout.html'
     context = {
@@ -128,6 +133,8 @@ def checkout(request):
         'discount_code_form': discount_code_form,
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,
+        'discount_code': discount_code,
+        'discount_percentage': discount_percentage,
     }
 
     return render(request, template, context)
@@ -137,6 +144,8 @@ def checkout_success(request, order_number):
     Handle successful checkouts
     """
     discount_code = None
+    discount_percentage = None
+
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
 
@@ -166,6 +175,7 @@ def checkout_success(request, order_number):
 
     if 'discount_code_id' in request.session:
             discount_code = DiscountCode.objects.get(id=request.session['discount_code_id'])
+            discount_percentage = discount_code.discount_amount
             del request.session['discount_code_id']
 
     if 'bag' in request.session:
@@ -175,6 +185,7 @@ def checkout_success(request, order_number):
     context = {
         'order': order,
         'discount_code': discount_code,
+        'discount_percentage': discount_percentage,
     }
 
     return render(request, template, context)
@@ -203,12 +214,14 @@ def apply_discount_to_order(request, order_number):
             code = discount_code_form.cleaned_data['discount_code']
             try:
                 discount_code = DiscountCode.objects.get(code=code)
-                if discount_code.discount_type == 'percentage':
+                if self.discount_code:
+                    discount_percentage = self.discount_code.percentage_discount
                     discount_amount = (order.order_total * discount_code.discount_amount) / 100
-                elif discount_code.discount_type == 'fixed':
-                    discount_amount = discount_code.discount_amount
                 else:
                     discount_amount = 0
+
+                order.order_total -= discount_amount
+                
                 order.order_total -= discount_amount
                 order.discount_code = discount_code
                 order.save()

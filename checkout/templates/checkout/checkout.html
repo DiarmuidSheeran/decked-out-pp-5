@@ -65,7 +65,8 @@
                 {% if discount_amount %}
                     <form method="post" action="{% url 'remove_discount' %}">
                         {% csrf_token %}
-                            <p class="text-warning">Discount Applied, You Saved €{{ discount_amount }}</p>
+                            <p class="text-warning">Discount "{{ discount_code }}" Applied: You Saved {{ discount_percentage }}% on this order!</p>
+                            <p class="text-warning">Total amount saved: €{{ discount_amount|floatformat:2 }}!</p>
                             <button type="submit" class="btn btn-secondary">Remove Discount</button>
                     </form>
                 {% else %}
@@ -97,7 +98,7 @@
                     <div class="col-3 text-white">
                       
                         {% if discount_amount %}
-                            <p class="my-0 text-warning">€{{ discount_amount | floatformat:2 }}</p>
+                            <p class="my-0 text-warning">Saved €{{ discount_amount | floatformat:2 }}</p>
                             <p class="my-0">€{{ total | floatformat:2 }}</p>
                         {% elif discount_amount <= 0 %}
                             <p class="my-0">${{ total | floatformat:2 }}</p>

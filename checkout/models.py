@@ -9,8 +9,8 @@ from profiles.models import UserProfile
 
 class DiscountCode(models.Model):
     code = models.CharField(max_length=20, unique=True)
-    discount_type = models.CharField(max_length=10, choices=[('percentage', 'Percentage'), ('fixed', 'Fixed Amount')])
-    discount_amount = models.DecimalField(max_digits=10, decimal_places=2)
+    discount_type = models.CharField(max_length=10, choices=[('percentage', 'Percentage')])
+    discount_amount = models.DecimalField(max_digits=5, decimal_places=2)
     expiration_date = models.DateField()
     
     def __str__(self):
@@ -60,10 +60,9 @@ class Order(models.Model):
         if self.discount_code:
             if self.discount_code.discount_type == 'percentage':
                 discount_amount = (order_total * self.discount_code.discount_amount) / 100
-            elif self.discount_code.discount_type == 'fixed':
+            else:
                 discount_amount = self.discount_code.discount_amount
-
-            discount_amount = min(discount_amount, order_total)
+                discount_amount = min(discount_amount, order_total)
 
         adjusted_order_total = max(order_total - discount_amount, Decimal('0.00'))
 

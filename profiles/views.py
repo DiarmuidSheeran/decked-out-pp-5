@@ -38,9 +38,18 @@ def order_history(request, order_number):
         'A confirmation email was sent on the order date.'
     ))
 
+    discount_code = None
+    discount_percentage = None
+
+    if order.discount_code:
+        discount_code = order.discount_code
+        discount_percentage = order.discount_code.discount_amount
+
     template = 'checkout/checkout_success.html'
     context = {
         'order': order,
+        'discount_code': discount_code,
+        'discount_percentage': discount_percentage,
         'from_profile': True,
     }
 

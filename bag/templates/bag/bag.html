@@ -101,7 +101,7 @@
                             <tr class="text-white">
                                 <td colspan="5" class="pt-5 text-right">
                                     {% if discount_amount %}
-                                        <p class="my-0 text-warning">Discount Applied-€{{ discount_amount | floatformat:2 }}</p>
+                                        <p class="my-0 text-warning">Discount Applied: €{{ discount_amount | floatformat:2 }} Saved</p>
                                         <h6><strong>Bag Total <small class="text-muted">-Discount:</small> ${{ total|floatformat:2 }}</strong></h6>
                                     {% elif discount_amount <= 0 %}
                                         <h6><strong>Bag Total: ${{ total|floatformat:2 }}</strong></h6>
@@ -110,7 +110,7 @@
                                     <h4 class="mt-4" style="color: gold;"><strong>Grand Total: ${{ grand_total|floatformat:2 }}</strong></h4>
                                     {% if free_delivery_delta > 0 %}
                                         <p class="mb-1 text-danger">
-                                            You could get free delivery by spending just <strong>${{ free_delivery_delta }}</strong> more!
+                                            You could get free delivery by spending just <strong>${{ free_delivery_delta|floatformat:2 }}</strong> more!
                                         </p>
                                     {% endif %}
                                 </td>

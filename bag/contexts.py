@@ -32,11 +32,9 @@ def bag_contents(request):
     if discount_code_id:
         try:
             discount_code = DiscountCode.objects.get(id=discount_code_id)
-            if discount_code.discount_type == 'percentage':
-                discount_amount = (total * discount_code.discount_amount) / 100
-            elif discount_code.discount_type == 'fixed':
-                discount_amount = discount_code.discount_amount
-                discount_amount = min(discount_amount, total)
+            discount_code.discount_type == 'percentage'
+            discount_amount = (total * discount_code.discount_amount) / 100
+            discount_amount = min(discount_amount, total)
         except DiscountCode.DoesNotExist:
             discount_amount = 0
     total = max(0, total - discount_amount)
