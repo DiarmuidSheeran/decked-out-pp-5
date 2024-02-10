@@ -10,6 +10,7 @@ from profiles.forms import UserProfileForm
 from bag.contexts import bag_contents
 import stripe
 import json
+from django.utils import timezone
 
 @require_POST
 def cache_checkout_data(request):
@@ -197,8 +198,12 @@ def apply_discount(request):
             code = discount_code_form.cleaned_data['discount_code']
             try:
                 discount_code = DiscountCode.objects.get(code=code)
-                request.session['discount_code_id'] = discount_code.id  
-                messages.success(request, f"Discount code '{code}' applied successfully.")
+                current_date = timezone.now().date()
+                if discount_code.expiration_date >= current_date:
+                    request.session['discount_code_id'] = discount_code.id  
+                    messages.success(request, f"Discount code '{code}' applied successfully.")
+                else:
+                     messages.error(request, "This discount code has expired.")
             except DiscountCode.DoesNotExist:
                 messages.error(request, "Invalid or expired discount code.")
         else:

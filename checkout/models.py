@@ -6,6 +6,7 @@ from django.conf import settings
 from django_countries.fields import CountryField
 from products.models import Product, ProductStatistics
 from profiles.models import UserProfile
+from datetime import date
 
 class DiscountCode(models.Model):
     code = models.CharField(max_length=20, unique=True)
