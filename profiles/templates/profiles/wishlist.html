@@ -94,10 +94,14 @@
                 </a>
             </div>
         {% endif %}
+            
         <div class="col-12 col-lg-6">
             <img src="{% static 'media/dark-magician.png' %}" alt="Slifer the sky dragon" class="img-fluid ml-4">
         </div>
     </div>
+    {% if request.user.is_authenticated %}
+        <a href="{% url 'profile' %}" class="btn btn-info mt-4"><i class="fa-solid fa-arrow-left mr-2" style="color: #ffffff;"></i>Back to your profile</a>
+    {% endif %}
 </div>
 <div class="btt-button shadow-sm rounded-0 border border-white">
     <a class="btt-link d-flex h-100">
