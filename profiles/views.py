@@ -1,8 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 
 from .models import UserProfile
-from .forms import UserProfileForm
+from .forms import UserProfileForm, ProfilePictureForm
 from checkout.models import Order
 from products.models import Product
 
@@ -16,13 +16,15 @@ def profile(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Profile updated successfully')
-
+    
     form = UserProfileForm(instance=profile)
+
     orders = profile.orders.all()
 
     template = 'profiles/profile.html'
     context = {
         'form': form,
+        'profile': profile,
         'orders': orders,
         'wishlist': wishlist,
         'on_profile_page': True
@@ -66,4 +68,19 @@ def wishlist(request):
     }
 
     return render(request, template, context)
+
+def upload_profile_picture(request):
+    if request.method == 'POST':
+        form = ProfilePictureForm(request.POST, request.FILES, instance=request.user.userprofile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Profile picture uploaded successfully')
+            return redirect('profile')
+    else:
+        form = ProfilePictureForm(instance=request.user.userprofile)
+
+    context =  {
+        'form': form
+        }
+    return render(request, 'profile.html', context)
     

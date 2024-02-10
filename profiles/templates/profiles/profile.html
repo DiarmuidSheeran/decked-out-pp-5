@@ -21,7 +21,19 @@
                 <hr>
                 <div class="text-center">
                     <h3 class="mb-4">Welcome, {{ user.username }}!</h3>
-                    <p class="lead">Explore your profile options:</p>
+                    {% if profile.profile_picture %}
+                        <img src="{{ profile.profile_picture.url }}" alt="Profile Picture" class="border border-danger img-fluid rounded-circle mb-4" style="width: 200px; height: 200px;">
+                    {% else %}
+                        <img src="{% static 'media/placeholder.jpg' %}" alt="Default Profile Picture" class="border border-danger img-fluid rounded-circle mb-4" style="width: 200px; height: 200px;">
+                    {% endif %}
+                    <form method="POST" enctype="multipart/form-data" action="{% url 'upload_profile_picture' %}">
+                        {% csrf_token %}
+                        <label>
+                            <input type="file" name="profile_picture"> 
+                        </label>
+                        <input type="submit" value="Upload Profile Picture" class="btn btn-secondary btn-sm">
+                    </form>
+                    <p class="lead mt-3">Explore your profile options:</p>
                     <hr>
                 </div>
             </div>
