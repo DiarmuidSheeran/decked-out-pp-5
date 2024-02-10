@@ -131,6 +131,7 @@
                         </table>
                     </div>
                 {% else %}
+                <div class="align-items-center">
                     <p class="lead mb-5">Your bag is empty.</p>
                     <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 btn-lg">
                         <span class="icon">
@@ -139,7 +140,9 @@
                         <span class="text-uppercase">Keep Shopping</span>
                     </a>
                     <br>
-                    <img src="{% static 'media/gyarados.png' %}" alt="Gyarados" class="img-fluid mt-4">
+                    <img src="{{ MEDIA_URL }}gyarados.png" alt="Gyarados" class="img-fluid mt-4">
+                </div>
+                    
                 {% endif %}
             </div>
         </div>

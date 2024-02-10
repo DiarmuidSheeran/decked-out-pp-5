@@ -109,7 +109,7 @@
         {% endif %}
             
         <div class="col-12 col-lg-6">
-            <img src="{% static 'media/dark-magician.png' %}" alt="Dark Magician" class="img-fluid ml-4">
+            <img src="{{ MEDIA_URL }}dark-magician.png" alt="Dark Magician" class="img-fluid ml-4">
         </div>
     </div>
     {% if request.user.is_authenticated %}

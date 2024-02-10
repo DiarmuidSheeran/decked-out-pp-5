@@ -34,10 +34,10 @@
     <title>Decked Out {% block extra_title %}{% endblock %}</title>
   </head>
   <body>
-    <header class="container-fluid fixed-top" style="border: solid white 5px;">
-      <div id="delivery-banner" class="row text-center" style="border-bottom: solid white 5px;">
+    <header class="container-fluid fixed-top" style="border: solid white 3px;">
+      <div id="delivery-banner" class="row text-center" style="border-bottom: solid white 3px;">
         <div class="col bg-danger text-white">
-          <h5 class="logo-font my-1 text-white"><i class="fa-solid fa-gift text-dark"></i> Free delivery on orders over €{{ free_delivery_threshold }}! <i class="fa-solid fa-gift text-dark"></i></h5>                
+          <h5 class="logo-font my-1 text-white"><i class="fa-solid fa-gift text-info"></i> Free delivery on orders over €{{ free_delivery_threshold }}! <i class="fa-solid fa-gift text-info"></i></h5>                
         </div>            
       </div>
       <div id="topnav" class="row bg-danger pt-lg-2 d-none d-lg-flex"> 
@@ -63,7 +63,7 @@
             <li class="list-inline-item dropdown">
               <a class="text-white nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="text-center">
-                    <div><i class="fas fa-user fa-lg text-dark"></i></div>
+                    <div><i class="fas fa-user fa-lg text-light"></i></div>
                     <p class="my-0">My Account</p>
                 </div>
               </a>
@@ -83,7 +83,7 @@
             <li class="list-inline-item">
               <a class="{% if grand_total %}text-warning font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'view_bag' %}">
                 <div class="text-center">
-                    <div><i class="fas fa-shopping-bag fa-lg text-dark"></i></div>
+                    <div><i class="fas fa-shopping-bag fa-lg text-light"></i></div>
                     <p class="my-0">
                         {% if grand_total %}
                             ${{ grand_total|floatformat:2 }}

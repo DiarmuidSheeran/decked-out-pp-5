@@ -17,7 +17,7 @@
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
-            <div class="col-6">
+            <div class="col-lg-7 col-sm-12">
                 <hr>
                 <div class="text-center">
                     <h3 class="mb-4">Welcome, {{ user.username }}!</h3>
@@ -33,13 +33,13 @@
                         </label>
                         <input type="submit" value="Upload Profile Picture" class="btn btn-secondary btn-sm">
                     </form>
-                    <p class="mt-4">Explore your profile options:</p>
+                    <p class=" lead mt-4">Explore your profile options:</p>
                     <hr>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-lg-5 col-sm-12">
                 <hr>
-                <img src="{% static 'media/charizard.png' %}" alt="Charizard" class="img-fluid">
+                <img src="{{ MEDIA_URL }}charizard.png" alt="Charizard" class="img-fluid">
             </div>
         </div>
         <div class="row" style="border: solid red 2px;">

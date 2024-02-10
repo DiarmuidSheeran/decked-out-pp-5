@@ -135,13 +135,23 @@
                                 <p>No reviews for this product yet.</p>
                                 {% endif %}
                             </div>
+                            {% if user.is_authenticated %}
+                                {% if has_ordered_product %}
+                                    {% if product.id not in user.reviews %}
+                                        <p class="lead mt-2">We see that you have purchased this product. Would you like to leave a review?</p>
+                                        <a href="{% url 'product_reviews' product_id=product.id %}" class="btn btn-info">Leave a Review</a>
+                                    {% else %}
+                                        <p class="text-black">You have already reviewed this product. We appreciate your feedback <i class="fa-regular fa-face-smile" style="color: #FFD43B;"></i></p>
+                                    {% endif %}
+                                {% else %}
+                                    <p class="lead mt-2">You must purchase this product to leave a review!</p>
+                                {% endif %}
+                            {% else %}
+                                <p class="lead mt-2">You must be logged in to leave a review.</p>
+                            {% endif %}
                         </div>
                     </div>
-                    {% if user.is_authenticated and has_ordered_product %}
-                        <a href="{% url 'product_reviews' product_id=product.id %}" class="btn btn-info mt-3">Leave a Review</a>
-                    {% elif has_ordered_product and user.reviews %}
-                        <p class="text white">You Have already to reviewd the product.</p>
-                    {% endif %}
+                    
                 </div>
             </div>
         </div>
