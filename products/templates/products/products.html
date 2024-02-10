@@ -79,17 +79,17 @@
                                         <div class="col mt-2">
                                             <p class="lead mb-0 text-left font-weight-bold" style="color:black">
                                                 {% if product.is_on_promotion and product.promotion_price and product.clearance %}
-                                                    <span class="original-price text-muted"><del>${{ product.price }}</del></span>
-                                                    <span class="promotion-price text-danger">${{ product.promotion_price }}</span>
+                                                    <span class="original-price text-muted"><del>€{{ product.price }}</del></span>
+                                                    <span class="promotion-price text-danger">€{{ product.promotion_price }}</span>
                                                     
                                                     <span class="badge badge-warning text-black">Clearance!</span>
                                                 {% elif product.is_on_promotion and product.promotion_price %}
-                                                    <span class="original-price text-muted"><del>${{ product.price }}</del></span>
-                                                    <span class="promotion-price text-danger">${{ product.promotion_price }}</span>
+                                                    <span class="original-price text-muted"><del>€{{ product.price }}</del></span>
+                                                    <span class="promotion-price text-danger">€{{ product.promotion_price }}</span>
                                                     
                                                     <span class="badge badge-danger text-warning">Special Offer!</span>
                                                 {% else %}
-                                                    ${{ product.price }}
+                                                    €{{ product.price }}
                                                 {% endif %}
                                             </p>
                                             {% if product.category %}

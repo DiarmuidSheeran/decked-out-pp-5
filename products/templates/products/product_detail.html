@@ -31,11 +31,11 @@
                     <p class="mb-0">{{ product.name }}</p>
                     <p class="lead mb-0 text-left font-weight-bold">
                         {% if product.is_on_promotion and product.promotion_price %}
-                            <span class="original-price text-muted"><del>${{ product.price }}</del></span>
-                            <span class="promotion-price text-danger">${{ product.promotion_price }}</span>
+                            <span class="original-price text-muted"><del>€{{ product.price }}</del></span>
+                            <span class="promotion-price text-danger">€{{ product.promotion_price }}</span>
                             <span class="special-offer-badge">Special Offer</span>
                         {% else %}
-                            ${{ product.price }}
+                            €{{ product.price }}
                         {% endif %}
                     </p>
                     {% if product.category %}
