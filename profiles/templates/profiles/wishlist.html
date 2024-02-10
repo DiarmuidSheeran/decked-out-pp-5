@@ -44,8 +44,21 @@
                                 {% endif %}
                             </form>
                         </div>
-                        
-                    
+                        <div class="product-price mt-2">
+                            {% if product.is_on_promotion and product.promotion_price and product.clearance %}
+                                <span class="original-price text-muted"><del>€{{ product.price }}</del></span>
+                                <span class="promotion-price text-danger">€{{ product.promotion_price }}</span>
+                                
+                                <span class="badge badge-warning text-black">Clearance!</span>
+                            {% elif product.is_on_promotion and product.promotion_price %}
+                                <span class="original-price text-muted"><del>€{{ product.price }}</del></span>
+                                <span class="promotion-price text-danger">€{{ product.promotion_price }}</span>
+                                
+                                <span class="badge badge-danger text-warning">Special Offer!</span>
+                            {% else %}
+                                €{{ product.price }}
+                            {% endif %}
+                        </div>
                         <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
                             {% csrf_token %}
                             <div class="form-row">
@@ -100,7 +113,7 @@
         </div>
     </div>
     {% if request.user.is_authenticated %}
-        <a href="{% url 'profile' %}" class="btn btn-info mt-4"><i class="fa-solid fa-arrow-left mr-2" style="color: #ffffff;"></i>Back to your profile</a>
+        <a href="{% url 'profile' %}" class="btn btn-info mt-4 mb-4"><i class="fa-solid fa-arrow-left mr-2" style="color: #ffffff;"></i>Back to your profile</a>
     {% endif %}
 </div>
 <div class="btt-button shadow-sm rounded-0 border border-white">
