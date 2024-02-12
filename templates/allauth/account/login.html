@@ -8,13 +8,14 @@
 {% block inner_content %}
 <div class="container mt-4">
   <div class="row d-flex justify-content-center align-items-center">
-    <div class="col-12 col-lg-6">
-      <h2 class="logo-font mb-4 bg-dark pt-1 pb-1 border border-danger text-center">{% trans "Sign In" %}<i class="fa-solid fa-key ml-2" style="color: #ffffff;"></i></h2>
+    <div class="col-12 col-lg-6 bg-dark border border-danger">
+      <h3 class="logo-font text-center mt-2 pb-2">Welcome to Decked Out!</h3>
+      <h4 class="logo-font mb-2 text-center">{% trans "Sign In Below" %} <i class="fa-solid fa-key ml-1 text-warning"></i> <br><i class="fas fa-arrow-down text-white"></i> </h4>
 
       {% get_providers as socialaccount_providers %}
 
       {% if socialaccount_providers %}
-      <p class="bg-dark border border-danger text-white pl-1">{% blocktrans with site.name as site_name %}Please sign in with one
+      <p class="bg-dark text-white">{% blocktrans with site.name as site_name %}Please sign in with one
       of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
       for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
 
@@ -31,8 +32,8 @@
       {% include "socialaccount/snippets/login_extra.html" %}
 
       {% else %}
-      <p class="bg-dark border border-danger text-white pl-1 text-center">{% blocktrans %}Dont have an account yet?<br>
-      <a href="{{ signup_url }}">Click here to Sign Up</a> {% endblocktrans %}</p>
+      <p class="text-white text-center">{% blocktrans %}Dont have an account yet?<br>
+      <a href="{{ signup_url }}">Click here to Sign Up <i class="fa-solid fa-address-card ml-2 text-white"></i></a> {% endblocktrans %}</p>
       {% endif %}
 
       <form class="login" method="POST" action="{% url 'account_login' %}">
@@ -41,19 +42,21 @@
         {% if redirect_field_value %}
         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
         {% endif %}
-        <a class="btn btn-info text-white rounded-0" href="{% url 'home' %}"><i class="fas fa-arrow-left mr-2 text-white"></i>Home <i class="fa-solid fa-house ml-2" style="color: #ffffff;"></i></a>
-        <button class="primaryAction bg-danger" type="submit">
-          <i class="fa-solid fa-key mr-2" style="color: #ffffff;"></i>
-          {% trans "Sign In" %}
-          <i class="fas fa-arrow-right ml-2 text-white"></i>
-        </button>
-        <p class="mt-3">
-          <a class="button secondaryAction bg-dark border border-danger text-white pl-2 pr-2 text-center" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+        <div class="mb-1">
+          <button class="primaryAction bg-danger btn-block" type="submit">
+            <i class="fa-solid fa-key mr-2" style="color: #ffffff;"></i>
+            {% trans "Sign In" %}
+            <i class="fas fa-arrow-right ml-2 text-white"></i>
+          </button>
+          <a class="btn btn-info btn-block text-white rounded-0 mr-2" href="{% url 'home' %}"><i class="fas fa-arrow-left mr-2 text-white"></i>Home <i class="fa-solid fa-house ml-2" style="color: #ffffff;"></i></a>
+        </div>
+        <p class="mt-3 text-center">
+          <a class="button secondaryAction text-center" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
         </p>
       </form>
     </div>
     <div class="col-12 col-lg-6">
-      <img src="{{ MEDIA_URL }}slifer.png" alt="Slifer the Sky Dragon" class="img-fluid ml-4">
+      <img src="{{ MEDIA_URL }}pikachu.png" alt="Pikachu" class="img-fluid ml-4">
     </div>
   </div>
 </div>

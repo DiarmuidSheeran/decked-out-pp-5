@@ -5,19 +5,29 @@
 {% block head_title %}{% trans "Sign Out" %}{% endblock %}
 
 {% block inner_content %}
-<hr>
-<h2 class="logo-font mb-4">{% trans "Sign Out" %}</h2>
-<hr>
-<p>{% trans 'Are you sure you want to sign out?' %}</p>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12 col-lg-6">
+      <hr>
+      <h2 class="logo-font mb-4">{% trans "Sign Out" %}</h2>
+      <hr>
+      <p class="text-white">{% trans 'Are you sure you want to sign out?' %}</p>
 
-<form method="post" action="{% url 'account_logout' %}">
-  {% csrf_token %}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-  {% endif %}
-  <a class="btn btn-outline-black rounded-0" href="{% url 'home' %}">Cancel</a>
-  <button type="submit">{% trans 'Sign Out' %}</button>
-</form>
+      <form method="post" action="{% url 'account_logout' %}">
+        {% csrf_token %}
+        {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+        {% endif %}
+        <a class="btn btn-info text-white rounded-0 mr-2" href="{% url 'home' %}"><i class="fas fa-arrow-left mr-2 text-white"></i> Back to Home <i class="fa-solid fa-house ml-2" style="color: #ffffff;"></i></a>
+        <button type="submit" class="bg-danger">{% trans 'Sign Out' %} <i class="fa-solid fa-door-open" style="color: #ffffff;"></i></button>
+      </form>
+    </div>
+    <div class="col-12 col-lg-6 mt-4">
+      <hr>
+      <img src="{{ MEDIA_URL }}mew.png" alt="Mew" class="img-fluid ml-4">
+    </div>
+  </div>
+</div>
 
 
 {% endblock %}
