@@ -115,16 +115,22 @@
                             <tr>
                                 <td colspan="5" class="text-right">
                                     <a href="{% url 'products' %}" class="btn btn-danger btn-block rounded-0 btn-lg mt-2">
-                                        <span class="icon">
-                                            <i class="fas fa-arrow-left mr-2 text-warning"></i>
-                                        </span>
-                                        <span class="text-uppercase">Keep Shopping</span>
+                                        <strong>
+                                            <span class="icon">
+                                                <i class="fas fa-arrow-left mr-2 text-light"></i>
+                                            </span>
+                                            <span class="text-uppercase">Keep Shopping</span>
+                                            <i class="fa-solid fa-tag text-light"></i>
+                                        </strong>   
                                     </a>
-                                    <a href="{% url 'checkout' %}" class="btn btn-info btn-block rounded-0 btn-lg mt-2">
-                                        <span class="text-uppercase">Secure Checkout</span>
-                                        <span class="icon">
-                                            <i class="fa-solid fa-cash-register ml-4" style="color: #ffffff;"></i><i class="fas fa-arrow-right ml-2 text-warning"></i>
+                                    <a href="{% url 'checkout' %}" class="btn btn-warning btn-block rounded-0 btn-lg mt-2">
+                                        <strong>
+                                            <i class="fa-solid fa-cash-register mr-1 text-dark"></i>
+                                            <span class="text-uppercase">Secure Checkout</span>
+                                            <span class="icon">
+                                            <i class="fas fa-arrow-right ml-2 text-dark"></i>
                                         </span>
+                                        </strong>
                                     </a>
                                 </td>
                             </tr>
