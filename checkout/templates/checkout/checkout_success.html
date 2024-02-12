@@ -26,7 +26,7 @@
         </div>
 
         <div class="row">
-            <div class="col-12 col-lg-7 bg-light border border-danger">
+            <div class="col-12 col-lg-7 bg-light" style="border: solid red 3px;">
                 <div class="order-confirmation-wrapper p-2">
                     <div class="row">
                         <div class="col">
@@ -227,27 +227,30 @@
                             <p class="mb-0 text-black font-weight-bold">Grand Total</p>
                         </div>
                         <div class="col-12 col-md-8 text-md-right">
-                            <p class="mb-0 text-black">{{ order.grand_total }}</p>
+                            <p class="mb-0 text-warning">{{ order.grand_total }}</p>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="col-12 col-lg-3">
+                <img src="{{ MEDIA_URL }}wingred-dragon-of-ra.png" alt="wingred-dragon-of-ra" class="img-fluid ml-4">
             </div>
         </div>
         <div class="row">
 			<div class="col-12 col-lg-7 text-right">
                 {% if from_profile %}
-                    <a href="{% url 'profile' %}" class="btn btn-secondary rounded-0 my-2">
+                    <a href="{% url 'profile' %}" class="btn btn-warning rounded-0 my-2">
                         <span class="icon mr-2">
                             <i class="fas fa-angle-left"></i>
                         </span>
-                        <span class="text-uppercase">Back to Profile</span>
+                        <span class="text-uppercase"><strong>Back to Profile</strong></span>
                     </a>
                 {% else %}
-                    <a href="{% url 'products' %}?filter_type=all_offers" class="btn btn-danger rounded-1 my-2 float-right">
+                    <a href="{% url 'products' %}?filter_type=all_offers" class="btn btn-warning rounded-1 my-2 float-right">
                         <span class="icon mr-2">
                             <i class="fas fa-gifts"></i>
                         </span>
-                        <span class="text-uppercase">Now check out the latest deals!</span>
+                        <span class="text-uppercase"><strong>Now check out the latest deals!</strong></span>
                     </a>
                 {% endif %}
 			</div>
