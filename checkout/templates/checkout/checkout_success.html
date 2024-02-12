@@ -26,11 +26,11 @@
         </div>
 
         <div class="row">
-            <div class="col-12 col-lg-7 bg-white">
-                <div class="order-confirmation-wrapper p-2 border">
+            <div class="col-12 col-lg-7 bg-light border border-danger">
+                <div class="order-confirmation-wrapper p-2">
                     <div class="row">
                         <div class="col">
-                            <small class="text-muted">Order Info:</small>
+                            <small><strong class="text-danger">Order Info:</strong></small>
                         </div>
                     </div>
 
@@ -54,7 +54,7 @@
 
                     <div class="row">
                         <div class="col">
-                            <small class="text-muted">Order Details:</small>
+                            <small class="text-danger"><strong>Order Details:</strong></small>
                         </div>
                     </div>
 
@@ -82,7 +82,7 @@
                     {% if discount_code %}
                         <div class="row">
                             <div class="col">
-                                <small class="text-muted">Discounts:</small>
+                                <small class="text-danger"><strong>Discounts:</strong></small>
                             </div>
                         </div>
 
@@ -106,7 +106,7 @@
 
                     <div class="row">
                         <div class="col">
-                            <small class="text-muted">Delivering To:</small>
+                            <small class="text-danger"><strong>Delivering To:</strong></small>
                         </div>
                     </div>
 
@@ -190,7 +190,7 @@
 
                     <div class="row">
                         <div class="col">
-                            <small class="text-muted">Billing Info:</small>
+                            <small class="text-danger"><strong>Billing Info:</strong></small>
                         </div>
                     </div>
                     {% if discount_code %}
@@ -243,7 +243,7 @@
                         <span class="text-uppercase">Back to Profile</span>
                     </a>
                 {% else %}
-                    <a href="{% url 'products' %}?category=new_arrivals,deals,clearance" class="btn btn-secondary rounded-0 my-2">
+                    <a href="{% url 'products' %}?filter_type=all_offers" class="btn btn-danger rounded-1 my-2 float-right">
                         <span class="icon mr-2">
                             <i class="fas fa-gifts"></i>
                         </span>
