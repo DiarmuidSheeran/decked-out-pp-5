@@ -332,3 +332,7 @@ a.category-badge > span.badge:hover {
     }
 }
 
+.navbar-toggler-icon {
+    background-color: white; 
+}
+

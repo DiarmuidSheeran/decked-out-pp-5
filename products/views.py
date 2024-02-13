@@ -203,6 +203,7 @@ def delete_product(request, product_id):
     messages.success(request, 'Product deleted!')
     return redirect(reverse('products'))
 
+
 @login_required
 def product_statistics(request):
     sold_products = Product.objects.filter(productstatistics__total_sold__gt=0)
@@ -226,3 +227,4 @@ def product_statistics(request):
 
     return render(request, 'products/product_statistics.html', context )
 
+    
