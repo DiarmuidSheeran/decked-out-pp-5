@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
-from django.db.models import Q, Case, When, F, DecimalField
+from django.db.models import Q, Case, When, F, DecimalField, Avg
 from .models import Product, Category, ProductStatistics
 from django.db.models.functions import Lower
 from django.http import JsonResponse
@@ -15,7 +15,9 @@ from .forms import ProductForm
 
 def all_products(request):
 
-    products = Product.objects.all()
+    products = Product.objects.annotate(
+        average_rating=Avg('reviews__rating')
+    )
 
     for product in products:
         product.average_rating = product.calculate_average_rating()
@@ -66,6 +68,11 @@ def all_products(request):
                             output_field=DecimalField()
                         )
                     ).order_by(F('sorted_price').desc(nulls_last=True))
+            elif sortkey == 'rating':
+                if direction == 'asc':
+                    products = products.order_by('average_rating')
+                elif direction == 'desc':
+                    products = products.order_by('-average_rating')
             else:
                 if direction == 'desc':
                     sortkey = f'-{sortkey}'

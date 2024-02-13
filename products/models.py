@@ -43,7 +43,7 @@ class Product(models.Model):
             average_rating = total_rating / len(reviews)
             return round(average_rating, 2)
         else:
-            return None
+            return 1
 
     def effective_price(self):
         return self.promotion_price if self.is_on_promotion else self.price
