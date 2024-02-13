@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
-from django.db.models import Q
+from django.db.models import Q, Case, When, F, DecimalField
 from .models import Product, Category, ProductStatistics
 from django.db.models.functions import Lower
 from django.http import JsonResponse
@@ -49,9 +49,27 @@ def all_products(request):
                 sortkey = 'category__name'
             if 'direction' in request.GET:
                 direction = request.GET['direction']
+            if sortkey == 'price':
+                if direction == 'asc':
+                    products = products.annotate(
+                        sorted_price=Case(
+                            When(is_on_promotion=True, then='promotion_price'),
+                            default='price',
+                            output_field=DecimalField()
+                        )
+                    ).order_by(F('sorted_price').asc(nulls_last=True))
+                elif direction == 'desc':
+                    products = products.annotate(
+                        sorted_price=Case(
+                            When(is_on_promotion=True, then='promotion_price'),
+                            default='price',
+                            output_field=DecimalField()
+                        )
+                    ).order_by(F('sorted_price').desc(nulls_last=True))
+            else:
                 if direction == 'desc':
                     sortkey = f'-{sortkey}'
-            products = products.order_by(sortkey)
+                products = products.order_by(sortkey)
         
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')

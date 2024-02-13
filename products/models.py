@@ -45,6 +45,9 @@ class Product(models.Model):
         else:
             return None
 
+    def effective_price(self):
+        return self.promotion_price if self.is_on_promotion else self.price
+
     def save(self, *args, **kwargs):
         if not self.sku:
             last_sku = Product.objects.order_by('-sku').first()
@@ -52,8 +55,14 @@ class Product(models.Model):
                 last_sku = int(last_sku.sku)
             else:
                 last_sku = 0
-            self.sku = str(last_sku + 1).zfill(6)  
+            self.sku = str(last_sku + 1).zfill(6)
+
+        if self.promotion_price and self.promotion_price > self.price:
+            self.promotion_price = self.price
+              
         super(Product, self).save(*args, **kwargs)
+
+        
 
     def __str__(self):
         return self.name
