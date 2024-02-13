@@ -179,6 +179,7 @@ def delete_product(request, product_id):
 
 def product_statistics(request):
     sold_products = Product.objects.filter(productstatistics__total_sold__gt=0)
+    recommend_promo_products = Product.objects.filter(productstatistics__total_sold__lte=5)
 
     sort_by = request.GET.get('sort_by')
     sort_by = request.GET.get('sort_by')
@@ -193,6 +194,7 @@ def product_statistics(request):
     
     context = {
         'sold_products': sold_products,
+        'recommend_promo_products': recommend_promo_products,
         }
 
     return render(request, 'products/product_statistics.html', context )
