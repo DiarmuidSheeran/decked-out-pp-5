@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from profiles.models import UserProfile
 from reviews.models import Review
 from checkout.models import Order
+from .forms import ProductForm
 
 # Create your views here.
 
@@ -116,3 +117,13 @@ def wishlist(request, sku, *args, **kwargs):
         liked = True
 
     return JsonResponse({'wishlist_count': product_wish.wishlist.count(), 'liked': liked})
+
+def add_product(request):
+    """ Add a product to the store """
+    form = ProductForm()
+    template = 'products/add_product.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
