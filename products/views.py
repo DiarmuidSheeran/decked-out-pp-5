@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
-from .models import Product, Category
+from .models import Product, Category, ProductStatistics
 from django.db.models.functions import Lower
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
@@ -147,7 +147,7 @@ def edit_product(request, product_id):
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
-        
+
     product = get_object_or_404(Product, pk=product_id)
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES, instance=product)
@@ -176,3 +176,23 @@ def delete_product(request, product_id):
     product.delete()
     messages.success(request, 'Product deleted!')
     return redirect(reverse('products'))
+
+def product_statistics(request):
+    sold_products = Product.objects.filter(productstatistics__total_sold__gt=0)
+
+    sort_by = request.GET.get('sort_by')
+    sort_by = request.GET.get('sort_by')
+    if sort_by == 'sales_asc':
+        sold_products = sold_products.order_by('productstatistics__total_sold')
+    elif sort_by == 'sales_desc':
+        sold_products = sold_products.order_by('-productstatistics__total_sold')
+    elif sort_by == 'purchased_asc':
+        sold_products = sold_products.order_by('productstatistics__times_purchased')
+    elif sort_by == 'purchased_desc':
+        sold_products = sold_products.order_by('-productstatistics__times_purchased')
+    
+    context = {
+        'sold_products': sold_products,
+        }
+
+    return render(request, 'products/product_statistics.html', context )
