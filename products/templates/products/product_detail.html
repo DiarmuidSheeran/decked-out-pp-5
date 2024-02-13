@@ -14,6 +14,15 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
+                {% if request.user.is_superuser %}
+                    <div class="mt-2 d-flex justify-content-center">   
+                        <a href="{% url 'edit_product' product.id %}" class="btn btn-info mb-1 mt-4"><i class="fa-solid fa-pen-to-square pr-2" style="color: #ffffff;"></i> Edit {{ product.name }} <i class="fa-solid fa-pen-to-square pl-2" style="color: #ffffff;"></i></a>
+                    </div>
+                    <div class="mt-2 d-flex justify-content-center"> 
+                        <a class="btn btn-danger mb-1" href="{% url 'delete_product' product.id %}"><i class="fa-solid fa-triangle-exclamation pr-2" style="color: #ffffff;"></i> Delete {{ product.name }} <i class="fa-solid fa-triangle-exclamation pl-2" style="color: #ffffff;"></i></a>
+                    </div>
+                {% endif %}
+                
                 <div class="image-container my-5">
                     {% if product.image %}
                         <a href="{{ product.image.url }}" target="_blank">
