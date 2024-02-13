@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
-
+from django.contrib.auth.decorators import login_required
 from .models import UserProfile
 from .forms import UserProfileForm, ProfilePictureForm
 from checkout.models import Order
 from products.models import Product
 
+@login_required
 def profile(request):
     """ Display the user's profile. """
     profile = get_object_or_404(UserProfile, user=request.user)
@@ -32,6 +33,7 @@ def profile(request):
 
     return render(request, template, context)
 
+@login_required
 def order_history(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
 
@@ -57,6 +59,7 @@ def order_history(request, order_number):
 
     return render(request, template, context)
 
+@login_required
 def wishlist(request):
     profile = get_object_or_404(UserProfile, user=request.user)
     wishlist = profile.wishlist.all()
@@ -68,7 +71,8 @@ def wishlist(request):
     }
 
     return render(request, template, context)
-
+    
+@login_required
 def upload_profile_picture(request):
     if request.method == 'POST':
         form = ProfilePictureForm(request.POST, request.FILES, instance=request.user.userprofile)
