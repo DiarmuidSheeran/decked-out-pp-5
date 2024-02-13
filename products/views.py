@@ -196,9 +196,10 @@ def delete_product(request, product_id):
     messages.success(request, 'Product deleted!')
     return redirect(reverse('products'))
 
+@login_required
 def product_statistics(request):
     sold_products = Product.objects.filter(productstatistics__total_sold__gt=0)
-    recommend_promo_products = Product.objects.filter(productstatistics__total_sold__lte=5)
+    recommend_promo_products = Product.objects.filter(productstatistics__total_sold__lte=5, is_on_promotion=False)
 
     sort_by = request.GET.get('sort_by')
     sort_by = request.GET.get('sort_by')
@@ -217,3 +218,4 @@ def product_statistics(request):
         }
 
     return render(request, 'products/product_statistics.html', context )
+

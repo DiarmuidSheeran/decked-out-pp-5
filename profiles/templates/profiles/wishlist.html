@@ -99,7 +99,7 @@
         {% else %}
             <div class="wishlist-item mt-4 mb-4 pb-2" style="border-bottom: 1px solid #fff;">
                 <p>Your wishlist is empty.</p>
-                <a href="{% url 'products' %}" class="btn btn-info rounded-0 btn-lg">
+                <a href="{% url 'products' %}" class="btn btn-dark btn-block rounded-1 text-uppercase border border-danger">
                     <span class="icon">
                         <i class="fas fa-chevron-left"></i>
                     </span>
@@ -113,7 +113,7 @@
         </div>
     </div>
     {% if request.user.is_authenticated %}
-        <a href="{% url 'profile' %}" class="btn btn-info mt-4 mb-4"><i class="fa-solid fa-arrow-left mr-2" style="color: #ffffff;"></i>Back to your profile</a>
+        <a href="{% url 'profile' %}" class="btn btn-dark rounded-1 text-uppercase border border-danger mt-2"><i class="fa-solid fa-arrow-left mr-2" style="color: #ffffff;"></i>Back to your profile</a>
     {% endif %}
 </div>
 <div class="btt-button shadow-sm rounded-0 border border-white">

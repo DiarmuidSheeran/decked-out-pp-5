@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="row mt-4">
-        <div class="col-lg-6">
+        <div class="col-lg-8">
             <h2>Product Sales Record</h2>
             <div class="dropdown mb-2">
                 <button class="btn btn-dark border border-danger dropdown-toggle text-center" type="button" id="sortDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -67,30 +67,40 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-4">
             <div id="recommendationsSection">
                 <h2>Recommended for Promotion</h2>
                 <p>Poor Sales Record</p>
                 <div class="card-deck">
-                    <div class="row row-cols-1 row-cols-md-3">
-                        {% for product in recommend_promo_products %}
-                        <div class="col mb-4">
-                            <div class="card text-black bg-light h-100 border border-danger">
-                                <a href="{% url 'product_detail' product.id %}" class="text-black">
-                                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
-                                    <div class="card-body d-flex flex-column">
-                                        <h5 class="card-title">{{ product.name }}</h5>
+                    {% if recommend_promo_products %}
+                        <div class="row row-cols-1 row-cols-md-2">
+                            {% for product in recommend_promo_products %}
+                                {% if product.is_on_promotion is False %}
+                                    <div class="col mb-4">
+                                        <div class="card text-black bg-light h-100 border border-danger">
+                                            <a href="{% url 'product_detail' product.id %}" class="text-black">
+                                                <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                                                <div class="card-body d-flex flex-column">
+                                                    <h5 class="card-title">{{ product.name }}</h5>
+                                                </div>
+                                            </a>
+                                            <div class="card-footer mt-auto bg-dark text-white">
+                                                <p class="card-text">Total Sold: {{ product.productstatistics.total_sold }}</p>
+                                                <p class="card-text">Times Purchased: {{ product.productstatistics.times_purchased }}</p>
+                                                <a href="{% url 'edit_product' product.id %}" class="btn btn-danger btn-block"> Edit Product <i class="fa-solid fa-pen-to-square pl-2" style="color: #ffffff;"></i></a>
+                                            </div>
+                                        </div>
                                     </div>
-                                </a>
-                                <div class="card-footer mt-auto bg-dark text-white">
-                                    <p class="card-text">Total Sold: {{ product.productstatistics.total_sold }}</p>
-                                    <p class="card-text">Times Purchased: {{ product.productstatistics.times_purchased }}</p>
-                                    <a href="{% url 'edit_product' product.id %}" class="btn btn-danger btn-block"> Edit Product <i class="fa-solid fa-pen-to-square pl-2" style="color: #ffffff;"></i></a>
-                                </div>
-                            </div>
+                                {% endif %}
+                            {% endfor %}
                         </div>
-                        {% endfor %}
-                    </div>
+                    {% else %}
+                        <div class="row">
+                            <div class="col-12">
+                                <p class="text-white ml-3">There are no products to recommend at the current time <i class="fa-solid fa-face-smile-beam" style="color: #FFD43B;"></i></p>
+                            </div>
+                        </div> 
+                    {% endif %}
                 </div>
             </div>
         </div>
