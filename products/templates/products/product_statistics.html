@@ -16,6 +16,11 @@
             <h1>Decked Out's Product Statistics <i class="fa-solid fa-chart-simple" style="color: #ffffff;"></i></h1>
         </div>
     </div>
+    <div class="row justify-content-center d-md-none">
+        <div class="col-lg-6">
+            <a href="#recommendationsSection" class="btn btn-dark border border-danger" style="width: 100%; height: 100%;">Jump to Promotion Recommendations</a>
+        </div>
+    </div>
     <div class="row mt-4">
         <div class="col-lg-6">
             <h2>Product Sales Record</h2>
@@ -63,27 +68,29 @@
             </table>
         </div>
         <div class="col-lg-6">
-            <h2>Recommended for Promotion</h2>
-            <p>Poor Sales Record</p>
-            <div class="card-deck">
-                <div class="row row-cols-1 row-cols-md-3">
-                    {% for product in recommend_promo_products %}
-                    <div class="col mb-4">
-                        <div class="card text-black bg-light h-100 border border-danger">
-                            <a href="{% url 'product_detail' product.id %}" class="text-black">
-                                <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
-                                <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title">{{ product.name }}</h5>
+            <div id="recommendationsSection">
+                <h2>Recommended for Promotion</h2>
+                <p>Poor Sales Record</p>
+                <div class="card-deck">
+                    <div class="row row-cols-1 row-cols-md-3">
+                        {% for product in recommend_promo_products %}
+                        <div class="col mb-4">
+                            <div class="card text-black bg-light h-100 border border-danger">
+                                <a href="{% url 'product_detail' product.id %}" class="text-black">
+                                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                                    <div class="card-body d-flex flex-column">
+                                        <h5 class="card-title">{{ product.name }}</h5>
+                                    </div>
+                                </a>
+                                <div class="card-footer mt-auto bg-dark text-white">
+                                    <p class="card-text">Total Sold: {{ product.productstatistics.total_sold }}</p>
+                                    <p class="card-text">Times Purchased: {{ product.productstatistics.times_purchased }}</p>
+                                    <a href="{% url 'edit_product' product.id %}" class="btn btn-danger btn-block"> Edit Product <i class="fa-solid fa-pen-to-square pl-2" style="color: #ffffff;"></i></a>
                                 </div>
-                            </a>
-                            <div class="card-footer mt-auto bg-dark text-white">
-                                <p class="card-text">Total Sold: {{ product.productstatistics.total_sold }}</p>
-                                <p class="card-text">Times Purchased: {{ product.productstatistics.times_purchased }}</p>
-                                <a href="{% url 'edit_product' product.id %}" class="btn btn-danger btn-block"> Edit Product <i class="fa-solid fa-pen-to-square pl-2" style="color: #ffffff;"></i></a>
                             </div>
                         </div>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
                 </div>
             </div>
         </div>
