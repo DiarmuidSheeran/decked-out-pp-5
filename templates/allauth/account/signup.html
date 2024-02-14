@@ -9,7 +9,7 @@
   <div class="row d-flex justify-content-center align-items-center">
     <div class="col-12 col-lg-6 bg-dark border border-danger">
       <h3 class="logo-font text-center mt-2 pb-2">Welcome to Decked Out!</h3>
-      <h4 class="logo-font text-center mb-2">{% trans "Register Below" %} <i class="fa-solid fa-address-card ml-2 text-warning" style="color: #ffffff;"></i> <br><i class="fas fa-arrow-down text-white"></i></h4>
+      <h4 class="logo-font text-center mb-2">{% trans "Register Below" %} <i class="fa-solid fa-address-card ml-2 text-white" style="color: #ffffff;"></i> <br><i class="fas fa-arrow-down text-white"></i></h4>
       <p class="text-white text-center">{% blocktrans %}Already have an account?<br><a href="{{ login_url }}"><i class="fa-solid fa-key mr-1"></i>Sign in here</a>.{% endblocktrans %}</p>
 
       <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
