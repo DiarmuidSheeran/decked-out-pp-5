@@ -1,14 +1,9 @@
 <style>
-    .navbar-nav .dropdown-menu{
+    .dropdown-item:hover{
+        background-color: #ce1313;
     }
-    .dropdown-item:hover {
-    background-color: #9e2727; 
-    }
-    @media (min-width: 992px) {
-    .main-navigation-bar {
-        
-    }
-    .navbar-nav .dropdown-menu {
+    @media (min-width: 996px) {
+        .navbar-nav .dropdown-menu {
         left: 50%;
         transform: translateX(-50%);
         width: auto; 
@@ -30,11 +25,10 @@
             <a class="logo-font font-weight-bold nav-link text-white text-center" href="#" id="all-products-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 All Products
             </a>
-            <div class="dropdown-menu main-navigation-bar text-center bg-dark" aria-labelledby="all-products-link">
+            <div class="dropdown-menu main-navigation-bar text-center" aria-labelledby="all-products-link" style="border: solid red 3px; background-color: black; box-shadow: 1px 1px 11px rgb(141, 139, 139);" >
                 <div class="d-flex justify-content-center mb-2" style="border-bottom: solid white 1px">
                     <img src="{{ MEDIA_URL }}yugioh-logo.png" alt="Yugioh Logo" class="img-fluid" style="width: 40%; height: 40%;">
-                    <h6 class="text-center text-white">&</h6>
-                    <img src="{{ MEDIA_URL }}pokemon-logo.png" alt="Pokemon Logo" class="img-fluid" style="width: 40%; height: 40%;">
+                    <img src="{{ MEDIA_URL }}pokemon-logo.png" alt="Pokemon Logo" class="img-fluid pb-4" style="width: 40%; height: 40%;">
                 </div>
                 <a href="{% url 'products' %}" class="dropdown-item font-weight-bold text-white">All Products</a>
                 <a href="{% url 'products' %}?sort=price&direction=asc" class="dropdown-item font-weight-bold text-white">By Price</a>
@@ -47,17 +41,18 @@
             <a class="logo-font font-weight-bold nav-link text-white text-center" href="#" id="clothing-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 YuGiOh!
             </a>
-            <div class="dropdown-menu main-navigation-bar text-center bg-dark" aria-labelledby="clothing-link">
-                <div class="d-flex justify-content-center mb-2" style="border-bottom: solid white 1px">
+            <div class="dropdown-menu main-navigation-bar text-center" aria-labelledby="clothing-link" style="border: solid red 3px; background-color: black;" >
+                <div class="d-flex justify-content-center mb-2" style="border-bottom: solid rgb(255, 255, 255) 1px">
                     <img src="{{ MEDIA_URL }}yugi-and-kaiba.png" alt="Yugioh Logo" class="img-fluid mb-2" style="width: 40%; height: 40%;">
                 </div>
+                
                 <a href="{% url 'products' %}?category=yugioh-booster-box,yugioh-booster-pack,yugioh-deck,yugioh-tin,yugioh-special-edition,yugioh-accessories" class="dropdown-item font-weight-bold text-white">All Yugioh Products</a>
                 <a href="{% url 'products' %}?category=yugioh-booster-box" class="dropdown-item font-weight-bold text-white">Booster Boxes</a>
                 <a href="{% url 'products' %}?category=yugioh-booster-pack" class="dropdown-item font-weight-bold text-white">Booster Packs</a>
                 <a href="{% url 'products' %}?category=yugioh-deck" class="dropdown-item font-weight-bold text-white">Decks</a>
                 <a href="{% url 'products' %}?category=yugioh-tin" class="dropdown-item font-weight-bold text-white">Tins</a>
                 <a href="{% url 'products' %}?category=yugioh-special-edition" class="dropdown-item font-weight-bold text-white">Special Edition Sets</a>
-                <a href="{% url 'products' %}?category=yugioh-accessories" class="dropdown-item font-weight-bold text-white">Accesories</a>
+                <a href="{% url 'products' %}?category=yugioh-accessories" class="dropdown-item font-weight-bold text-white pb-auto">Accesories</a>
             </div>
         </li>
 
@@ -65,7 +60,7 @@
             <a class="logo-font font-weight-bold nav-link text-white text-center" href="#" id="homeware-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Pokemon
             </a>
-            <div class="dropdown-menu text-center main-navigation-bar bg-dark" aria-labelledby="homeware-link">
+            <div class="dropdown-menu text-center main-navigation-bar" aria-labelledby="homeware-link" style="border: solid red 3px; background-color: black; box-shadow: 1px 1px 11px rgb(141, 139, 139);">
                 <div class="d-flex justify-content-center mb-2" style="border-bottom: solid white 1px">
                     <img src="{{ MEDIA_URL }}pokemon-logo-catchphrase.png" alt="Pokemon Logo" class="img-fluid mb-2" style="width: 40%; height: 40%;">
                 </div>
@@ -84,7 +79,7 @@
             <a class="logo-font font-weight-bold nav-link text-white text-center" href="#" id="specials-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Special Offers
             </a>
-            <div class="dropdown-menu text-center main-navigation-bar bg-dark" aria-labelledby="specials-link">
+            <div class="dropdown-menu text-center main-navigation-bar mb-2" aria-labelledby="specials-link" style="border: solid red 3px; background-color: black; box-shadow: 1px 1px 11px rgb(141, 139, 139);">
                 <div class="d-flex justify-content-center mb-2" style="border-bottom: solid white 1px">
                     <img src="{{ MEDIA_URL }}special-offer.png" alt="Yugioh Logo" class="img-fluid mb-2" style="width: 40%; height: 40%;">
                 </div>

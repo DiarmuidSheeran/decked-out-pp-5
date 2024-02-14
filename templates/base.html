@@ -34,15 +34,15 @@
     <title>Decked Out {% block extra_title %}{% endblock %}</title>
   </head>
   <body>
-    <header class="container-fluid fixed-top" style="border-bottom: solid #ff0000 2px;">
+    <header class="container-fluid fixed-top" style="border-bottom: solid #ffffff 1px;">
       <div id="delivery-banner" class="row text-center">
-        <div class="col bg-dark text-white" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">
-          <h5 class="logo-font pt-1 pb-1"><i class="fa-solid fa-cake-candles fa-shake mr-2" style="color: rgb(212, 140, 191);"></i> Free delivery on orders over €{{ free_delivery_threshold }}! <i class="fa-solid fa-cake-candles fa-shake ml-2" style="color: rgb(212, 140, 191);"></i></h5>             
+        <div class="col bg-dark text-white" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313); border-bottom: solid #ffffff 1px;">
+          <h5 class="logo-font pt-1 pb-1 mb-auto"><i class="fa-solid fa-triangle-exclamation fa-bounce text-warning"></i> Free delivery on all orders over €{{ free_delivery_threshold }} <i class="fa-solid fa-triangle-exclamation fa-bounce text-warning"></i></h5>             
         </div>            
       </div>
       <div id="topnav" class="row bg-dark pt-lg-2 d-none d-lg-flex"> 
         <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
-          <a href="{% url 'home' %}" class="nav-link main-logo-link"><h2 class="logo-font text-white my-0"><strong>Decked Out</strong></h2></a>
+            <a href="{% url 'home' %}" class="nav-link main-logo-link"><h2 class="logo-font text-white my-0 mt-1"><strong>Decked Out</strong></h2></a>
         </div>
         <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
           <form method="GET" action="{% url 'products' %}">
@@ -67,17 +67,17 @@
                     <p class="my-0 text-light">My Account</p>
                 </div>
               </a>
-              <div class="dropdown-menu border-0" aria-labelledby="user-options">
+              <div class="dropdown-menu text-white" aria-labelledby="user-options" style="border: solid red 3px; background-color: black; box-shadow: 1px 1px 11px rgb(141, 139, 139);">
                 {% if request.user.is_authenticated %}
-                    <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
+                    <a href="{% url 'profile' %}" class="dropdown-item text-white">My Profile</a>
                     {% if request.user.is_superuser %}
-                        <a href="{% url 'add_product' %}" class="dropdown-item">Create a Product</a>
-                        <a href="{% url 'product_statistics' %}" class="dropdown-item">Product Statistics</a>
+                        <a href="{% url 'add_product' %}" class="dropdown-item text-white">Create a Product</a>
+                        <a href="{% url 'product_statistics' %}" class="dropdown-item text-white">Product Statistics</a>
                     {% endif %}
-                    <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+                    <a href="{% url 'account_logout' %}" class="dropdown-item text-white">Logout</a>
                 {% else %}
-                    <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
-                    <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+                    <a href="{% url 'account_signup' %}" class="dropdown-item text-white">Register</a>
+                    <a href="{% url 'account_login' %}" class="dropdown-item text-white">Login</a>
                 {% endif %}
               </div>
             </li>
@@ -102,14 +102,21 @@
         <nav class="navbar navbar-expand-lg navbar-light w-100">
           {% include 'includes/mobile-top-header.html' %}
           {% include 'includes/main-nav.html' %}
-            <button class="navbar-toggler border border-light w-100" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">
+            <button class="navbar-toggler border border-light w-100 mb-2" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">
                 <span class="text-light text-center"><strong><i class="fa-solid fa-bars fa-beat-fade" style="color: #ffffff;"></i></strong></span>
             </button>
-           
         </nav>
       </div>
+      <div id="delivery-banner" class="row text-center">
+        <div class="col bg-dark text-white" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313); border-top: solid #ffffff 1px;">
+          <p class="logo-font pt-1 pb-1 mb-auto"><i class="fa-solid fa-gift fa-shake text-warning"></i> <strong>Opening Special!</strong> <i class="fa-solid fa-gift fa-shake text-warning"></i> <br> Use code <strong class="text-warning">'gift'</strong> to save 10% on your orders!</p>             
+        </div>            
+      </div>
     </header>
-
+    <br>
+    <br>
+    <br>
+    <br>
     {% if messages %}
         <div class="message-container">
           {% for message in messages %}

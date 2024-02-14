@@ -107,7 +107,7 @@ def all_products(request):
 def product_detail(request, product_id):
 
     product = get_object_or_404(Product, pk=product_id)
-    reviews = product.reviews.filter(reviewer_name=request.user)
+    reviews = product.reviews.all()
     average_rating = product.calculate_average_rating()
     user = request.user
     has_ordered_product = False

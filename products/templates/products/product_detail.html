@@ -132,20 +132,20 @@
                         <div class="card-body">
                             <div class="reviews">
                                 {% if reviews %}
-                                {% for review in reviews %}
-                                <div class="review">
-                                    <div class="rating">
-                                        <strong>Rating: {{ review.rating }}</strong>
-                                        <span class="star-rating">
-                                             <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
-                                        </span>
+                                    {% for review in reviews %}
+                                    <div class="review">
+                                        <div class="rating">
+                                            <strong>Rating: {{ review.rating }}</strong>
+                                            <span class="star-rating">
+                                                <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                                            </span>
+                                        </div>
+                                        <p class="mb-0"><strong>Review:</strong> <i class="fa-solid fa-comment" style="color: #63E6BE;"></i></p>
+                                        <p >{{ review.comment }}</p>
+                                        <p class="text-muted small">Reviewed by: {{ review.reviewer_name }}</p>
+                                        <p class="text-muted small">Posted on {{ review.created_at }}</p>
                                     </div>
-                                    <p class="mb-0"><strong>Review:</strong> <i class="fa-solid fa-comment" style="color: #63E6BE;"></i></p>
-                                    <p >{{ review.comment }}</p>
-                                    <p class="text-muted small">Reviewed by: {{ review.reviewer_name }}</p>
-                                    <p class="text-muted small">Posted on {{ review.created_at }}</p>
-                                </div>
-                                {% endfor %}
+                                    {% endfor %}
                                 {% else %}
                                 <p>No reviews for this product yet.</p>
                                 {% endif %}
