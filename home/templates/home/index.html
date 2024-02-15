@@ -13,15 +13,10 @@
 {% endblock %}
 {% block content %}
     <div class="container">
-        <div class="row">
-            <div class="col-12 text-center">
-                <a href="{% url 'home' %}"><h2 class="logo-font text-center text-white mt-2"><strong>Decked Out</strong></h2></a>
-                <p class="logo-font text-center text-muted font-italic">YuGioH! and Pokemon TCG store</p>
-            </div>
-        </div>
+
         <div class="row">
             <div class="col-12 d-flex justify-content-center align-items-center">
-                <div id="carouselExampleSlidesOnly" class="carousel slide h-50" data-ride="carousel">
+                <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <a href="{% url 'products' %}?category=yugioh-booster-box,yugioh-booster-pack,yugioh-deck,yugioh-tin,yugioh-special-edition,yugioh-accessories">
@@ -51,12 +46,16 @@
             </div>
         </div>
         <br>
-        <br>
-        <br>
-        <br>
+        <div class="row">
+            <div class="col-12 text-center">
+                <a href="{% url 'home' %}"><h2 class="logo-font text-center text-white mt-2"><strong>Decked Out</strong></h2></a>
+                <p class="logo-font text-center text-muted font-italic">YuGioH! and Pokemon TCG store</p>
+            </div>
+        </div>
+        
         <div class="row">
             <div class="col-12  text-center mb-4">
-                <a href="{% url 'products' %}" class="shop-now-button btn btn-md btn-block rounded-0 text-uppercase py-3 border border-light" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">
+                <a href="{% url 'products' %}" class="shop-now-button btn btn-md rounded-0 text-uppercase py-3 border border-light mb-4" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">
                     <strong class="logo-font">Shop Now</strong>
                 </a>
             </div>
@@ -240,17 +239,19 @@
             </div>
         </div>
         <div class="row justify-content-center align-items-center">
-            <div class="col-md-3 border border-light p-4 mb-2 mt-2" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 border border-light p-4 mb-2 mt-2" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">
                 <h4 class="logo-font text-center">Sign Up to our Newsletter <i class="fa-solid fa-envelope fa-beat-fade" style="color: #ffffff;"></i></h4>
                 <form method="post">
                     {% csrf_token %}
                     {{ form|crispy }}
-                    <button type="submit" class="bg-warning border border-light">Subscribe</button>
+                    <button type="submit" class="bg-warning border border-dark btn-lg">Subscribe</button>
                 </form>
             </div>
             <div class="col-md-2">
                 <img src="{{ MEDIA_URL }}dragonite.png" alt="Pikachu" class="img-fluid ml-4">
             </div>
+            <div class="col-md-2"></div>
         </div>
     </div>
 {% endblock %}
