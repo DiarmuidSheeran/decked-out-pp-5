@@ -239,5 +239,18 @@
                 </div>
             </div>
         </div>
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-3 border border-light p-4 mb-2 mt-2" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">
+                <h4 class="logo-font text-center">Sign Up to our Newsletter <i class="fa-solid fa-envelope fa-beat-fade" style="color: #ffffff;"></i></h4>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button type="submit" class="bg-warning border border-light">Subscribe</button>
+                </form>
+            </div>
+            <div class="col-md-2">
+                <img src="{{ MEDIA_URL }}dragonite.png" alt="Pikachu" class="img-fluid ml-4">
+            </div>
+        </div>
     </div>
 {% endblock %}
