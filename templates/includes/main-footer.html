@@ -1,0 +1,97 @@
+<footer class="page-footer font-small indigo bg-dark border border-light mb-auto">
+    <div class="container text-center text-md-left">
+        <div class="row text-center">
+            <div class="col-md-3 mx-auto text-white">
+                <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Contact us</h5>
+                <ul class="list-unstyled" >
+                    <li>
+                        <p>Decked Out,
+                        <br>Main Street,
+                        <br>Abbeyleix,
+                        <br>Co Laois,
+                        <br>Ireland
+                    </li>
+                    <li>
+                        <p class="text-white">deckedouttcgstore@gmail.com</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-3 mx-auto text-white">
+                <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Social Links</h5>
+                <ul class="list-unstyled" >
+                    <li>
+                        <a href="#" class="text-white dropdown-item"><i class="fa-brands fa-facebook text-primary"></i> Facebook</a>
+                    </li>
+                </ul>
+            </div>
+            <hr class="clearfix w-100 d-md-none">
+            <div class="col-md-3 mx-auto">
+                <h5 class="font-weight-bold text-uppercase mt-3 mb-4">FAQ</h5>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="#" class="text-white dropdown-item">Cookie Policy</a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-white dropdown-item">About Us</a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-white dropdown-item">Returns Policy</a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-white dropdown-item">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+            <hr class="clearfix w-100 d-md-none">
+            <div class="col-md-3 mx-auto">
+                <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Site Navigation</h5>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="{% url 'home' %}" class="dropdown-item text-white">Home</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'products' %}" class="dropdown-item text-white">Shop</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'products' %}?category=yugioh-booster-box,yugioh-booster-pack,yugioh-deck,yugioh-tin,yugioh-special-edition,yugioh-accessories" class="dropdown-item text-white">Shop YuGiOH!</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'products' %}?category=pokemon-booster-box,pokemon-booster-pack,pokemon-decks,pokemon-tin,pokemon-special-edition,pokemon-toys,pokemon-accessories" class="dropdown-item text-white">Shop Pokemon</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'products' %}?filter_type=all_offers" class="dropdown-item text-white">Shop Offers</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'view_bag' %}" class="dropdown-item text-white">Cart</a>
+                    </li>
+                    {% if request.user.is_authenticated %}
+                        <li>
+                            <a href="{% url 'profile' %}" class=" dropdown-item text-white">Profile</a>
+                        </li>
+                        {% if request.user.is_superuser %}
+                            <li>
+                                <a href="{% url 'add_product' %}" class="dropdown-item text-white">Create a Product</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'product_statistics' %}" class="dropdown-item text-white">Product Statistics</a>
+                            </li>
+                        {% endif %}
+                        <li>
+                            <a href="{% url 'account_logout' %}" class="dropdown-item text-white">Logout</a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="{% url 'account_signup' %}" class="dropdown-item text-white">Register</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'account_login' %}" class="dropdown-item text-white">Login</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div> 
+    </div>
+    <div class="footer-copyright text-center py-5"style="color: white">© 2023 Copyright:
+      <a href="https://github.com/DiarmuidSheeran" target="_blank"><strong class="text-white">Diarmuid Sheeran <i class="fa-brands fa-github" style="color: #ffffff;"></i></strong></a>
+    </div>
+  </footer>

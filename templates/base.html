@@ -140,6 +140,14 @@
 
     {% block content %}
     {% endblock %}
+    <br>
+    <br>
+    <div id="delivery-banner" class="row text-center">
+      <div class="col bg-dark text-white" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313); border-top: solid #ffffff 1px;">
+        <p class="logo-font pt-1 pb-1 mb-auto"><i class="fa-solid fa-gift text-warning"></i> <strong>Opening Special!</strong> <i class="fa-solid fa-gift text-warning"></i> <br> Use code <strong class="text-warning">'gift'</strong> to save 10% on your orders!</p>             
+      </div>            
+    </div>
+    {% include 'includes/main-footer.html' %}
 
     {% block postloadjs %}
       <script type="text/javascript">
