@@ -28,7 +28,6 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
 ALLOWED_HOSTS = ['8000-diarmuidshe-deckedoutpp-07qedhcrluo.ws-eu108.gitpod.io', 'decked-out-tcg-store-b1147b8f9a0a.herokuapp.com', 'localhost']
 
 
