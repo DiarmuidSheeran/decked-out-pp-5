@@ -11,7 +11,7 @@ def send_confirmation_email(email):
     subject = 'Subscription Confirmation'
     html_message = render_to_string('newsletter/confirmation_email.html', {})
     plain_message = strip_tags(html_message) 
-    from_email = DEFAULT_FROM_EMAIL
+    from_email = settings.DEFAULT_FROM_EMAIL
     recipient_list = [email]
     send_mail(subject, plain_message, from_email, recipient_list, html_message=html_message)
 
@@ -24,7 +24,7 @@ def index(request):
     if request.method == 'POST':
         form = NewsletterSubscriptionForm(request.POST)
         if form.is_valid():
-            form.save()
+            subscription = form.save()
             send_confirmation_email(subscription.email)
             return redirect(reverse('home'))
     else:
