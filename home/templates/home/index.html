@@ -12,18 +12,162 @@
     
 {% endblock %}
 {% block content %}
-    <div class="container h-100">
-        <div class="row h-100">
-            <div class="col-7 col-md-6 my-auto">
-                <h1 class="display-4 logo-font text-white">
-                    Shop all Yugioh and Pokemon Products!
-                </h1>
-                <div class="my-5">
-                    <h4>
-                        <a href="{% url 'products' %}" class="shop-now-button btn btn-lg btn-danger rounded-0 text-uppercase py-3">
-                            Shop Now
-                        </a>
-                    </h4>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <a href="{% url 'home' %}"><h2 class="logo-font text-center text-white mt-2"><strong>Decked Out</strong></h2></a>
+                <p class="logo-font text-center text-muted font-italic">YuGioH! and Pokemon TCG store</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center align-items-center">
+                <div id="carouselExampleSlidesOnly" class="carousel slide h-50" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <a href="{% url 'products' %}?category=yugioh-booster-box,yugioh-booster-pack,yugioh-deck,yugioh-tin,yugioh-special-edition,yugioh-accessories">
+                                <img src="{{ MEDIA_URL }}yugi-and-kaiba.png" class="img-fluid" alt="YuGiOh Logo" style="height: 200px;">
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="{% url 'products' %}?category=pokemon-booster-box,pokemon-booster-pack,pokemon-decks,pokemon-tin,pokemon-special-edition,pokemon-toys,pokemon-accessories">
+                                <img src="{{ MEDIA_URL }}pokemon-logo-pikachu.png" class="img-fluid" alt="Pokemon Logo" style="height: 200px;">
+                            </a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="{% url 'products' %}?filter_type=all_offers">
+                                <img src="{{ MEDIA_URL }}special-offer.png" class="img-fluid" alt="Special Offer" style="height: 200px;">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev mt-4" href="#carouselExampleSlidesOnly" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next mt-4" href="#carouselExampleSlidesOnly" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-12 text-center mb-4">
+                <a href="{% url 'products' %}" class="shop-now-button btn btn-md btn-block rounded-0 text-uppercase py-3 border border-light" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">
+                    <strong class="logo-font">Shop Now</strong>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <div class="card h-100 product-card">
+                    <h4 class="card-header mb-2 text-white logo-font" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">Best Sellers</h4>
+                    <div id="bestSeller" class="carousel slide">
+                        <div class="carousel-inner">
+                            {% for product in best_sellers %}
+                                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                    <div class="card-body pb-0">
+                                        <a href="{% url 'product_detail' product.id %}">
+                                            <h5 class="text-black">{{ product.name }}</h5>
+                                            <img class="w-100" src="{{ product.image.url }}" alt="{{ product.name }}">
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#bestSeller" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#bestSeller" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only text-warning">Next</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="card h-100 product-card">
+                    <h4 class="card-header mb-2 text-white logo-font" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">Promotions</h4>
+                    <div id="specialOffer" class="carousel slide">
+                        <div class="carousel-inner">
+                            {% for product in special_offer_products %}
+                                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                    <div class="card-body pb-0">
+                                        <a href="{% url 'product_detail' product.id %}">
+                                            <h5 class="text-black">{{ product.name }}</h5>
+                                            <img class="w-100" src="{{ product.image.url }}" alt="{{ product.name }}">
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#specialOffer" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#specialOffer" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only text-warning">Next</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="card h-100 product-card">
+                    <h4 class="card-header mb-2 text-white logo-font" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">Clearance Products</h4>
+                    <div id="clearance" class="carousel slide">
+                        <div class="carousel-inner">
+                            {% for product in clearance_products %}
+                                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                    <div class="card-body pb-0">
+                                        <a href="{% url 'product_detail' product.id %}">
+                                            <h5 class="text-black">{{ product.name }}</h5>
+                                            <img class="w-100" src="{{ product.image.url }}" alt="{{ product.name }}">
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#clearance" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#clearance" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only text-warning">Next</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="card h-100 product-card">
+                    <h4 class="card-header mb-2 text-white logo-font" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">New Arrivals</h4>
+                    <div id="new" class="carousel slide">
+                        <div class="carousel-inner">
+                            {% for product in new_arrival_products %}
+                                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                    <div class="card-body pb-0">
+                                        <a href="{% url 'product_detail' product.id %}">
+                                            <h5 class="text-black">{{ product.name }}</h5>
+                                            <img class="w-100" src="{{ product.image.url }}" alt="{{ product.name }}">
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#new" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#new" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only text-warning">Next</span>
+                    </a>
                 </div>
             </div>
         </div>
