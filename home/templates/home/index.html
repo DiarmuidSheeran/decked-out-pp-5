@@ -55,25 +55,42 @@
         <br>
         <br>
         <div class="row">
-            <div class="col-12 text-center mb-4">
+            <div class="col-12  text-center mb-4">
                 <a href="{% url 'products' %}" class="shop-now-button btn btn-md btn-block rounded-0 text-uppercase py-3 border border-light" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">
                     <strong class="logo-font">Shop Now</strong>
                 </a>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3 text-center">
+            <div class="col-md-3 text-center mb-4">
                 <div class="card h-100 product-card">
                     <h4 class="card-header mb-2 text-white logo-font" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">Best Sellers</h4>
-                    <div id="bestSeller" class="carousel slide">
+                    <div id="bestSeller" class="carousel slide" data-ride="carousel" data-interval="10000">
                         <div class="carousel-inner">
                             {% for product in best_sellers %}
                                 <div class="carousel-item {% if forloop.first %}active{% endif %}">
                                     <div class="card-body pb-0">
+                                        <h5 class="text-black">{{ product.name }}</h5>
                                         <a href="{% url 'product_detail' product.id %}">
-                                            <h5 class="text-black">{{ product.name }}</h5>
                                             <img class="w-100" src="{{ product.image.url }}" alt="{{ product.name }}">
                                         </a>
+                                    </div>
+                                    <div class="card-footer pb-0">
+                                        <p class="lead mb-0 text-center font-weight-bold mb-4" style="color:black">
+                                            {% if product.is_on_promotion and product.promotion_price and product.clearance %}
+                                                <span class="original-price text-muted"><del>€{{ product.price }}</del></span>
+                                                <span class="promotion-price text-danger">€{{ product.promotion_price }}</span>
+                                                
+                                                <span class="badge badge-warning text-black">Clearance!</span>
+                                            {% elif product.is_on_promotion and product.promotion_price %}
+                                                <span class="original-price text-muted"><del>€{{ product.price }}</del></span>
+                                                <span class="promotion-price text-danger">€{{ product.promotion_price }}</span>
+                                                
+                                                <span class="badge badge-danger text-warning">Special Offer!</span>
+                                            {% else %}
+                                                Only €{{ product.price }}
+                                            {% endif %}
+                                        </p>
                                     </div>
                                 </div>
                             {% endfor %}
@@ -89,18 +106,35 @@
                     </a>
                 </div>
             </div>
-            <div class="col-md-3 text-center">
+            <div class="col-md-3 text-center mb-4">
                 <div class="card h-100 product-card">
                     <h4 class="card-header mb-2 text-white logo-font" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">Promotions</h4>
-                    <div id="specialOffer" class="carousel slide">
+                    <div id="specialOffer" class="carousel slide" data-ride="carousel" data-interval="10000">
                         <div class="carousel-inner">
                             {% for product in special_offer_products %}
                                 <div class="carousel-item {% if forloop.first %}active{% endif %}">
                                     <div class="card-body pb-0">
+                                        <h5 class="text-black">{{ product.name }}</h5>
                                         <a href="{% url 'product_detail' product.id %}">
-                                            <h5 class="text-black">{{ product.name }}</h5>
                                             <img class="w-100" src="{{ product.image.url }}" alt="{{ product.name }}">
                                         </a>
+                                    </div>
+                                    <div class="card-footer pb-0">
+                                        <p class="lead mb-0 text-center font-weight-bold mb-4" style="color:black">
+                                            {% if product.is_on_promotion and product.promotion_price and product.clearance %}
+                                                <span class="original-price text-muted"><del>€{{ product.price }}</del></span>
+                                                <span class="promotion-price text-danger">€{{ product.promotion_price }}</span>
+                                                
+                                                <span class="badge badge-warning text-black">Clearance!</span>
+                                            {% elif product.is_on_promotion and product.promotion_price %}
+                                                <span class="original-price text-muted"><del>€{{ product.price }}</del></span>
+                                                <span class="promotion-price text-danger">€{{ product.promotion_price }}</span>
+                                                
+                                                <span class="badge badge-danger text-warning">Special Offer!</span>
+                                            {% else %}
+                                                Only €{{ product.price }}
+                                            {% endif %}
+                                        </p>
                                     </div>
                                 </div>
                             {% endfor %}
@@ -116,18 +150,35 @@
                     </a>
                 </div>
             </div>
-            <div class="col-md-3 text-center">
+            <div class="col-md-3 text-center mb-4">
                 <div class="card h-100 product-card">
                     <h4 class="card-header mb-2 text-white logo-font" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">Clearance Products</h4>
-                    <div id="clearance" class="carousel slide">
+                    <div id="clearance" class="carousel slide" data-ride="carousel" data-interval="10000">
                         <div class="carousel-inner">
                             {% for product in clearance_products %}
                                 <div class="carousel-item {% if forloop.first %}active{% endif %}">
                                     <div class="card-body pb-0">
+                                        <h5 class="text-black">{{ product.name }}</h5>
                                         <a href="{% url 'product_detail' product.id %}">
-                                            <h5 class="text-black">{{ product.name }}</h5>
                                             <img class="w-100" src="{{ product.image.url }}" alt="{{ product.name }}">
                                         </a>
+                                    </div>
+                                    <div class="card-footer pb-0">
+                                        <p class="lead mb-0 text-center font-weight-bold mb-4" style="color:black">
+                                            {% if product.is_on_promotion and product.promotion_price and product.clearance %}
+                                                <span class="original-price text-muted"><del>€{{ product.price }}</del></span>
+                                                <span class="promotion-price text-danger">€{{ product.promotion_price }}</span>
+                                                
+                                                <span class="badge badge-warning text-black">Clearance!</span>
+                                            {% elif product.is_on_promotion and product.promotion_price %}
+                                                <span class="original-price text-muted"><del>€{{ product.price }}</del></span>
+                                                <span class="promotion-price text-danger">€{{ product.promotion_price }}</span>
+                                                
+                                                <span class="badge badge-danger text-warning">Special Offer!</span>
+                                            {% else %}
+                                                Only €{{ product.price }}
+                                            {% endif %}
+                                        </p>
                                     </div>
                                 </div>
                             {% endfor %}
@@ -143,18 +194,35 @@
                     </a>
                 </div>
             </div>
-            <div class="col-md-3 text-center">
+            <div class="col-md-3 text-center mb-4">
                 <div class="card h-100 product-card">
                     <h4 class="card-header mb-2 text-white logo-font" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">New Arrivals</h4>
-                    <div id="new" class="carousel slide">
+                    <div id="new" class="carousel slide" data-ride="carousel" data-interval="10000">
                         <div class="carousel-inner">
                             {% for product in new_arrival_products %}
                                 <div class="carousel-item {% if forloop.first %}active{% endif %}">
                                     <div class="card-body pb-0">
+                                        <h5 class="text-black">{{ product.name }}</h5>
                                         <a href="{% url 'product_detail' product.id %}">
-                                            <h5 class="text-black">{{ product.name }}</h5>
                                             <img class="w-100" src="{{ product.image.url }}" alt="{{ product.name }}">
                                         </a>
+                                    </div>
+                                    <div class="card-footer pb-0">
+                                        <p class="lead mb-0 text-center font-weight-bold mb-4" style="color:black">
+                                            {% if product.is_on_promotion and product.promotion_price and product.clearance %}
+                                                <span class="original-price text-muted"><del>€{{ product.price }}</del></span>
+                                                <span class="promotion-price text-danger">€{{ product.promotion_price }}</span>
+                                                
+                                                <span class="badge badge-warning text-black">Clearance!</span>
+                                            {% elif product.is_on_promotion and product.promotion_price %}
+                                                <span class="original-price text-muted"><del>€{{ product.price }}</del></span>
+                                                <span class="promotion-price text-danger">€{{ product.promotion_price }}</span>
+                                                
+                                                <span class="badge badge-danger text-warning">Special Offer!</span>
+                                            {% else %}
+                                                Only €{{ product.price }}
+                                            {% endif %}
+                                        </p>
                                     </div>
                                 </div>
                             {% endfor %}

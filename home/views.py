@@ -4,7 +4,7 @@ from products.models import Product
 
 def index(request):
     best_sellers = Product.objects.order_by('-productstatistics__total_sold')[:5]
-    special_offer_products = Product.objects.filter(is_on_promotion=True)
+    special_offer_products = Product.objects.filter(is_on_promotion=True, clearance=False)
     clearance_products = Product.objects.filter(clearance=True)
     new_arrival_products = Product.objects.filter(new_arrival=True)
 
