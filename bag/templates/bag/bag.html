@@ -24,7 +24,53 @@
         <div class="row">
             <div class="col">
                 {% if bag_items %}
-                    <div class="table-responsive rounded">
+                    <div class="d-block d-md-none">
+                        <div class="row">
+                            <div class="col">
+                                {% include "bag/bag-total.html" %}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                {% include "bag/checkout-buttons.html" %}
+                                <p class="text-muted mb-5">A summary of your bag contents is below</p>
+                            </div>
+                        </div>
+                        {% for item in bag_items %}
+                            <div class="row">
+                                <div class="col-12 col-sm-6 mb-2">
+                                    {% include "bag/product-image.html" %}
+                                </div>
+                                <div class="col-12 col-sm-6 mb-2">
+                                    {% include "bag/product-info.html" %}
+                                </div>
+                                <div class="col-12 col-sm-6 order-sm-last">
+                                    {% if item.product.is_on_promotion and item.product.promotion_price %}
+                                        <p class="promotion-price text-danger">€{{ item.product.promotion_price }}</p>
+                                    {% else %}
+                                        <p>€{{ item.product.price }} per Item</p>
+                                    {% endif %}
+                                    {% with product=item.product %}
+                                        {% if product.is_on_promotion and product.promotion_price %}
+                                            <p class="my-1 mb-1">Subtotal: €{{ product.promotion_price|calc_subtotal:item.quantity }}</p>
+                                        {% else %}
+                                            <p class="my-1 mb-1">Subtotal: €{{ product.price|calc_subtotal:item.quantity }}</p>
+                                        {% endif %}
+                                    {% endwith %}
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    {% include "bag/quantity-form.html" %}
+                                </div>
+                            </div>
+                            <div class="row"><div class="col"><hr></div></div>
+                        {% endfor %}
+                        <div class="btt-button shadow-sm rounded-0 border border-black">
+                            <a class="btt-link d-flex h-100">
+                                <i class="fas fa-arrow-up text-black mx-auto my-auto"></i>
+                            </a>	
+                        </div>
+                    </div>
+                    <div class="table-responsive rounded d-none d-md-block">
                         <table class="table table-sm table-borderless">
                             <thead class="text-white">
                                 <tr>
@@ -63,7 +109,7 @@
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
-                                                        <button class="decrement-qty btn btn-sm btn-black rounded-0" 
+                                                        <button class="decrement-qty btn btn-sm btn-secondary rounded-0" 
                                                             data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
                                                             <span>
                                                                 <i class="fas fa-minus fa-sm"></i>
@@ -75,7 +121,7 @@
                                                         data-item_id="{{ item.item_id }}"
                                                         id="id_qty_{{ item.item_id }}">
                                                     <div class="input-group-append">
-                                                        <button class="increment-qty btn btn-sm btn-black rounded-0"
+                                                        <button class="increment-qty btn btn-sm btn-secondary rounded-0"
                                                             data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
                                                             <span>
                                                                 <i class="fas fa-plus fa-sm"></i>
@@ -85,8 +131,8 @@
                                                 </div>
                                             </div>
                                         </form>
-                                        <a class="update-link text-info"><small>Update</small></a>
-                                        <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}" data-product-size="{{ item.size }}"><small>Remove</small></a>
+                                        <a class="update-link text-white btn btn-info border border-light"><small>Update</small></a>
+                                        <a class="remove-item text-white float-right btn btn-danger border border-light" id="remove_{{ item.item_id }}" data-product-size="{{ item.size }}"><small>Remove</small></a>
                                     </td>
                                     <td class="py-3">
                                         {% with product=item.product %}
@@ -118,7 +164,7 @@
                             </tr>
                             <tr>
                                 <td colspan="5" class="text-right">
-                                    <a href="{% url 'products' %}" class="btn btn-danger rounded-0 btn-lg mt-2">
+                                    <a href="{% url 'products' %}" class="btn btn-primary border border-light rounded-0 btn-lg mt-2">
                                         <strong>
                                             <span class="icon">
                                                 <i class="fas fa-arrow-left mr-2 text-light"></i>
@@ -127,12 +173,12 @@
                                             <i class="fa-solid fa-tag text-light"></i>
                                         </strong>   
                                     </a>
-                                    <a href="{% url 'checkout' %}" class="btn btn-warning rounded-0 btn-lg mt-2">
+                                    <a href="{% url 'checkout' %}" class="btn btn-danger border border-light rounded-0 btn-lg mt-2">
                                         <strong>
-                                            <i class="fa-solid fa-cash-register mr-1 text-dark"></i>
+                                            <i class="fa-solid fa-cash-register mr-1 text-light"></i>
                                             <span class="text-uppercase">Secure Checkout</span>
                                             <span class="icon">
-                                            <i class="fas fa-arrow-right ml-2 text-dark"></i>
+                                            <i class="fas fa-arrow-right ml-2 text-light"></i>
                                         </span>
                                         </strong>
                                     </a>
