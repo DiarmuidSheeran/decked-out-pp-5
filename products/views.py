@@ -10,6 +10,7 @@ from profiles.models import UserProfile
 from reviews.models import Review
 from checkout.models import Order
 from .forms import ProductForm
+from django.http import HttpResponseBadRequest
 
 # Create your views here.
 
@@ -197,12 +198,17 @@ def edit_product(request, product_id):
 
 @login_required
 def delete_product(request, product_id):
-    """ Delete a product from the store """
-    product = get_object_or_404(Product, pk=product_id)
-    product.delete()
-    messages.success(request, 'Product deleted!')
-    return redirect(reverse('products'))
-
+    if request.method == 'POST':
+        product_id = request.POST.get('product_id')
+        if product_id:
+            product = get_object_or_404(Product, pk=product_id)
+            product.delete()
+            messages.success(request, 'Product deleted successfully.')
+            return redirect('products')
+        else:
+            return HttpResponseBadRequest('Invalid request')
+    else:
+        return HttpResponseBadRequest('Invalid request')
 
 @login_required
 def product_statistics(request):
