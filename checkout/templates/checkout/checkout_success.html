@@ -239,14 +239,14 @@
         <div class="row">
 			<div class="col-12 col-lg-6">
                 {% if from_profile %}
-                    <a href="{% url 'profile' %}" class="btn btn-danger rounded-0 my-2">
+                    <a href="{% url 'profile' %}" class="btn btn-danger btn-block rounded-0 my-2">
                         <span class="icon">
                             <i class="fas fa-angle-left"></i>
                         </span>
                         <span class="text-uppercase"><strong>Back to Profile</strong></span>
                     </a>
                 {% else %}
-                    <a href="{% url 'products' %}?filter_type=all_offers" class="btn btn-danger rounded-1 my-2">
+                    <a href="{% url 'products' %}?filter_type=all_offers" class="btn btn-danger btn-block rounded-1 my-2">
                         <span class="icon">
                             <i class="fas fa-gifts"></i>
                         </span>

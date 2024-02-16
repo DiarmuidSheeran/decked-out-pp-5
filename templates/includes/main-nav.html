@@ -13,9 +13,9 @@
 
 <div class="collapse navbar-collapse" id="main-nav">
     <ul class="navbar-nav w-auto mx-auto border-0">
-        <li class="nav-item d-block d-md-none text-center">
+        <li class="nav-item d-block d-lg-none text-center">
             <div class="d-flex justify-content-center mb-2">
-                <a class="logo-font font-weight-bold nav-link text-center btn text-white btn-block border border-light mt-2" href="{% url 'home' %}" id="home-link" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313); box-shadow: 1px 1px 11px rgb(141, 139, 139);">
+                <a class="logo-font font-weight-bold nav-link text-center btn text-white btn-block btn-sm border border-light mt-2" href="{% url 'home' %}" id="home-link" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313); box-shadow: 1px 1px 11px rgb(141, 139, 139);">
                     Home
                 </a>
             </div>
@@ -25,7 +25,7 @@
                 All Products
             </a>
             <div class="dropdown-menu main-navigation-bar text-center" aria-labelledby="all-products-link" style="border: solid red 3px; background-color: black; box-shadow: 1px 1px 11px rgb(141, 139, 139);" >
-                <div class="d-flex justify-content-center mb-2" style="border-bottom: solid white 1px">
+                <div class="justify-content-center mb-2" style="border-bottom: solid white 1px">
                     <img src="{{ MEDIA_URL }}yugioh-logo.png" alt="Yugioh Logo" class="img-fluid" style="width: 40%; height: 40%;">
                     <img src="{{ MEDIA_URL }}pokemon-logo.png" alt="Pokemon Logo" class="img-fluid pb-4" style="width: 40%; height: 40%;">
                 </div>

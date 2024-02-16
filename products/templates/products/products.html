@@ -24,7 +24,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="product-container col-10 offset-1">
+            <div class="product-container col-12">
                 <div class="row mt-1 mb-2">
                     <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
                         <div class="sort-select-wrapper w-50">
@@ -79,15 +79,16 @@
                                         <div class="col mt-2">
                                             <p class="lead mb-0 text-left font-weight-bold" style="color:black">
                                                 {% if product.is_on_promotion and product.promotion_price and product.clearance %}
-                                                    <span class="original-price text-muted"><del>€{{ product.price }}</del></span>
-                                                    <span class="promotion-price text-danger">€{{ product.promotion_price }}</span>
-                                                    
                                                     <span class="badge badge-warning text-black">Clearance!</span>
-                                                {% elif product.is_on_promotion and product.promotion_price %}
+                                                    <br>
                                                     <span class="original-price text-muted"><del>€{{ product.price }}</del></span>
                                                     <span class="promotion-price text-danger">€{{ product.promotion_price }}</span>
                                                     
+                                                {% elif product.is_on_promotion and product.promotion_price %}
                                                     <span class="badge badge-danger text-warning">Special Offer!</span>
+                                                    <br>
+                                                    <span class="original-price text-muted"><del>€{{ product.price }}</del></span>
+                                                    <span class="promotion-price text-danger">€{{ product.promotion_price }}</span>
                                                 {% else %}
                                                     €{{ product.price }}
                                                 {% endif %}
@@ -104,8 +105,9 @@
                                             {% else %}
                                                 <small class="text-muted"><i class="fa-solid fa-star" style="color: #FFD43B;"></i> None</small>
                                             {% endif %}
+                                
                                             {% if user.is_authenticated %}
-                                                <form class="d-inline like-form" action="{% url 'wishlist' sku=product.sku %}" method="POST" data-product-sku="{{ product.sku }}">
+                                                <form class="d-inline like-form text-center" action="{% url 'wishlist' sku=product.sku %}" method="POST" data-product-sku="{{ product.sku }}">
                                                     {% csrf_token %}
                                                     {% if request.user in product.wishlist.all %}
                                                     <button type="submit" name="like" value="{{ product_wish.sku }}" class="btn-like btn btn-white like-button like-btn" data-like-action="unlike">
@@ -197,6 +199,15 @@
 
 {% block postloadjs %}
     {{ block.super }}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // When the back-to-top button is clicked
+            $('.btt-link').click(function(event) {
+                event.preventDefault(); // Prevent default link behavior
+                $('html, body').animate({scrollTop: 0}, 'slow'); // Smoothly scroll to the top of the page
+            });
+        });
+    </script>
     <script type="text/javascript">
         $('#sort-selector').change(function() {
             var selector = $(this);
