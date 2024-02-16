@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from django.conf import settings
 from products.models import Product
-from .forms import NewsletterSubscriptionForm
+from .forms import NewsletterSubscriptionForm, ContactForm
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
@@ -45,8 +45,19 @@ def about_us(request):
     return render(request, 'home/about_us.html')
 
 def contact_us(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = ContactForm()
 
-    return render(request, 'home/contact_us.html')
+    context = {
+        'form': form
+    }
+
+    return render(request, 'home/contact_us.html', context)
 
 def cookies_policy(request):
     
