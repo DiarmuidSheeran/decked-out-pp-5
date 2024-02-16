@@ -233,4 +233,16 @@ def product_statistics(request):
 
     return render(request, 'products/product_statistics.html', context )
 
+@login_required
+def admin_products(request):
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only administrators can access this page.')
+        return redirect(reverse('home'))
+
+    products = Product.objects.all()
+
+    context = {
+        'products': products
+    }
+    return render(request, 'products/admin_products.html', context)
     

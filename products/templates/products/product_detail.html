@@ -13,26 +13,7 @@
     <div class="overlay"></div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
-                {% if request.user.is_superuser %}
-                    <div class="mt-4 d-flex justify-content-center">
-                        <h3><strong>Admin Options</strong></h3> 
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <p class="text-uppercase">{{user.username}} is currently logged in with admin rights</p>   
-                    </div>
-                    <div class="mt-2 d-flex justify-content-center">   
-                        <a href="{% url 'edit_product' product.id %}" class="btn btn-info mb-1 mt-4"><i class="fa-solid fa-pen-to-square pr-2" style="color: #ffffff;"></i> Edit {{ product.name }} <i class="fa-solid fa-pen-to-square pl-2" style="color: #ffffff;"></i></a>
-                    </div>
-                    <div class="mt-2 d-flex justify-content-center"> 
-                        <form id="delete-form-{{ product.id }}" action="{% url 'delete_product' product.id %}" method="POST">
-                            {% csrf_token %}
-                            <input type="hidden" name="product_id" value="{{ product.id }}">
-                            <a href="#"  class="btn btn-danger btn-block"onclick="confirmDelete(event, '{{ product.name }}', '{{ product.id }}')">Delete Product</a>
-                        </form>
-                    </div>
-                {% endif %}
-                
+            <div class="col-12 col-md-6 col-lg-4 offset-lg-2">   
                 <div class="image-container my-5">
                     {% if product.image %}
                         <a href="{{ product.image.url }}" target="_blank">
@@ -47,6 +28,24 @@
             </div>
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="product-details-container mb-5 mt-md-5">
+                    {% if request.user.is_superuser %}
+                        <div class="mt-4 d-flex justify-content-center">
+                            <h3><strong>Admin Options</strong></h3> 
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <p class="text-uppercase">{{user.username}} is currently logged in with admin rights</p>   
+                        </div>
+                        <div class="mt-2 d-flex justify-content-center">   
+                            <a href="{% url 'edit_product' product.id %}" class="btn btn-info mb-1 mt-4"><i class="fa-solid fa-pen-to-square pr-2" style="color: #ffffff;"></i> Edit {{ product.name }} <i class="fa-solid fa-pen-to-square pl-2" style="color: #ffffff;"></i></a>
+                        </div>
+                        <div class="mt-2 d-flex justify-content-center mb-4"> 
+                            <form id="delete-form-{{ product.id }}" action="{% url 'delete_product' product.id %}" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="product_id" value="{{ product.id }}">
+                                <a href="#"  class="btn btn-danger btn-block"onclick="confirmDelete(event, '{{ product.name }}', '{{ product.id }}')">Delete Product</a>
+                            </form>
+                        </div>
+                    {% endif %}
                     <p class="mb-0">{{ product.name }}</p>
                     <p class="lead mb-0 text-left font-weight-bold">
                         {% if product.is_on_promotion and product.promotion_price %}
