@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Decked Out - Order Confirmation</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Decked Out - Order Confirmation</h1>
+        <p>Dear {{ order.full_name }},</p>
+        <p>Thank you for shopping at Decked Out! Your order has been successfully processed.</p>
+        <div class="order-details">
+            <h2>Order Details:</h2>
+            <p><strong>Order Number:</strong> {{ order.order_number }}</p>
+            <p><strong>Order Date:</strong> {{ order.date }}</p>
+            <p><strong>Order Total:</strong> €{{ order.grand_total }}</p>
+            <p><strong>Shipping Address:</strong></p>
+            <p>{{ order.full_name }}</p>
+            <p>{{ order.street_address1 }}</p>
+            {% if order.street_address2 %}
+                <p>{{ order.street_address2 }}</p>
+            {% endif %}
+            <p>{{ order.town_or_city }},</p>
+            <p>{{ order.county }},</p> 
+            <p>{{ order.postcode }}</p>
+            <p>{{ order.country }}</p>
+        </div>
+        <div class="order-items">
+            <h2>Order Items:</h2>
+            {% for item in order.lineitems.all %}
+                <div class="order-item">
+                    <p><strong>Product:</strong> {{ item.product.name }}</p>
+                    <p><strong>Quantity:</strong> {{ item.quantity }}</p>
+                    <p><strong>Price:</strong> ${{ item.lineitem_total }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <p>If you have any questions about your order, feel free to contact us at support@deckedout.com.</p>
+        <p>Thank you for choosing Decked Out!</p>
+    </div>
+</body>
+</html>

@@ -6,7 +6,6 @@ from .forms import NewsletterSubscriptionForm, ContactForm
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
-from django.http import Http404, HttpResponseServerError
 
 # Create your views here.
 def send_confirmation_email(email):

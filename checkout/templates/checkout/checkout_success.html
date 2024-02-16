@@ -26,7 +26,7 @@
         </div>
 
         <div class="row">
-            <div class="col-12 col-lg-7 bg-light" style="border: solid red 3px;">
+            <div class="col-12 col-lg-6 bg-light" style="border: solid red 3px;">
                 <div class="order-confirmation-wrapper p-2">
                     <div class="row">
                         <div class="col">
@@ -232,22 +232,22 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-lg-3">
+            <div class="col-12 col-lg-6">
                 <img src="{{ MEDIA_URL }}wingred-dragon-of-ra.png" alt="wingred-dragon-of-ra" class="img-fluid ml-4">
             </div>
         </div>
         <div class="row">
-			<div class="col-12 col-lg-7 text-right">
+			<div class="col-12 col-lg-6">
                 {% if from_profile %}
-                    <a href="{% url 'profile' %}" class="btn btn-warning rounded-0 my-2">
-                        <span class="icon mr-2">
+                    <a href="{% url 'profile' %}" class="btn btn-danger rounded-0 my-2">
+                        <span class="icon">
                             <i class="fas fa-angle-left"></i>
                         </span>
                         <span class="text-uppercase"><strong>Back to Profile</strong></span>
                     </a>
                 {% else %}
-                    <a href="{% url 'products' %}?filter_type=all_offers" class="btn btn-warning rounded-1 my-2 float-right">
-                        <span class="icon mr-2">
+                    <a href="{% url 'products' %}?filter_type=all_offers" class="btn btn-danger rounded-1 my-2">
+                        <span class="icon">
                             <i class="fas fa-gifts"></i>
                         </span>
                         <span class="text-uppercase"><strong>Now check out the latest deals!</strong></span>

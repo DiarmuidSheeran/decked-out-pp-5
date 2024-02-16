@@ -11,6 +11,9 @@ from bag.contexts import bag_contents
 import stripe
 import json
 from django.utils import timezone
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 
 @require_POST
 def cache_checkout_data(request):
@@ -181,6 +184,18 @@ def checkout_success(request, order_number):
 
     if 'bag' in request.session:
         del request.session['bag']
+
+    subject = 'Order Confirmation'
+    context = {
+        'order': order,
+        'discount_code': discount_code,
+        'discount_percentage': discount_percentage,
+    }
+    html_message = render_to_string('checkout/emails/order_confirmation.html', context)
+    plain_message = strip_tags(html_message)
+    from_email = settings.DEFAULT_FROM_EMAIL
+    to_email = [order.email]
+    send_mail(subject, plain_message, from_email, to_email, html_message=html_message)
 
     template = 'checkout/checkout_success.html'
     context = {
