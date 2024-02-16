@@ -46,7 +46,7 @@
                                 </div>
                                 <div class="col-12 col-sm-6 order-sm-last">
                                     {% if item.product.is_on_promotion and item.product.promotion_price %}
-                                        <p class="promotion-price text-danger">€{{ item.product.promotion_price }}</p>
+                                        <p class="promotion-price text-danger"><del class="text-white">€{{ item.product.price }}</del> €{{ item.product.promotion_price }}</p>
                                     {% else %}
                                         <p>€{{ item.product.price }} per Item</p>
                                     {% endif %}
