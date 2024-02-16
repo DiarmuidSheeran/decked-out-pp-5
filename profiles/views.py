@@ -5,6 +5,7 @@ from .models import UserProfile
 from .forms import UserProfileForm, ProfilePictureForm
 from checkout.models import Order
 from products.models import Product
+from django.contrib.auth import logout
 
 @login_required
 def profile(request):
@@ -87,4 +88,16 @@ def upload_profile_picture(request):
         'form': form
         }
     return render(request, 'profile.html', context)
+
+@login_required
+def delete_account(request):
+    if request.method == 'POST':
+        user = request.user
+        logout(request)
+        user.userprofile.delete()
+        user.delete()
+        messages.success(request, 'Your account has been deleted. We are sorry to see you go.')
+        return redirect('home')
+    else:
+        return HttpResponseBadRequest('Invalid request')
     

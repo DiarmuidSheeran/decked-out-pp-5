@@ -50,6 +50,12 @@
                         <a href="{% url 'add_product' %}" class="btn btn-primary rounded-1 text-uppercase border border-light mb-2">Create a New Product</a>
                         <br>
                     {% endif %}
+                    {% if not request.user.is_superuser %}
+                        <form id="delete-account-form" action="{% url 'delete_account' %}" method="POST">
+                            {% csrf_token %}
+                            <a href="#" onclick="confirmDeleteAccount(event)" class="btn btn-sm btn-danger border border-light mt-4">Delete Account</a>
+                        </form>
+                    {% endif %}
                 </div>
             </div>
             <div class="col-md-8">
@@ -163,5 +169,13 @@
 
 {% block postloadjs %}
     {{ block.super }}
+    <script>
+        function confirmDeleteAccount(event) {
+            event.preventDefault();
+            if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+                document.getElementById('delete-account-form').submit();
+            }
+        }
+    </script>
     <script type="text/javascript" src="{% static 'profiles/js/countryfield.js' %}"></script>
 {% endblock %}
