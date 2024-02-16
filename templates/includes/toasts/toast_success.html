@@ -1,9 +1,9 @@
 <div class="toast custom-toast rounded-0 border-top-0" data-autohide="false">
     <div class="arrow-up arrow-success mt-4"></div>
     <div class="w-100 toast-capper bg-success"></div>
-    <div class="toast-header bg-white text-dark">
-        <strong class="mr-auto">Success!</strong>
-        <button type="button" class="ml-2 mb-1 close text-dark" data-dismiss="toast" aria-label="Close">
+    <div class="toast-header bg-dark text-white">
+        <strong class="mr-auto">Success! <i class="fa-solid fa-face-smile-beam" style="color: #FFD43B;"></i></strong>
+        <button type="button" class="ml-2 mb-1 close text-white" data-dismiss="toast" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
@@ -45,7 +45,7 @@
                             Spend <strong>€{{ free_delivery_delta }}</strong> more to get free next day delivery!
                         </p>
                     {% endif %}
-                    <a href="{% url 'view_bag' %}" class="btn btn-warning btn-block rounded-0">
+                    <a href="{% url 'view_bag' %}" class="btn btn-block rounded-0 text-white mt-2 border border-light" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">
                         <span class="text-uppercase"><strong>Go To Secure Checkout</strong></span>
                         <span class="icon">
                             <i class="fas fa-lock"></i>
