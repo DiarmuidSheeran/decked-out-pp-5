@@ -1,1 +1,44 @@
-<a href="{% url 'home' %}" class="dropdown-item text-white">Home</a>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col">
+
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-md-6">
+        <h2 class="mb-4">About Us</h2>
+        <p>Welcome to Decked Out TCG Store! <br> We are passionate about providing the best selection of Yugioh and Pokemon trading card game products to our valued customers.</p>
+        
+        <p>Our mission is to offer a wide range of high-quality trading cards, booster packs, decks, and accessories for collectors and players alike. Whether you're a seasoned TCG veteran or just starting your collection, we have something for everyone.</p>
+        
+        <p>At our online store, you can browse our extensive catalog, place orders securely, and have your favorite cards delivered right to your doorstep. We strive to provide excellent customer service and ensure your shopping experience with us is enjoyable and hassle-free.</p>
+        
+        <h3>Why Choose Us?</h3>
+        <ul>
+            <li>Extensive Selection: We offer a diverse range of trading card game products from both the Yugioh and Pokemon franchises.</li>
+            <li>Quality Assurance: We source our products from trusted suppliers to ensure authenticity and quality.</li>
+            <li>Secure Shopping: Your personal information is safe with us, and we use secure payment methods to protect your transactions.</li>
+            <li>Fast Shipping: We aim to deliver your orders quickly so you can start enjoying your new cards as soon as possible.</li>
+        </ul>
+        
+        <h3>Contact Us</h3>
+        <p>If you have any questions, suggestions, or feedback, please don't hesitate to <a href="{% url 'contact_us' %}">contact us</a>. We value your input and are here to assist you in any way we can.</p>
+        <a class="btn btn-info text-white rounded-0 border border-light mb-4" href="{% url 'home' %}"><i class="fas fa-arrow-left mr-2 text-white"></i>Home <i class="fa-solid fa-house ml-2" style="color: #ffffff;"></i></a>
+    </div>
+    
+    <div class="col-md-2">
+        <img src="{{ MEDIA_URL }}blastoise.png" alt="Blastoise" class="img-fluid">
+    </div>
+  </div>
+</div>
+{% endblock %}
