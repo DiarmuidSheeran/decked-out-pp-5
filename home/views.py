@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from django.conf import settings
+from django.contrib import messages
 from products.models import Product
 from .forms import NewsletterSubscriptionForm, ContactForm
 from django.core.mail import send_mail
@@ -44,12 +45,30 @@ def about_us(request):
     
     return render(request, 'home/about_us.html')
 
+def send_feedback_email(email):
+    subject = 'Feedback Confirmation Email'
+    html_message = render_to_string('home/email/contact_us_email_confirmation.html', {})
+    plain_message = strip_tags(html_message) 
+    from_email = settings.DEFAULT_FROM_EMAIL
+    recipient_list = [email]
+    send_mail(subject, plain_message, from_email, recipient_list, html_message=html_message)
+
 def contact_us(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            form.save()
+            email = form.cleaned_data.get('email')
+            name = form.cleaned_data.get('name')
+            feedback = form.save()
+            send_feedback_email(feedback.email)
+            messages.success(
+                request, f'Your form was successfully processed {name}! \
+                We at Decked out thank you for your feedback. \
+                A confirmation email will be sent to {email}.'   
+            )
             return redirect('home')
+        else:
+            messages.error(request, 'There was an error processing your form. Please check the details and try again.')
     else:
         form = ContactForm()
 
