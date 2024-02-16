@@ -132,7 +132,7 @@
                                                 <div class="form-group w-100 mt-2">
                                                     <div class="input-group">
                                                         <div class="input-group-prepend">
-                                                            <button class="decrement-qty btn btn-danger rounded-5" 
+                                                            <button class="decrement-qty btn btn-dark rounded-5" 
                                                                 data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
                                                                 <span class="icon">
                                                                     <i class="fas fa-minus"></i>
@@ -141,7 +141,7 @@
                                                         </div>
                                                         <input class="form-control qty_input" type="number" name="quantity" value="1" min="1" max="99" data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}">
                                                         <div class="input-group-append">
-                                                            <button class="increment-qty btn btn-danger rounded-5"
+                                                            <button class="increment-qty btn btn-dark rounded-5"
                                                                 data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
                                                                 <span class="icon">
                                                                     <i class="fas fa-plus"></i>
@@ -153,7 +153,7 @@
                                             </div>
                 
                                             <div class="col-12">
-                                                <input type="submit" class="btn btn-danger rounded-5 text-uppercase" value="Add to Bag">
+                                                <input type="submit" class="btn text-white border border-dark rounded-5 text-uppercase" value="Add to Bag" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">
                                             </div>
                                             <input type="hidden" name="redirect_url" value="{{ request.path }}">
                                         </div>
