@@ -6,6 +6,7 @@ from .forms import NewsletterSubscriptionForm, ContactForm
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
+from django.http import Http404, HttpResponseServerError
 
 # Create your views here.
 def send_confirmation_email(email):
@@ -26,8 +27,14 @@ def index(request):
         form = NewsletterSubscriptionForm(request.POST)
         if form.is_valid():
             subscription = form.save()
+            email = form.cleaned_data.get('email')
             send_confirmation_email(subscription.email)
+            messages.success(
+                request, f'You have successfully signed up to our newsletter!\n \
+                A confirmation email will be sent to: {email}.'  
+            )
             return redirect(reverse('home'))
+        
     else:
         form = NewsletterSubscriptionForm()
 
