@@ -51,6 +51,8 @@
                         <br>
                         <a href="{% url 'product_statistics' %}" class="btn btn-primary rounded-1 btn-block text-uppercase border border-light mb-2">View Product Statistics</a>
                         <br>
+                        <a href="{% url 'create_discount_code' %}" class="btn btn-primary rounded-1 btn-block text-uppercase border border-light mb-2">Discount Codes</a>
+                        <br>
                     {% endif %}
                     {% if not request.user.is_superuser %}
                         <form id="delete-account-form" action="{% url 'delete_account' %}" method="POST">

@@ -11,6 +11,7 @@ from reviews.models import Review
 from checkout.models import Order
 from .forms import ProductForm
 from django.http import HttpResponseBadRequest
+from .forms import DiscountCodeForm
 
 # Create your views here.
 
@@ -260,4 +261,25 @@ def admin_products(request):
         'products': products
     }
     return render(request, 'products/admin_products.html', context)
+
+@login_required
+def create_discount_code(request):
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only administrators can access this page.')
+        return redirect(reverse('home'))
+    if request.method == 'POST':
+        form = DiscountCodeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Dsicount Code Applied Succesfully')
+            return redirect('profile')
+        else:
+            messages.error(request, 'Failed to add Discount Code')
+    else:
+        form = DiscountCodeForm()
+
+    context = {
+        'form': form
+    }
+    return render(request, 'products/create_discount_code.html', context)
     
