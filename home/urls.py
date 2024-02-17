@@ -8,4 +8,5 @@ urlpatterns = [
     path('contact_us/', views.contact_us, name='contact_us'),
     path('cookies_policy/', views.cookies_policy, name='cookies_policy'),
     path('returns_policy/', views.returns_policy, name='returns_policy'),
+    path('contact-form-submissions/', views.view_contact_form_submissions, name='view_contact_form_submissions'),
 ]

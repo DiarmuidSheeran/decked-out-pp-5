@@ -6,6 +6,7 @@ from .forms import NewsletterSubscriptionForm, ContactForm
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
+from .models import ContactFormSubmission
 
 # Create your views here.
 def send_confirmation_email(email):
@@ -84,6 +85,15 @@ def contact_us(request):
 
     return render(request, 'home/contact_us.html', context)
 
+def view_contact_form_submissions(request):
+
+    submissions = ContactFormSubmission.objects.all()
+
+    context = {
+        'submissions': submissions
+    }
+    return render(request, 'home/contact_form_submissions.html', context)
+
 def cookies_policy(request):
     
     return render(request, 'home/cookies_policy.html')
@@ -91,3 +101,4 @@ def cookies_policy(request):
 def returns_policy(request):
     
     return render(request, 'home/returns_policy.html')
+

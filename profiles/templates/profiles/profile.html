@@ -55,6 +55,8 @@
                         <br>
                         <a href="{% url 'send_email' %}" class="btn btn-primary rounded-1 btn-block text-uppercase border border-light mb-2">Send Newsletter</a>
                         <br>
+                        <a href="{% url 'view_contact_form_submissions' %}" class="btn btn-primary rounded-1 btn-block text-uppercase border border-light mb-2">Contact Form Submissions</a>
+                        <br>
                     {% endif %}
                     {% if not request.user.is_superuser %}
                         <form id="delete-account-form" action="{% url 'delete_account' %}" method="POST">
