@@ -1,4 +1,7 @@
 from django.db import models
+from django.db.models.signals import post_save, post_delete
+from django.dispatch import receiver
+from django.db.models import Avg
 from products.models import Product
 from django.contrib.auth.models import User
 from checkout.models import Order
@@ -13,3 +16,12 @@ class Review(models.Model):
 
     def __str__(self):
         return f"Review for {self.product.name} by {self.reviewer_name}"
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.product.update_rating()
+
+@receiver(post_save, sender=Review)
+@receiver(post_delete, sender=Review)
+def update_product_rating(sender, instance, **kwargs):
+    instance.product.update_rating()
