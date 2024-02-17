@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid d-flex justify-content-center">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Send Newsletter</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="bg-primary btn-lg text-white">Send Newsletter</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
