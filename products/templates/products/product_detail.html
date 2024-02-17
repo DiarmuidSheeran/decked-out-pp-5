@@ -42,7 +42,7 @@
                             <form id="delete-form-{{ product.id }}" action="{% url 'delete_product' product.id %}" method="POST">
                                 {% csrf_token %}
                                 <input type="hidden" name="product_id" value="{{ product.id }}">
-                                <a href="#"  class="btn btn-danger btn-block"onclick="confirmDelete(event, '{{ product.name }}', '{{ product.id }}')">Delete Product</a>
+                                <a href="#"  class="btn btn-danger btn-block" onclick="confirmDelete(event, '{{ product.name }}', '{{ product.id }}')">Delete Product</a>
                             </form>
                         </div>
                     {% endif %}

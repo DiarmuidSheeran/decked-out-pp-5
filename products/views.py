@@ -155,10 +155,12 @@ def wishlist(request, sku, *args, **kwargs):
     if product_wish.wishlist.filter(id=request.user.id).exists():
         product_wish.wishlist.remove(request.user)
         user_profile.wishlist.remove(product_wish)
+        messages.success(request, f'Successfully removed {product_wish} to Wishlist!')
         liked = False
     else:
         product_wish.wishlist.add(request.user)
         user_profile.wishlist.add(product_wish)
+        messages.success(request, f'Successfully added {product_wish} to Wishlist!')
         liked = True
 
     return JsonResponse({'wishlist_count': product_wish.wishlist.count(), 'liked': liked})

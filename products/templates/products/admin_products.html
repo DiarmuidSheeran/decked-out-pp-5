@@ -67,13 +67,6 @@
 
 {% block postloadjs %}
     {{ block.super }}
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('.btt-link').click(function(event) {
-                event.preventDefault();
-                $('html, body').animate({scrollTop: 0}, 'slow'); 
-            });
-        });
-    </script>
+    
 {% endblock %}
 

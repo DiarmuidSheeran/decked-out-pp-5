@@ -157,7 +157,7 @@
                                     <h4 class="mt-4" style="color: gold;"><strong>Grand Total: €{{ grand_total|floatformat:2 }}</strong></h4>
                                     {% if free_delivery_delta > 0 %}
                                         <p class="mb-1 text-danger">
-                                            You could get free delivery by spending just <strong>€{{ free_delivery_delta|floatformat:2 }}</strong> more!
+                                            You could get free delivery by spending just €{{ free_delivery_delta|floatformat:2 }}more!
                                         </p>
                                     {% endif %}
                                 </td>
@@ -209,7 +209,7 @@
 {{ block.super }}
 {% include 'products/includes/quantity_input_script.html' %}
 
-<script type="text/javascript">
+<script>
     // Update quantity on click
     $('.update-link').click(function(e) {
         var form = $(this).prev('.update-form');
