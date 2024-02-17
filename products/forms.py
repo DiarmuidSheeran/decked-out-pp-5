@@ -25,3 +25,6 @@ class DiscountCodeForm(forms.ModelForm):
     class Meta:
         model = DiscountCode
         fields = ['code', 'discount_type', 'discount_amount', 'expiration_date']
+        widgets = {
+            'expiration_date': forms.DateInput(attrs={'type': 'date'})
+        }

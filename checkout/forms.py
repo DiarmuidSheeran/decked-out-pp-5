@@ -47,3 +47,9 @@ class DiscountCodeForm(forms.Form):
             'placeholder': 'Enter your discount code here'
         })
     )
+
+    def clean_discount_code(self):
+        discount_code = self.cleaned_data.get('discount_code')
+        if discount_code:
+            return discount_code.lower()
+        return discount_code

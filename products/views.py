@@ -12,6 +12,8 @@ from checkout.models import Order
 from .forms import ProductForm
 from django.http import HttpResponseBadRequest
 from .forms import DiscountCodeForm
+from checkout.models import DiscountCode
+from datetime import date
 
 # Create your views here.
 
@@ -264,6 +266,9 @@ def admin_products(request):
 
 @login_required
 def create_discount_code(request):
+    codes = DiscountCode.objects.all()
+    today = date.today()
+
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only administrators can access this page.')
         return redirect(reverse('home'))
@@ -279,7 +284,19 @@ def create_discount_code(request):
         form = DiscountCodeForm()
 
     context = {
-        'form': form
+        'form': form,
+        'codes': codes,
+        'today': today,
     }
     return render(request, 'products/create_discount_code.html', context)
+
+def delete_discount_code(request, pk):
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only administrators can access this page.')
+        return redirect(reverse('home'))
+
+    discount_code = get_object_or_404(DiscountCode, pk=pk)
+    discount_code.delete()
+    messages.success(request, 'Discount code deleted successfully')
+    return redirect('create_discount_code')
     

@@ -11,4 +11,5 @@ urlpatterns = [
     path('product-statistics/', views.product_statistics, name='product_statistics'),
     path('admin/products/', views.admin_products, name='admin_products'),
     path('create-discount-code/', views.create_discount_code, name='create_discount_code'),
+    path('delete-discount-code/<int:pk>/', views.delete_discount_code, name='delete_discount_code'),
 ]
