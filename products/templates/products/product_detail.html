@@ -155,7 +155,7 @@
                             </div>
                             {% if user.is_authenticated %}
                                 {% if has_ordered_product %}
-                                    {% if reviews %}
+                                    {% if has_reviewed %}
                                         <p class="text-black">You have already reviewed this product. We appreciate your feedback <i class="fa-regular fa-face-smile" style="color: #FFD43B;"></i></p>
                                     {% else %}
                                         <p class="lead mt-2">We see that you have purchased this product. Would you like to leave a review?</p>

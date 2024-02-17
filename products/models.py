@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models import Avg
 
 # Create your models here.
 class Category(models.Model):
@@ -23,11 +24,24 @@ class Product(models.Model):
     name = models.CharField(max_length=254)
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
-    promotion_price = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    promotion_price = models.DecimalField(
+        max_digits=6,
+        decimal_places=2,
+        default=1,
+        null=False,  
+        blank=False,  
+    )
     is_on_promotion = models.BooleanField(default=False)
     clearance = models.BooleanField(default=False)
     new_arrival = models.BooleanField(default=False)
-    rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    rating = models.DecimalField(
+        max_digits=6,
+        decimal_places=2,
+        default=0,
+        null=True,     
+        blank=True,    
+        editable=False 
+    )
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
     wishlist = models.ManyToManyField(
@@ -44,6 +58,14 @@ class Product(models.Model):
             return round(average_rating, 2)
         else:
             return 1
+
+    def update_rating(self):
+        average_rating = self.reviews.aggregate(Avg('rating'))['rating__avg']
+        if average_rating is not None:
+            self.rating = round(average_rating, 2)
+        else:
+            self.rating = 0
+        self.save()
 
     def effective_price(self):
         return self.promotion_price if self.is_on_promotion else self.price

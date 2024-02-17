@@ -112,9 +112,11 @@ def product_detail(request, product_id):
     average_rating = product.calculate_average_rating()
     user = request.user
     has_ordered_product = False
+    has_reviewed = False
 
     if user.is_authenticated:
         has_ordered_product = Order.objects.filter(user_profile=user.userprofile, lineitems__product=product).exists()
+        has_reviewed = Review.objects.filter(reviewer_name=user, product=product).exists()
         
 
     context = {
@@ -122,6 +124,7 @@ def product_detail(request, product_id):
         'reviews': reviews,
         'average_rating': average_rating,
         'has_ordered_product': has_ordered_product,
+        'has_reviewed': has_reviewed,
     }
 
     return render(request, 'products/product_detail.html', context)
