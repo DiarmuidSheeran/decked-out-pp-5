@@ -1,10 +1,11 @@
 <form class="form update-form" method="POST" action="{% url 'adjust_bag' item.item_id %}">
     {% csrf_token %}
     <div class="form-group">
+        <label for="id_qty_{{ product.id }}" class="text-white">Product Quantity</label>
         <div class="input-group">
             <div class="input-group-prepend">
                 <button class="decrement-qty btn btn-sm btn-secondary rounded-0" 
-                    data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
+                    data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}" aria-label="decrement-qty">
                     <span>
                         <i class="fas fa-minus fa-sm"></i>
                     </span>
@@ -16,7 +17,7 @@
                 id="id_qty_{{ item.item_id }}">
             <div class="input-group-append">
                 <button class="increment-qty btn btn-sm btn-secondary rounded-0"
-                    data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
+                    data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}" aria-label="increment-qty">
                     <span>
                         <i class="fas fa-plus fa-sm"></i>
                     </span>
@@ -25,5 +26,5 @@
         </div>
     </div>
 </form>
-<a class="update-link text-white btn btn-info border border-light"><small>Update</small></a>
-<a class="remove-item text-white float-right btn btn-danger border border-light" id="remove_{{ item.item_id }}" data-product-size="{{ item.size }}"><small>Remove</small></a>
+<a class="update-link text-white btn btn-info border border-light">Update</a>
+<a class="remove-item text-white float-right btn btn-danger border border-light" id="remove_{{ item.item_id }}" data-product-size="{{ item.size }}">Remove</a>

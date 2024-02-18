@@ -7,6 +7,12 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Welcome to Decked Out, your one-stop shop for Pokemon and Yu-Gi-Oh trading card game products. Explore our wide selection of cards, decks, and accessories.">
+        <meta name="keywords" content="Pokemon, Yu-Gi-Oh, Trading Cards, TCG, Collectibles, Booster Packs, Decks, Accessories">
+        <meta name="author" content="Diarmuid Sheeran">
+        <meta property="og:site_name" content="Decked Out">
+        <meta property="og:url" content="https://decked-out-tcg-store-b1147b8f9a0a.herokuapp.com/">
+        <meta property="og:description" content="Welcome to Decked Out, your one-stop shop for Pokemon and Yu-Gi-Oh trading card game products. Explore our wide selection of cards, decks, and accessories.">
     {% endblock %}
 
     {% block extra_meta %}
@@ -47,8 +53,8 @@
     {% block extra_js %}
     {% endblock %}
 
-    <title>Decked Out - Your Destination for Pokemon and Yu-Gi-Oh Trading Cards {% block extra_title %}{% endblock %}</title>
-    <meta name="description" content="Welcome to Decked Out, your one-stop shop for Pokemon and Yu-Gi-Oh trading card game products. Explore our wide selection of cards, decks, and accessories.">
+    <title>Decked Out - {% block extra_title %}{% endblock %}</title>
+    <link rel="icon" type="image/png" href="{{ MEDIA_URL }}yugioh-card-back.png" alt="Yugioh Card Back"> 
 </head>
 <body>
 <header class="fixed-top" style="border-bottom: solid #ffffff 1px;">
@@ -169,7 +175,7 @@
 </div>
 
 <div class="btt-button shadow-sm rounded-0 border border-white">
-    <a class="btt-link d-flex h-100">
+    <a href="#" class="btt-link d-flex h-100" aria-label="Button that will scroll the page back to the top">
         <i class="fas fa-arrow-up text-white mx-auto my-auto"></i>
     </a>
 </div>

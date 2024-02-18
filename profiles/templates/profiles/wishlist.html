@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_title %}Wishlist{% endblock %}
+
 {% block page_header %}
     <div class="container header-container">
         <div class="row">
@@ -33,12 +35,12 @@
                             <form class="d-inline like-form" action="{% url 'wishlist' sku=product.sku %}" method="POST" data-product-sku="{{ product.sku }}">
                                 {% csrf_token %}
                                 {% if request.user in product.wishlist.all %}
-                                <button type="submit" name="like" value="{{ product_wish.sku }}" class="btn-like btn btn-white btn-sm like-button like-btn ml-4" data-like-action="unlike">
+                                <button type="submit" name="like" value="{{ product_wish.sku }}" class="btn-like btn btn-white btn-sm like-button like-btn ml-4" data-like-action="unlike" aria-label="remove-from-wishlist">
                                     <i class="fa-solid fa-heart fa-sm" style="color: #cc2b5e;"></i><span class="ml-1 like-text">Remove from Wishlist</span>
                                 </button>
                                 
                                 {% else %}
-                                <button type="submit" name="like" value="{{ product_wish.sku }}" class="btn-like btn btn-white btn-sm like-button like-btn ml-4" data-like-action="like">
+                                <button type="submit" name="like" value="{{ product_wish.sku }}" class="btn-like btn btn-white btn-sm like-button like-btn ml-4" data-like-action="like" aria-label="add-to-wishlist">
                                     <i class="fa-solid fa-heart fa-sm" style="color: #000;"></i><span class="ml-1 like-text">Add to Wishlist</span>
                                 </button>
                                 {% endif %}
@@ -46,15 +48,15 @@
                         </div>
                         <div class="product-price mt-2">
                             {% if product.is_on_promotion and product.promotion_price and product.clearance %}
-                                <span class="original-price text-muted"><del>€{{ product.price }}</del></span>
+                                <span class="original-price text-white"><del>€{{ product.price }}</del></span>
                                 <span class="promotion-price text-danger">€{{ product.promotion_price }}</span>
                                 
                                 <span class="badge badge-warning text-black">Clearance!</span>
                             {% elif product.is_on_promotion and product.promotion_price %}
-                                <span class="original-price text-muted"><del>€{{ product.price }}</del></span>
+                                <span class="original-price text-white"><del>€{{ product.price }}</del></span>
                                 <span class="promotion-price text-danger">€{{ product.promotion_price }}</span>
                                 
-                                <span class="badge badge-danger text-warning">Special Offer!</span>
+                                <span class="badge badge-danger text-white">Special Offer!</span>
                             {% else %}
                                 €{{ product.price }}
                             {% endif %}
@@ -64,10 +66,11 @@
                             <div class="form-row">
                                 <div class="col-12">
                                     <div class="form-group w-50 mt-2">
+                                        <label for="id_qty_{{ product.id }}" class="text-white">Product Quantity</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <button class="decrement-qty btn btn-dark rounded-5" 
-                                                    data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
+                                                    data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}" aria-label="decrement-qty">
                                                     <span class="icon">
                                                         <i class="fas fa-minus"></i>
                                                     </span>
@@ -76,7 +79,7 @@
                                             <input class="form-control qty_input" type="number" name="quantity" value="1" min="1" max="99" data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}">
                                             <div class="input-group-append">
                                                 <button class="increment-qty btn btn-dark rounded-5"
-                                                    data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
+                                                    data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}" aria-label="increment-qty">
                                                     <span class="icon">
                                                         <i class="fas fa-plus"></i>
                                                     </span>
@@ -95,11 +98,14 @@
                     </div>
                 </div>  
                 {% endfor %}
+                {% if request.user.is_authenticated %}
+                    <a href="{% url 'profile' %}" class="btn btn-light rounded-1 text-uppercase border border-danger text-black mt-2 btn-sm mb-4"><i class="fa-solid fa-arrow-left mr-2" style="color: #000000;"></i>Back to your profile</a>
+                {% endif %}
             </div>
         {% else %}
             <div class="wishlist-item mt-4 mb-4 pb-2" style="border-bottom: 1px solid #fff;">
                 <p>Your wishlist is empty.</p>
-                <a href="{% url 'products' %}" class="btn btn-primary btn-block rounded-1 text-uppercase border border-light">
+                <a href="{% url 'products' %}" class="btn btn-light rounded-1 text-uppercase border border-danger text-black mt-2 btn-sm">
                     <span class="icon">
                         <i class="fas fa-chevron-left"></i>
                     </span>
@@ -112,9 +118,6 @@
             <img src="{{ MEDIA_URL }}dark-magician.png" alt="Dark Magician" class="img-fluid ml-4">
         </div>
     </div>
-    {% if request.user.is_authenticated %}
-        <a href="{% url 'profile' %}" class="btn btn-primary rounded-1 text-uppercase border border-light mt-4"><i class="fa-solid fa-arrow-left mr-2" style="color: #ffffff;"></i>Back to your profile</a>
-    {% endif %}
 </div>
 <div class="btt-button shadow-sm rounded-0 border border-white">
     <a class="btt-link d-flex h-100">
@@ -125,7 +128,7 @@
 
 {% block postloadjs %}
     {{ block.super }}
-    <script type="text/javascript">
+    <script>
         $('#sort-selector').change(function() {
             var selector = $(this);
             var currentUrl = new URL(window.location);

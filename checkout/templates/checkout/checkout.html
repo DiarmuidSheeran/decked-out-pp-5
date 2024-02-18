@@ -2,6 +2,8 @@
 {% load static %}
 {% load bag_tools %}
 
+{% block extra_title %}Checkout{% endblock %}
+
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
 {% endblock %}
@@ -30,10 +32,10 @@
                 <p class="text-light bg-dark text-center border border-danger">Order Summary ({{ product_count }})</p>
                 <div class="row">
                     <div class="col-7 offset-2">
-                        <p class="mb-1 mt-0 small text-muted">Item</p>
+                        <p class="mb-1 mt-0 small text-white">Item</p>
                     </div>
                     <div class="col-3 text-right">
-                        <p class="mb-1 mt-0 small text-muted">Subtotal</p>
+                        <p class="mb-1 mt-0 small text-white">Subtotal</p>
                     </div>
                 </div>
                 {% for item in bag_items %}
@@ -41,15 +43,15 @@
                         <div class="col-2 mb-1">
                             <a href="{% url 'product_detail' item.product.id %}">
                                 {% if item.product.image %}
-                                    <img class="w-100" src="{{ item.product.image.url }}" alt="{{ product.name }}">
+                                    <img class="w-100" src="{{ item.product.image.url }}" alt="{{ product.name }}" aria-label="Link to {{product.name }} page">
                                 {% else %}
-                                    <img class="w-100" src="{{ MEDIA_URL }}no-product-image.png" alt="{{ product.name }}">
+                                    <img class="w-100" src="{{ MEDIA_URL }}no-product-image.png" alt="{{ product.name }}" aria-label="Link to {{product.name }} page">
                                 {% endif %}
                             </a>
                         </div>
                         <div class="col-7">
                             <p class="my-0"><strong>{{ item.product.name }}</strong></p>
-                            <p class="my-0 small text-muted">Qty: {{ item.quantity }}</p>
+                            <p class="my-0 small text-white">Qty: {{ item.quantity }}</p>
                         </div>
                         <div class="col-3 text-right">
                             {% with product=item.product %}

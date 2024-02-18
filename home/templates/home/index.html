@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_title %}Home{% endblock %}
+
 {% block page_header %}
     <div class="container header-container">
         <div class="row">
@@ -48,7 +50,7 @@
         <div class="row">
             <div class="col-12 text-center">
                 <a href="{% url 'home' %}"><h2 class="logo-font text-center text-white mt-2"><strong>Decked Out</strong></h2></a>
-                <p class="logo-font text-center text-muted font-italic">YuGioH! and Pokemon TCG store</p>
+                <p class="logo-font text-center text-white font-italic">YuGioH! and Pokemon TCG store</p>
             </div>
         </div>
         
@@ -62,13 +64,13 @@
         <div class="row">
             <div class="col-md-6 col-lg-3 text-center mb-4">
                 <div class="card h-100 product-card">
-                    <h4 class="card-header mb-2 text-white logo-font" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">Best Sellers</h4>
+                    <h3 class="card-header mb-2 text-white logo-font" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">Best Sellers</h3>
                     <div id="bestSeller" class="carousel slide" data-ride="carousel" data-interval="10000">
                         <div class="carousel-inner">
                             {% for product in best_sellers %}
                                 <div class="carousel-item {% if forloop.first %}active{% endif %}">
                                     <div class="card-body pb-0">
-                                        <h5 class="text-black">{{ product.name }}</h5>
+                                        <h4 class="text-black">{{ product.name }}</h4>
                                         <a href="{% url 'product_detail' product.id %}">
                                             <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
                                         </a>
@@ -106,13 +108,13 @@
             </div>
             <div class="col-md-6 col-lg-3 text-center mb-4">
                 <div class="card h-100 product-card">
-                    <h4 class="card-header mb-2 text-white logo-font" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">Promotions</h4>
+                    <h3 class="card-header mb-2 text-white logo-font" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">Promotions</h3>
                     <div id="specialOffer" class="carousel slide" data-ride="carousel" data-interval="10000">
                         <div class="carousel-inner">
                             {% for product in special_offer_products %}
                                 <div class="carousel-item {% if forloop.first %}active{% endif %}">
                                     <div class="card-body pb-0">
-                                        <h5 class="text-black">{{ product.name }}</h5>
+                                        <h4 class="text-black">{{ product.name }}</h4>
                                         <a href="{% url 'product_detail' product.id %}">
                                             <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
                                         </a>
@@ -150,13 +152,13 @@
             </div>
             <div class="col-md-6 col-lg-3 text-center mb-4">
                 <div class="card h-100 product-card">
-                    <h4 class="card-header mb-2 text-white logo-font" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">Clearance Products</h4>
+                    <h3 class="card-header mb-2 text-white logo-font" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">Clearance Products</h3>
                     <div id="clearance" class="carousel slide" data-ride="carousel" data-interval="10000">
                         <div class="carousel-inner">
                             {% for product in clearance_products %}
                                 <div class="carousel-item {% if forloop.first %}active{% endif %}">
                                     <div class="card-body pb-0">
-                                        <h5 class="text-black">{{ product.name }}</h5>
+                                        <h4 class="text-black">{{ product.name }}</h4>
                                         <a href="{% url 'product_detail' product.id %}">
                                             <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
                                         </a>
@@ -194,13 +196,13 @@
             </div>
             <div class="col-md-6 col-lg-3 text-center mb-4">
                 <div class="card h-100 product-card">
-                    <h4 class="card-header mb-2 text-white logo-font" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">New Arrivals</h4>
+                    <h3 class="card-header mb-2 text-white logo-font" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">New Arrivals</h3>
                     <div id="new" class="carousel slide" data-ride="carousel" data-interval="10000">
                         <div class="carousel-inner">
                             {% for product in new_arrival_products %}
                                 <div class="carousel-item {% if forloop.first %}active{% endif %}">
                                     <div class="card-body pb-0">
-                                        <h5 class="text-black">{{ product.name }}</h5>
+                                        <h4 class="text-black">{{ product.name }}</h4>
                                         <a href="{% url 'product_detail' product.id %}">
                                             <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
                                         </a>
@@ -240,7 +242,7 @@
         <div class="row justify-content-center align-items-center">
             <div class="col-md-4">&nbsp;</div>
             <div class="col-md-4 border border-light p-4 mb-2 mt-2" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">
-                <h4 class="logo-font text-center">Sign Up to our Newsletter <i class="fa-solid fa-envelope fa-beat-fade" style="color: #ffffff;"></i></h4>
+                <h3 class="logo-font text-center">Sign Up to our Newsletter <i class="fa-solid fa-envelope fa-beat-fade" style="color: #ffffff;"></i></h3>
                 <form method="post">
                     {% csrf_token %}
                     {{ form|crispy }}

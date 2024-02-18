@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_title %}Store{% endblock %}
+
 {% block page_header %}
     <div class="container header-container">
         <div class="row">
@@ -28,7 +30,8 @@
                 <div class="row mt-1 mb-2">
                     <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
                         <div class="sort-select-wrapper w-50">
-                            <select id="sort-selector" class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
+                            <label for="sort-selector">Sort Products By:</label>
+                            <select id="sort-selector" class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}" aria-labelledby="Sorting dropdown allowing for products to be sorterd">
                                 <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
                                 <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
                                 <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
@@ -42,7 +45,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-6 order-md-first">
-                        <p class="text-muted mt-3 text-center text-md-left">
+                        <p class="text-white mt-3 text-center text-md-left">
                             {% if search_term or current_categories or current_sorting != 'None_None' %}
                                 <span class="small"><a href="{% url 'products' %}">Products Home</a> | </span>
                             {% endif %}
@@ -132,10 +135,11 @@
                                         <div class="form-row">
                                             <div class="col-12">
                                                 <div class="form-group w-100 mt-2">
+                                                    <label for="id_qty_{{ product.id }}" class="text-black">Product Quantity</label>
                                                     <div class="input-group">
                                                         <div class="input-group-prepend">
                                                             <button class="decrement-qty btn btn-dark rounded-5" 
-                                                                data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
+                                                                data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}" aria-label="decrement-qty">
                                                                 <span class="icon">
                                                                     <i class="fas fa-minus"></i>
                                                                 </span>
@@ -144,7 +148,7 @@
                                                         <input class="form-control qty_input" type="number" name="quantity" value="1" min="1" max="99" data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}">
                                                         <div class="input-group-append">
                                                             <button class="increment-qty btn btn-dark rounded-5"
-                                                                data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
+                                                                data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}" aria-label="increment-qty">
                                                                 <span class="icon">
                                                                     <i class="fas fa-plus"></i>
                                                                 </span>
