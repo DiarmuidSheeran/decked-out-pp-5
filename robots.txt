@@ -1,0 +1,3 @@
+User-agent: *
+Dissalow: /accounts/
+Sitemap: https://decked-out-tcg-store-b1147b8f9a0a.herokuapp.com/sitemap.xml
