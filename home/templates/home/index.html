@@ -19,17 +19,17 @@
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <a href="{% url 'products' %}?category=yugioh-booster-box,yugioh-booster-pack,yugioh-deck,yugioh-tin,yugioh-special-edition,yugioh-accessories">
-                                <img src="{{ MEDIA_URL }}yugi-and-kaiba.png" class="img-fluid" alt="YuGiOh Logo" style="height: 200px;">
+                                <img src="{{ MEDIA_URL }}yugi-and-kaiba.png" class="img-fluid" alt="YuGiOh Logo" style="height: 200px;" loading="lazy">
                             </a>
                         </div>
                         <div class="carousel-item">
                             <a href="{% url 'products' %}?category=pokemon-booster-box,pokemon-booster-pack,pokemon-decks,pokemon-tin,pokemon-special-edition,pokemon-toys,pokemon-accessories">
-                                <img src="{{ MEDIA_URL }}pokemon-logo-pikachu.png" class="img-fluid" alt="Pokemon Logo" style="height: 200px;">
+                                <img src="{{ MEDIA_URL }}pokemon-logo-pikachu.png" class="img-fluid" alt="Pokemon Logo" style="height: 200px;" loading="lazy">
                             </a>
                         </div>
                         <div class="carousel-item">
                             <a href="{% url 'products' %}?filter_type=all_offers">
-                                <img src="{{ MEDIA_URL }}special-offer.png" class="img-fluid" alt="Special Offer" style="height: 200px;">
+                                <img src="{{ MEDIA_URL }}special-offer.png" class="img-fluid" alt="Special Offer" style="height: 200px;" loading="lazy">
                             </a>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3 text-center mb-4">
+            <div class="col-md-6 col-lg-3 text-center mb-4">
                 <div class="card h-100 product-card">
                     <h4 class="card-header mb-2 text-white logo-font" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">Best Sellers</h4>
                     <div id="bestSeller" class="carousel slide" data-ride="carousel" data-interval="10000">
@@ -70,7 +70,7 @@
                                     <div class="card-body pb-0">
                                         <h5 class="text-black">{{ product.name }}</h5>
                                         <a href="{% url 'product_detail' product.id %}">
-                                            <img class="w-100" src="{{ product.image.url }}" alt="{{ product.name }}">
+                                            <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
                                         </a>
                                     </div>
                                     <div class="card-footer pb-0">
@@ -104,7 +104,7 @@
                     </a>
                 </div>
             </div>
-            <div class="col-md-3 text-center mb-4">
+            <div class="col-md-6 col-lg-3 text-center mb-4">
                 <div class="card h-100 product-card">
                     <h4 class="card-header mb-2 text-white logo-font" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">Promotions</h4>
                     <div id="specialOffer" class="carousel slide" data-ride="carousel" data-interval="10000">
@@ -114,7 +114,7 @@
                                     <div class="card-body pb-0">
                                         <h5 class="text-black">{{ product.name }}</h5>
                                         <a href="{% url 'product_detail' product.id %}">
-                                            <img class="w-100" src="{{ product.image.url }}" alt="{{ product.name }}">
+                                            <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
                                         </a>
                                     </div>
                                     <div class="card-footer pb-0">
@@ -148,7 +148,7 @@
                     </a>
                 </div>
             </div>
-            <div class="col-md-3 text-center mb-4">
+            <div class="col-md-6 col-lg-3 text-center mb-4">
                 <div class="card h-100 product-card">
                     <h4 class="card-header mb-2 text-white logo-font" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">Clearance Products</h4>
                     <div id="clearance" class="carousel slide" data-ride="carousel" data-interval="10000">
@@ -158,7 +158,7 @@
                                     <div class="card-body pb-0">
                                         <h5 class="text-black">{{ product.name }}</h5>
                                         <a href="{% url 'product_detail' product.id %}">
-                                            <img class="w-100" src="{{ product.image.url }}" alt="{{ product.name }}">
+                                            <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
                                         </a>
                                     </div>
                                     <div class="card-footer pb-0">
@@ -192,7 +192,7 @@
                     </a>
                 </div>
             </div>
-            <div class="col-md-3 text-center mb-4">
+            <div class="col-md-6 col-lg-3 text-center mb-4">
                 <div class="card h-100 product-card">
                     <h4 class="card-header mb-2 text-white logo-font" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">New Arrivals</h4>
                     <div id="new" class="carousel slide" data-ride="carousel" data-interval="10000">
@@ -202,7 +202,7 @@
                                     <div class="card-body pb-0">
                                         <h5 class="text-black">{{ product.name }}</h5>
                                         <a href="{% url 'product_detail' product.id %}">
-                                            <img class="w-100" src="{{ product.image.url }}" alt="{{ product.name }}">
+                                            <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
                                         </a>
                                     </div>
                                     <div class="card-footer pb-0">
@@ -248,7 +248,7 @@
                 </form>
             </div>
             <div class="col-md-2">
-                <img src="{{ MEDIA_URL }}dragonite.png" alt="Dragonite" class="img-fluid ml-4">
+                <img src="{{ MEDIA_URL }}dragonite.png" alt="Dragonite" class="img-fluid ml-4" loading="lazy">
             </div>
             <div class="col-md-2">&nbsp;</div>
         </div>

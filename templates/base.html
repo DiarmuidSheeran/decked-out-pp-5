@@ -28,6 +28,10 @@
                 width: auto;
             }
         }
+        .custom-bg-gradiant {
+            background-image: linear-gradient(45deg, #2c2c2c, #ce1313); 
+            border-bottom: solid #ffffff 1px;
+        }
     </style>
     {% block extra_css %}
     {% endblock %}
@@ -43,11 +47,12 @@
     {% block extra_js %}
     {% endblock %}
 
-    <title>Decked Out {% block extra_title %}{% endblock %}</title>
+    <title>Decked Out - Your Destination for Pokemon and Yu-Gi-Oh Trading Cards {% block extra_title %}{% endblock %}</title>
+    <meta name="description" content="Welcome to Decked Out, your one-stop shop for Pokemon and Yu-Gi-Oh trading card game products. Explore our wide selection of cards, decks, and accessories.">
 </head>
 <body>
 <header class="fixed-top" style="border-bottom: solid #ffffff 1px;">
-    <div id="delivery-banner-top" class="row justify-content-center text-center bg-dark text-white" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313); border-bottom: solid #ffffff 1px;">
+    <div id="delivery-banner-top" class="row justify-content-center text-center bg-dark text-white custom-bg-gradiant">
       <h5 class="logo-font pt-1 pb-1 mb-auto"><i class="fa-solid fa-triangle-exclamation fa-bounce text-warning"></i> Free delivery on orders over €{{ free_delivery_threshold }} <i class="fa-solid fa-triangle-exclamation fa-bounce text-warning"></i></h5>
     </div>
     <div id="topnav" class="row bg-dark pt-lg-2 d-none d-lg-flex">
@@ -59,7 +64,7 @@
                 <div class="input-group w-100">
                     <input class="form-control border border-danger rounded-1" type="text" name="q" placeholder="Search our site">
                     <div class="input-group-append">
-                        <button class="form-control btn btn-danger border border-danger rounded-1" type="submit">
+                        <button class="form-control btn btn-danger border border-danger rounded-1" type="submit"  aria-label="Search">
                             <span class="icon">
                                 <i class="fas fa-search"></i>
                             </span>
@@ -121,7 +126,7 @@
             </button>
         </nav>
     </div>
-    <div id="promo-code-top" class="row justify-content-center text-center bg-dark text-white" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313); border-top: solid #ffffff 1px;">
+    <div id="promo-code-top" class="row justify-content-center text-center bg-dark text-white custom-bg-gradiant" style="border-top: solid #ffffff 1px;">
       <p class="logo-font pt-1 pb-1 mb-auto"><i class="fa-solid fa-gift text-warning"></i> <strong>Opening Special!</strong> <i class="fa-solid fa-gift text-warning"></i> <br> Use code <strong class="text-warning">'gift'</strong> to save 10% on your orders!</p>
     </div>
 </header>
@@ -159,7 +164,7 @@
 <hr>
 <hr>
 <hr>
-<div id="promo-code-bottom" class="row justify-content-center text-center bg-dark text-white" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313); border-top: solid #ffffff 1px;">
+<div id="promo-code-bottom" class="row justify-content-center text-center bg-dark text-white custom-bg-gradiant" style="border-top: solid #ffffff 1px;">
   <p class="logo-font pt-1 pb-1 mb-auto"><i class="fa-solid fa-gift text-warning"></i> <strong>Opening Special!</strong> <i class="fa-solid fa-gift text-warning"></i> <br> Use code <strong class="text-warning">'gift'</strong> to save 10% on your orders!</p>
 </div>
 

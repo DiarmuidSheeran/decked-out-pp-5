@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404
 from products.models import Product
 from checkout.models import DiscountCode
 
+
 def bag_contents(request):
 
     bag_items = []
@@ -26,7 +27,7 @@ def bag_contents(request):
             'item_id': item_id,
             'quantity': quantity,
             'product': product,
-            'item_price':item_price
+            'item_price': item_price
         })
 
     if discount_code_id:
@@ -45,9 +46,9 @@ def bag_contents(request):
     else:
         delivery = 0
         free_delivery_delta = 0
-    
+
     grand_total = delivery + total
-    
+
     context = {
         'bag_items': bag_items,
         'total': total,
