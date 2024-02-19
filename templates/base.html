@@ -183,18 +183,19 @@
 {% include 'includes/main-footer.html' %}
 
 {% block postloadjs %}
-    <script>
-        $(document).ready(function() {
-            // When the back-to-top button is clicked
-            $('.btt-link').click(function(event) {
-                event.preventDefault(); // Prevent default link behavior
-                $('html, body').animate({scrollTop: 0}, 'slow'); // Smoothly scroll to the top of the page
-            });
+<script>
+    /* global $ */
+    $(document).ready(function() {
+        // When the back-to-top button is clicked
+        $('.btt-link').click(function(event) {
+            event.preventDefault(); // Prevent default link behavior
+            $('html, body').animate({scrollTop: 0}, 'slow'); // Smoothly scroll to the top of the page
         });
-    </script>
-    <script>
-        $('.toast').toast('show');
-    </script>
+    });
+</script>
+<script>
+    $('.toast').toast('show');
+</script>
 {% endblock %}
 </body>
 </html>

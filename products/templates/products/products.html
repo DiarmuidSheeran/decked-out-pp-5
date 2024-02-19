@@ -199,26 +199,39 @@
 {% block postloadjs %}
     {{ block.super }}
     <script>
+        /* global $ */
+
+        // Listen for changes on the sort selector dropdown
         $('#sort-selector').change(function() {
+            // Get a reference to the selector element
             var selector = $(this);
+
+             // Get the current URL
             var currentUrl = new URL(window.location);
 
+            // Get the value selected in the dropdown
             var selectedVal = selector.val();
+
+            // If the selected value is not "reset", extract the sort and direction values
             if(selectedVal != "reset"){
                 var sort = selectedVal.split("_")[0];
                 var direction = selectedVal.split("_")[1];
 
+                // Set the "sort" and "direction" parameters in the URL
                 currentUrl.searchParams.set("sort", sort);
                 currentUrl.searchParams.set("direction", direction);
 
+                // Redirect to the new URL with the updated parameters
                 window.location.replace(currentUrl);
             } else {
+                // If "reset" is selected, remove the "sort" and "direction" parameters from the URL
                 currentUrl.searchParams.delete("sort");
                 currentUrl.searchParams.delete("direction");
 
+                // Redirect to the new URL without the sort and direction parameters
                 window.location.replace(currentUrl);
             }
-        })
+        });
     </script>
     {% include 'products/includes/quantity_input_script.html' %}
     {% include 'products/includes/wishlist_script.html' %}

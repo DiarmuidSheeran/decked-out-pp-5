@@ -181,12 +181,16 @@
 {% block postloadjs %}
 {{ block.super }}
 <script>
-function confirmDelete(event, productName, productId) {
-    event.preventDefault();
-    if (confirm(`Are you sure you want to delete ${productName}?`)) {
-        document.getElementById(`delete-form-${productId}`).submit();
+    /* global $ */
+    // Function to confirm deletion
+    function confirmDelete(event, productName, productId) {
+        event.preventDefault(); // Prevent default form submission behavior
+        // Display confirmation dialog with the product name
+        if (confirm(`Are you sure you want to delete ${productName}?`)) {
+            // If user confirms deletion, submit the corresponding delete form
+            document.getElementById(`delete-form-${productId}`).submit();
+        }
     }
-}
 </script>
 
 {% include 'products/includes/quantity_input_script.html' %}
