@@ -1,7 +1,11 @@
 from django import forms
 from .models import UserProfile
 
+
 class UserProfileForm(forms.ModelForm):
+    """
+    Form for updating user profile information.
+    """
     class Meta:
         model = UserProfile
         exclude = ('user', 'wishlist', 'profile_picture')
@@ -29,10 +33,15 @@ class UserProfileForm(forms.ModelForm):
                 else:
                     placeholder = placeholders[field]
                 self.fields[field].widget.attrs['placeholder'] = placeholder
-            self.fields[field].widget.attrs['class'] = 'border-black rounded-0 profile-form-input'
+            self.fields[field].widget.attrs['class'] = \
+                'border-black rounded-0 profile-form-input'
             self.fields[field].label = False
 
+
 class ProfilePictureForm(forms.ModelForm):
+    """
+    Form for uploading user profile pictures.
+    """
     class Meta:
         model = UserProfile
         fields = ['profile_picture']

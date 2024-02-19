@@ -6,7 +6,14 @@ from checkout.models import DiscountCode
 
 
 def bag_contents(request):
-
+    """
+    A context processor to provide bag-related information to templates.
+    This function calculates the total cost, product count, delivery charge,
+    and discount amount for items in the shopping bag.
+    Returns:
+        A dictionary containing bag-related information
+        to be added to the context.
+    """
     bag_items = []
     total = 0
     product_count = 0

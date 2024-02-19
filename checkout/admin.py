@@ -3,11 +3,17 @@ from .models import Order, OrderLineItem, DiscountCode
 
 
 class OrderLineItemAdminInline(admin.TabularInline):
+    """
+    Inline admin configuration for OrderLineItem model.
+    """
     model = OrderLineItem
     readonly_fields = ('lineitem_total',)
 
 
 class OrderAdmin(admin.ModelAdmin):
+    """
+    Admin configuration for Order model.
+    """
     inlines = (OrderLineItemAdminInline,)
 
     readonly_fields = ('order_number', 'date',
@@ -28,6 +34,9 @@ class OrderAdmin(admin.ModelAdmin):
 
     ordering = ('-date',)
 
-admin.site.register(Order, OrderAdmin)
+# Register models with the admin site
 
+
+admin.site.register(Order, OrderAdmin)
 admin.site.register(DiscountCode)
+

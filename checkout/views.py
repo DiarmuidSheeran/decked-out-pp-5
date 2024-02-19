@@ -1,4 +1,10 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.shortcuts import (
+    render,
+    redirect,
+    reverse,
+    get_object_or_404,
+    HttpResponse
+)
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
@@ -15,8 +21,12 @@ from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 
+
 @require_POST
 def cache_checkout_data(request):
+    """
+    Cache checkout data before processing the payment.
+    """
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -31,17 +41,24 @@ def cache_checkout_data(request):
             processed right now. Please try again later.')
         return HttpResponse(content=e, status=400)
 
+
 def checkout(request):
+    """
+    Handle the checkout process.
+    """
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     discount_code = None
     discount_percentage = None
 
     if 'discount_code_id' in request.session:
-        discount_code = DiscountCode.objects.get(id=request.session['discount_code_id'])
+        discount_code = DiscountCode.objects.get(
+            id=request.session['discount_code_id']
+        )
         discount_percentage = discount_code.discount_amount
 
     if request.method == 'POST':
+        # Process checkout form submission
         bag = request.session.get('bag', {})
 
         form_data = {
@@ -58,11 +75,19 @@ def checkout(request):
         order_form = OrderForm(form_data)
         discount_code_form = DiscountCodeForm(request.POST)
         if order_form.is_valid():
+            # Create order instance
             order = order_form.save(commit=False)
             if 'discount_code_id' in request.session:
-                discount_code = DiscountCode.objects.get(id=request.session['discount_code_id'])
+                # Apply discount code if available
+                discount_code = DiscountCode.objects.get(
+                    id=request.session['discount_code_id']
+                )
                 order.discount_code = discount_code
-             
+
+            """
+            Save order and create order line items
+            Redirect to checkout success page
+            """
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
@@ -77,26 +102,37 @@ def checkout(request):
                             quantity=item_data,
                         )
                         order_line_item.save()
-                    
+
                 except Product.DoesNotExist:
                     messages.error(request, (
-                        "One of the products in your bag wasn't found in our database. "
+                        "One of the products in your bag wasn't \
+                        found in our database. "
                         "Please call us for assistance!")
                     )
                     order.delete()
                     return redirect(reverse('view_bag'))
 
             request.session['save_info'] = 'save-info' in request.POST
-            return redirect(reverse('checkout_success', args=[order.order_number]))
+            return redirect(
+                reverse('checkout_success', args=[order.order_number])
+            )
         else:
             messages.error(request, 'There was an error with your form. \
                 Please double check your information.')
     else:
+        """
+        Display checkout form
+        Generate Stripe payment intent
+        Populate order form with user's default
+        information if available
+        """
         bag = request.session.get('bag', {})
         if not bag:
-            messages.error(request, "There's nothing in your bag at the moment")
+            messages.error(
+                request, "There's nothing in your bag at the moment"
+            )
             return redirect(reverse('products'))
-        
+
         current_bag = bag_contents(request)
         total = current_bag['grand_total']
         stripe_total = round(total * 100)
@@ -143,6 +179,7 @@ def checkout(request):
 
     return render(request, template, context)
 
+
 def checkout_success(request, order_number):
     """
     Handle successful checkouts
@@ -178,9 +215,11 @@ def checkout_success(request, order_number):
         email will be sent to {order.email}.')
 
     if 'discount_code_id' in request.session:
-            discount_code = DiscountCode.objects.get(id=request.session['discount_code_id'])
-            discount_percentage = discount_code.discount_amount
-            del request.session['discount_code_id']
+        discount_code = DiscountCode.objects.get(
+            id=request.session['discount_code_id']
+        )
+        discount_percentage = discount_code.discount_amount
+        del request.session['discount_code_id']
 
     if 'bag' in request.session:
         del request.session['bag']
@@ -191,11 +230,15 @@ def checkout_success(request, order_number):
         'discount_code': discount_code,
         'discount_percentage': discount_percentage,
     }
-    html_message = render_to_string('checkout/emails/order_confirmation.html', context)
+    html_message = render_to_string(
+        'checkout/emails/order_confirmation.html', context
+    )
     plain_message = strip_tags(html_message)
     from_email = settings.DEFAULT_FROM_EMAIL
     to_email = [order.email]
-    send_mail(subject, plain_message, from_email, to_email, html_message=html_message)
+    send_mail(
+        subject, plain_message, from_email, to_email, html_message=html_message
+    )
 
     template = 'checkout/checkout_success.html'
     context = {
@@ -206,7 +249,11 @@ def checkout_success(request, order_number):
 
     return render(request, template, context)
 
+
 def apply_discount(request):
+    """
+    Apply discount code to the current session.
+    """
     if request.method == 'POST':
         discount_code_form = DiscountCodeForm(request.POST)
         if discount_code_form.is_valid():
@@ -215,10 +262,13 @@ def apply_discount(request):
                 discount_code = DiscountCode.objects.get(code=code)
                 current_date = timezone.now().date()
                 if discount_code.expiration_date >= current_date:
-                    request.session['discount_code_id'] = discount_code.id  
-                    messages.success(request, f"Discount code '{code}' applied successfully.")
+                    request.session['discount_code_id'] = discount_code.id
+                    messages.success(
+                        request, f"Discount code '{code}' \
+                        applied successfully."
+                    )
                 else:
-                     messages.error(request, "This discount code has expired.")
+                    messages.error(request, "This discount code has expired.")
             except DiscountCode.DoesNotExist:
                 messages.error(request, "Invalid or expired discount code.")
         else:
@@ -226,7 +276,11 @@ def apply_discount(request):
 
     return redirect(reverse('checkout'))
 
+
 def apply_discount_to_order(request, order_number):
+    """
+    Apply discount code to the specified order.
+    """
     if request.method == 'POST':
         order = get_object_or_404(Order, order_number=order_number)
         discount_code_form = DiscountCodeForm(request.POST)
@@ -235,17 +289,22 @@ def apply_discount_to_order(request, order_number):
             try:
                 discount_code = DiscountCode.objects.get(code=code)
                 if self.discount_code:
-                    discount_percentage = self.discount_code.percentage_discount
-                    discount_amount = (order.order_total * discount_code.discount_amount) / 100
+                    discount_percentage = \
+                        self.discount_code.percentage_discount
+                    discount_amount = (
+                        order.order_total * discount_code.discount_amount
+                    ) / 100
                 else:
                     discount_amount = 0
 
                 order.order_total -= discount_amount
-                
                 order.order_total -= discount_amount
                 order.discount_code = discount_code
                 order.save()
-                messages.success(request, f"Discount code '{code}' applied successfully. Discount amount: ${discount_amount}")
+                messages.success(
+                    request, f"Discount code '{code}' applied successfully. \
+                    Discount amount: ${discount_amount}"
+                )
             except DiscountCode.DoesNotExist:
                 messages.error(request, "Invalid or expired discount code.")
         else:
@@ -253,7 +312,11 @@ def apply_discount_to_order(request, order_number):
 
     return redirect(reverse('checkout', args=[order_number]))
 
+
 def remove_discount(request):
+    """
+    Remove discount code from the current session.
+    """
     if 'discount_code_id' in request.session:
         del request.session['discount_code_id']
         messages.info(request, "Discount code removed.")

@@ -12,21 +12,56 @@ class UserProfile(models.Model):
     delivery information and order history
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    default_phone_number = models.CharField(max_length=20, null=True, blank=True)
-    default_street_address1 = models.CharField(max_length=80, null=True, blank=True)
-    default_street_address2 = models.CharField(max_length=80, null=True, blank=True)
-    default_town_or_city = models.CharField(max_length=40, null=True, blank=True)
-    default_county = models.CharField(max_length=80, null=True, blank=True)
-    default_postcode = models.CharField(max_length=20, null=True, blank=True)
-    default_country = CountryField(blank_label='Country', null=True, blank=True)
-    profile_picture = models.ImageField(upload_to='', default='placeholder.jpg',blank=True, null=True)
+    default_phone_number = models.CharField(
+        max_length=20,
+        null=True,
+        blank=True
+    )
+    default_street_address1 = models.CharField(
+        max_length=80,
+        null=True,
+        blank=True
+    )
+    default_street_address2 = models.CharField(
+        max_length=80,
+        null=True,
+        blank=True
+    )
+    default_town_or_city = models.CharField(
+        max_length=40,
+        null=True,
+        blank=True
+    )
+    default_county = models.CharField(
+        max_length=80,
+        null=True,
+        blank=True
+    )
+    default_postcode = models.CharField(
+        max_length=20,
+        null=True,
+        blank=True
+    )
+    default_country = CountryField(
+        blank_label='Country',
+        null=True,
+        blank=True
+    )
+    profile_picture = models.ImageField(
+        upload_to='',
+        default='placeholder.jpg',
+        blank=True, null=True
+    )
     wishlist = models.ManyToManyField(
-        Product, 
+        Product,
         related_name='wishlists',
         blank=True
     )
 
     def __str__(self):
+        """
+        Return the username of the associated user.
+        """
         return self.user.username
 
     @receiver(post_save, sender=User)
@@ -34,9 +69,6 @@ class UserProfile(models.Model):
         """
         Create or update the user profile
         """
-        
         if created:
             UserProfile.objects.create(user=instance)
-        # Existing users: just save the profile
         instance.userprofile.save()
-     

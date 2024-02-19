@@ -6,16 +6,31 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from checkout.models import Order
 
+
 @login_required
 def product_reviews(request, product_id):
-
+    """
+    View for displaying and submitting product reviews.
+    Users can only submit a review if they have purchased the product.
+    If the user has already left a review for the product,
+    they are redirected back to the product detail page with an error message.
+    """
     product = Product.objects.get(pk=product_id)
-    existing_review = Review.objects.filter(product=product, reviewer_name=request.user).first()
+    existing_review = Review.objects.filter(
+        product=product,
+        reviewer_name=request.user
+    ).first()
     user = request.user
-    has_ordered_product = Order.objects.filter(user_profile=user.userprofile, lineitems__product=product).exists()
+    has_ordered_product = Order.objects.filter(
+        user_profile=user.userprofile,
+        lineitems__product=product
+    ).exists()
 
     if existing_review:
-        messages.error(request, f'You have already left a review on this product!')
+        messages.error(
+            request,
+            f'You have already left a review on this product!'
+        )
         return redirect('product_detail', product_id=product_id)
 
     reviews = product.reviews.all()
@@ -32,7 +47,15 @@ def product_reviews(request, product_id):
         else:
             form = ReviewForm()
     else:
-        messages.error(request, f'You havent purchased this product')
+        messages.error(
+            request,
+            f'You havent purchased this product'
+        )
         return redirect('product_detail', product_id=product_id)
+    context = {
+        'product': product,
+        'reviews': reviews,
+        'form': form
+    }
 
-    return render(request, 'reviews/product_reviews.html', {'product': product, 'reviews': reviews, 'form': form})
+    return render(request, 'reviews/product_reviews.html', context)
