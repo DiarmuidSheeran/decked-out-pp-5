@@ -430,6 +430,103 @@ Facebook tends to find and take down fake business sites. In the eventuality of 
 [Back to Top](#table-of-contents) | [Jump to Credits](#credits)
 
 ## Deployment
+### **Cerate Django app**
+<details>
+<summary></summary>
+
+    1. Install Django and gunicorn: pip3 install django gunicorn
+    2. Install supporting database libraries dj_database_url and psycopg2 library: pip3 install dj_database_url psycopg2
+    3. Create file for requirements: pip freeze --local > requirements.txt
+    4. Create project: django-admin startproject project_name
+    5. Create app: python3 manage.py startapp app_name
+    6. Add app to list of installed apps in settings.py file: 'app_name'
+    7. Migrate changes: manage.py migrate
+    8. Run the server to test if the app is installed: python3 manage.py runserver
+</details>
+
+### **Create Database**
+<details>
+<summary></summary>
+
+    1. Navigate to elephant sql site.
+    2. Login or sign up
+    3. Create a new instance
+    4. Give your plan a Name (this is commonly the name of the project)
+    5. Select the Tiny Turtle (Free) plan
+    6. Select your region
+    7. Create instance
+    8. Copy the database url
+</details>
+
+### **Link database to site**
+<details>
+<summary></summary>
+
+    1. Back in your project comment out the default database in settings.py 
+    2. Add following code: DATABASES = {'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))}
+    3. Create an env.py file and add the following code: os.environ["DATABASE_URL"] = ('your_url')
+    4. Replace your_url with the database url copied from elephant sql
+    5. In your settings.py file follow the same steps to hide your secrect key within the env file
+    6. Make the migrations to the database: python3 manage.py makemigrations
+    7. Migrate Changes: python manage.py migrate
+</details>
+
+### **Create Procfile**
+<details>
+<summary></summary>
+
+    1. Create Procfile
+    2. Add the following code: web: gunicorn deckedout .wsgi
+</details>
+
+### **Create Heroku app**
+<details>
+<summary></summary>
+
+    1. Navigate to heroku.com & log in
+    2. Click "new" and create a new App
+    3. Give the application a name and then choose your region and Click "Create app"
+    4. On the next page click on the Settings tab to adjust the settings
+    5. Click on the 'config vars' button
+    7. Add DISABLE_COLLECTSTATIC with value of '1' (note: this must be removed for final deployment)
+    8. Navigate to Deploy section of github
+    9. To connect with github select github and confirm
+    10. Search for your repository select it and click connect
+    11. Click manual deployment which deploys the current state of a branch. (DO NOT DEPLOY code with debug turned on)
+</details>
+
+### **How to clone of the repository:**
+<details>
+<summary></summary>
+
+    1. Navigate to the "Code" tab located under the repository name.
+    2. Click on the "Code" button situated to the right above the listed files.
+    3. Click on the clipboard icon to copy the URL of the repository.
+    4. Open Git Bash in Gitpod or your preferred IDE.
+    5. Change the working directory to your desired location for the cloned directory.
+    6. Use the command git clone followed by pasting the copied URL.
+    7. Press enter to complete the cloning process.
+    8. In the terminal, install the necessary requirements by executing: pip3 install -r requirements.txt.
+    9. Next, create the env.py file to define project variables.
+    10. Add the env.py file to a .gitignore to prevent it from being pushed to GitHub.
+    11. Generate migrations by running: python manage.py makemigrations.
+    12. Apply those migrations with: python manage.py migrate.
+    13. To launch the project, type python manage.py runserver in the terminal and access it locally via port 8000.
+    14. This will open the project locally, allowing you to begin working on it.
+    15. Optionally, consider forking the repository on GitHub for collaborative development.
+</details>
+
+### **Forking the repository on GitHub**
+<details>
+<summary></summary>
+
+    1. Login to github and find the respitory (linked below)
+    2. Under your profile photo on the right hand side you will see the fork button.
+    3. Click the fork button and github will create a copy to your account.
+>  [Decked Out's Github Repository](https://github.com/DiarmuidSheeran/decked-out-pp-5)
+</details>
+
+<br>
 
 [Back to Top](#table-of-contents) | [Jump to Credits](#credits)
 
