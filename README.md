@@ -94,6 +94,7 @@ Cons of the Business Model:
 
 [Back to Top](#table-of-contents) | [Jump to Credits](#credits)
 
+
 #### Site User:
 Decked Out's typical site users are trading card game enthusiasts, predominantly male, aged between 12 and 40, who have a passion for collecting and playing Yu-Gi-Oh! and Pokémon trading card games. They are likely to be avid fans of the respective franchises and enjoy engaging with the community surrounding these games.
 
@@ -119,6 +120,7 @@ Decked Out aims to create an intuitive and user-friendly online platform with th
 5. User Profiles: Allow users to create profiles where they can view past orders, update their information, and manage their preferences within a wishlist of products.
 
 [Back to Top](#table-of-contents) | [Jump to Credits](#credits)
+
 
 #### Marketing Strategy:
 Decked Out's marketing strategy focuses on reaching and engaging with its target audience effectively:
@@ -149,7 +151,7 @@ Long-tail - Rare Yu-Gi-Oh! cards for sale, Pokémon TCG booster packs online, Be
 
 1. Keyword Implementation: Strategically integrated the short-tail and long-tail keywords across the Decked Out website to optimize content relevance and improve search engine rankings. These keywords were strategically placed in page titles, meta descriptions, headers, and throughout product descriptions.
 
-2. HTML Tag Optimization: Ensured proper utilization of HTML tags, including the <strong> tag where appropriate, to emphasize key phrases and improve readability for search engine crawlers. Additionally, ensured that all internal and external links were accurately described to enhance user experience and SEO performance.
+2. HTML Tag Optimization: Ensured proper utilization of HTML tags, including the strong tag where appropriate, to emphasize key phrases and improve readability for search engine crawlers. Additionally, ensured that all internal and external links were accurately described to enhance user experience and SEO performance.
 
 By implementing a strategic SEO plan tailored to the trading card game niche, Decked Out aims to enhance its online presence, attract qualified traffic, and establish itself as a leading destination for Yu-Gi-Oh! and Pokémon enthusiasts.
 
@@ -167,14 +169,31 @@ Below is a link to the sites Business page:
 > [Decked Out's Business Facbook Page](https://www.facebook.com/profile.php?id=61556460457145)
 
 Facebook tends to find and take down fake business sites. In the eventuality of this happening, below is a screenshot of the store business Facebook page as proof of creation.
+<details>
+<summary></summary>
+
 >![Responsive Design](documentation/facebook/facebook-screenshot.png "responsive-design")
+</details>
+
+<br>
 
 [Back to Top](#table-of-contents) | [Jump to Credits](#credits)
 
 ## Implementing the Agile Approach
 ### Sites Agile Approach
+#### To ensure an organized and flexible development process for the Decked Out e-commerce project, I have adopted an Agile methodology. Here are the steps I've taken to implement this approach:
+* I started by defining the project's scope and objectives. I identified the core functionalities and features that would be essential for the e-commerce store.
+* Each major feature or functionality was expressed as a epic, which was broken down into multiple user stories written from the perspective of an end-user or an admin user. For example: "As a shopper I want to be able to view a list of products and select some to purchase."
+* I converted each epic and user story into a GitHub issue. Each issue includes a clear description of the feature, its tasks, and any relevant details. I assigned labels such as "Must Have", "Should Have" to indicate priority.
+* I created a Kanban board with four columns: "To Do," "In Progress," "Done," and "Nice to Have." This board serves as the projects task management indicator.
+* This approach ensured I was tackling one epic's user story set of related issues at a time. This allowed me to deliver working functionality in increments as to not get distracted and finish the targeted task.
+* The project could allow collaboration among team members if needed. Each issue was assigned to me but could be assigned to other team members if the project was a team project.
+* As issues are started they are moved to the "In Progress" column, and when they are completed they are moved to the "Done" column.
+
+**By following this Agile approach, I have aimed to deliver a high-quality, user-focused e-commerce site to meet user expectations and deliver a compelling online experience.**
 
 ### User Stories Link
+> [Link to Epics and User Stories Board](https://github.com/users/DiarmuidSheeran/projects/8/views/1?visibleFields=%5B%22Title%22%2C%22Assignees%22%2C%22Status%22%2C%22Labels%22%5D)
 
 [Back to Top](#table-of-contents) | [Jump to Credits](#credits)
 
