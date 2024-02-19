@@ -296,6 +296,13 @@ def delete_product(request, product_id):
     Delete a product from the store.
     This view allows administrators to delete a product from the store.
     """
+    if not request.user.is_superuser:
+        messages.error(
+            request,
+            'Sorry, only store owners can do that.'
+        )
+        return redirect(reverse('home'))
+
     if request.method == 'POST':
         product_id = request.POST.get('product_id')
         if product_id:
@@ -316,6 +323,13 @@ def product_statistics(request):
     This view provides statistics on product sales
     and recommendations for promotional products.
     """
+    if not request.user.is_superuser:
+        messages.error(
+            request,
+            'Sorry, only store owners can do that.'
+        )
+        return redirect(reverse('home'))
+
     sold_products = Product.objects.filter(productstatistics__total_sold__gt=0)
     recommend_promo_products = Product.objects.filter(
         productstatistics__total_sold__lte=5, is_on_promotion=False
@@ -375,6 +389,13 @@ def create_discount_code(request):
     Create a discount code.
     This view allows administrators to create a new discount code.
     """
+    if not request.user.is_superuser:
+        messages.error(
+            request,
+            'Sorry, only store owners can do that.'
+        )
+        return redirect(reverse('home'))
+
     codes = DiscountCode.objects.all()
     today = date.today()
 

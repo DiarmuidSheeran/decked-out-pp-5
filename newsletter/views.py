@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from .forms import NewsletterForm
 from .models import NewsletterSubscription
 from django.core.mail import send_mail

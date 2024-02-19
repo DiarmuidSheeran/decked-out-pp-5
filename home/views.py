@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect, reverse
 from django.conf import settings
 from django.contrib import messages
-from products.models import Product
+from products.models import Product, ProductStatistics
 from .forms import NewsletterSubscriptionForm, ContactForm
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from .models import ContactFormSubmission
+from django.contrib.auth.decorators import login_required
 
 
 def send_confirmation_email(email):
@@ -37,9 +38,16 @@ def index(request):
     and new arrival products.
     Handles newsletter subscription form submission.
     """
-    best_sellers = Product.objects.order_by(
-        '-productstatistics__total_sold'
-    )[:5]
+    product_non_sale = ProductStatistics.objects.filter(total_sold__gt=0)
+    best_sellers = None
+
+    if product_non_sale.exists():
+        best_sellers = Product.objects.filter(
+            productstatistics__in=product_non_sale
+        ).order_by(
+            '-productstatistics__total_sold'
+        )[:5]
+
     special_offer_products = Product.objects.filter(
         is_on_promotion=True, clearance=False
     )
@@ -138,10 +146,18 @@ def contact_us(request):
     return render(request, 'home/contact_us.html', context)
 
 
+@login_required
 def view_contact_form_submissions(request):
     """
     Renders the page displaying contact form submissions.
     """
+    if not request.user.is_superuser:
+        messages.error(
+            request,
+            'Sorry, only store owners can do that.'
+        )
+        return redirect(reverse('home'))
+
     submissions = ContactFormSubmission.objects.all()
 
     context = {
@@ -162,5 +178,3 @@ def returns_policy(request):
     Renders the returns policy page.
     """
     return render(request, 'home/returns_policy.html')
-
-
