@@ -53,7 +53,11 @@ class Product(models.Model):
         editable=True
     )
     image_url = models.URLField(max_length=1024, null=True, blank=True)
-    image = models.ImageField(null=True, blank=True)
+    image = models.ImageField(
+        null=True,
+        blank=True,
+        default='no-product-image.png'
+    )
     wishlist = models.ManyToManyField(
         User,
         related_name='wishlist_item',
