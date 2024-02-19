@@ -391,17 +391,41 @@ Facebook tends to find and take down fake business sites. In the eventuality of 
 ### Languages:
 <details>
 <summary></summary>
+
+* HTML5
+* CSS
+* Javascript
+* Python
 </details>
 
 ### Frameworks:
 <details>
 <summary></summary>
+
+* Django
+* Bootstrap
 </details>
 
 ### Other Technologies:
 <details>
 <summary></summary>
+
+* [AWS S3 and IAM](https://aws.amazon.com/?nc2=h_lg)- Used to host static and media files for this project and IAM for the permissions based roles for accessing the S3 buckets.
+* [Gitpod](https://www.gitpod.io/)- For writing and test code
+* [GitHub](https://github.com/)- For hosting the source code
+* [Git](https://git-scm.com/)- Used for version control throughout the project and to ensure a good clean record of work done was maintained. 
+* [Heroku](https://id.heroku.com/)- Used for deploying the project
+* [Elephant Sql](https://customer.elephantsql.com/)- Used for hosting the database
+* [Fontawesome](https://fontawesome.com/)- Used for icon within the site
+* [Google Chrome Dev Tools](https://developer.chrome.com/docs/devtools/)- Used for testing the site
+* [W3C Markup Validation Service](https://validator.w3.org/)- Used to validate the html
+* [W3C CSS Validation Service(Jigsaw)](https://jigsaw.w3.org/css-validator/#validate_by_input)- Used for validating the css
+* [PEP8 linter](https://pep8ci.herokuapp.com/)- Used for validating the python code
+* [Js hint](https://jshint.com/)- Used for validating the javascript code
+* Microsoft Paint was used in the making of the wireframes and the databases schema.
 </details>
+
+<br>
 
 [Back to Top](#table-of-contents) | [Jump to Credits](#credits)
 
