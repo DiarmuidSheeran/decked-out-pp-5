@@ -204,7 +204,7 @@ Facebook tends to find and take down fake business sites. In the eventuality of 
 <summary></summary>
 
 I have incorporated a carefully selected color palette throughout the website, aimed at creating a visually appealing design, allowing for a more streamlined and user-friendly experience.
->![Responsive Design](documentation/color_pallete/color-pallete.png "color-pallete")
+>![Color Pallete](documentation/color_pallete/color-pallete.png "color-pallete")
 </details>
 
 #### Wireframes
@@ -213,12 +213,12 @@ I have incorporated a carefully selected color palette throughout the website, a
 <summary></summary>
 
 With the idea for the website planned, I began creating wireframes to depict a more narrowed down outlook for how the differnet pages depending on functionality should look throught the site:
->![Responsive Design](documentation/wireframes/wireframe-shell.png "wireframe-shell")
->![Responsive Design](documentation/wireframes/wireframe-home.png "wireframe-home")
->![Responsive Design](documentation/wireframes/wireframe-products.png "wireframe-products")
->![Responsive Design](documentation/wireframes/wireframe-profiles.png "wireframe-profiles")
->![Responsive Design](documentation/wireframes/wireframe-cart.png "wireframe-cart")
->![Responsive Design](documentation/wireframes/wireframe-checkout.png "wireframe-checkout")
+>![Wireframe Shell](documentation/wireframes/wireframe-shell.png "wireframe-shell")
+>![Wireframe Home](documentation/wireframes/wireframe-home.png "wireframe-home")
+>![Wireframe Products](documentation/wireframes/wireframe-products.png "wireframe-products")
+>![Wireframe Products](documentation/wireframes/wireframe-profiles.png "wireframe-profiles")
+>![Wireframe Cart](documentation/wireframes/wireframe-cart.png "wireframe-cart")
+>![Wireframe Checkout](documentation/wireframes/wireframe-checkout.png "wireframe-checkout")
 </details>
 
 #### Database
@@ -229,7 +229,7 @@ The project relies on a PostgreSQL database hosted on ElephantSQL. Its web inter
 <br>
 Below you can find the database schema for the site:
 
->![Responsive Design](documentation/database/database-schema.png "database-schema")
+>![Database Schema](documentation/database/database-schema.png "database-schema")
 </details>
 
 <br>
@@ -242,12 +242,23 @@ Below you can find the database schema for the site:
 <details>
 <summary></summary>
 
+![Home](documentation/site_features/home-one.png "home-one")
+
+![Home](documentation/site_features/home-two.png "home-two")
+
+
 [Back to Top](#table-of-contents) | [Jump to Credits](#credits)
 </details>
 
 ### User Verification
 <details>
 <summary></summary>
+
+![register](documentation/site_features/register.png "register")
+
+![login](documentation/site_features/login.png "login")
+
+![logout](documentation/site_features/logout.png "logout")
 
 [Back to Top](#table-of-contents) | [Jump to Credits](#credits)
 </details>
@@ -256,12 +267,18 @@ Below you can find the database schema for the site:
 <details>
 <summary></summary>
 
+![user profile one](documentation/site_features/user-profile-one.png "user-profile-one")
+
+![user profile two](documentation/site_features/user-profile-two.png "user-profile-two")
+
 [Back to Top](#table-of-contents) | [Jump to Credits](#credits)
 </details>
 
 ### Store
 <details>
 <summary></summary>
+
+![products page](documentation/site_features/products-page.png "products-page")
 
 [Back to Top](#table-of-contents) | [Jump to Credits](#credits)
 </details>
@@ -270,33 +287,18 @@ Below you can find the database schema for the site:
 <details>
 <summary></summary>
 
-[Back to Top](#table-of-contents) | [Jump to Credits](#credits)
-</details>
-
-### Product Reviews
-<details>
-<summary></summary>
+![products details](documentation/site_features/products-details.png "products-details")
 
 [Back to Top](#table-of-contents) | [Jump to Credits](#credits)
 </details>
 
-### Wishlists
+### Create/Edit Products
 <details>
 <summary></summary>
 
-[Back to Top](#table-of-contents) | [Jump to Credits](#credits)
-</details>
+![create products](documentation/site_features/create-products.png "create-products")
 
-### Create Products
-<details>
-<summary></summary>
-
-[Back to Top](#table-of-contents) | [Jump to Credits](#credits)
-</details>
-
-### Edit Products
-<details>
-<summary></summary>
+![admin products](documentation/site_features/admin-products.png "admin-products")
 
 [Back to Top](#table-of-contents) | [Jump to Credits](#credits)
 </details>
@@ -305,12 +307,16 @@ Below you can find the database schema for the site:
 <details>
 <summary></summary>
 
+![product statistics](documentation/site_features/product-statistics.png "product-statistics")
+
 [Back to Top](#table-of-contents) | [Jump to Credits](#credits)
 </details>
 
 ### Create Discount Codes
 <details>
 <summary></summary>
+
+![discount code create](documentation/site_features/discount-code-create.png "discount-code-create")
 
 [Back to Top](#table-of-contents) | [Jump to Credits](#credits)
 </details>
@@ -319,12 +325,22 @@ Below you can find the database schema for the site:
 <details>
 <summary></summary>
 
+![newsletters](documentation/site_features/newsletters.png "newsletters")
+
 [Back to Top](#table-of-contents) | [Jump to Credits](#credits)
 </details>
 
 ### FAQ's
 <details>
 <summary></summary>
+
+![about us](documentation/site_features/about-us.png "about-us")
+
+![cookies policy](documentation/site_features/cookies-policy.png "cookies-policy")
+
+![returns policy](documentation/site_features/returns-policy.png "returns-policy")
+
+![contact us](documentation/site_features/contact-us.png "contact-us")
 
 [Back to Top](#table-of-contents) | [Jump to Credits](#credits)
 </details>
@@ -333,12 +349,16 @@ Below you can find the database schema for the site:
 <details>
 <summary></summary>
 
+![contact form submission views](documentation/site_features/contact-form-submission-views.png "contact-form-submission-views")
+
 [Back to Top](#table-of-contents) | [Jump to Credits](#credits)
 </details>
 
 ### Shopping Bag
 <details>
 <summary></summary>
+
+![cart](documentation/site_features/cart.png "cart")
 
 [Back to Top](#table-of-contents) | [Jump to Credits](#credits)
 </details>
@@ -347,6 +367,9 @@ Below you can find the database schema for the site:
 <details>
 <summary></summary>
 
+![checkout one](documentation/site_features/checkout-one.png "checkout-one")
+![Checkout Two](documentation/site_features/checkout-two.png "checkout-two")
+
 [Back to Top](#table-of-contents) | [Jump to Credits](#credits)
 </details>
 
@@ -354,8 +377,22 @@ Below you can find the database schema for the site:
 <details>
 <summary></summary>
 
+![](documentation/site_features/checkout-success.png "")
+
 [Back to Top](#table-of-contents) | [Jump to Credits](#credits)
 </details>
+
+### Responsive Design
+<details>
+<summary></summary>
+
+![mobile one](documentation/site_features/mobile-one.png "mobile-one")
+![mobile-two](documentation/site_features/mobile-two.png "mobile-two")
+
+[Back to Top](#table-of-contents) | [Jump to Credits](#credits)
+</details>
+
+<br>
 
 [Back to Top](#table-of-contents) | [Jump to Credits](#credits)
 
