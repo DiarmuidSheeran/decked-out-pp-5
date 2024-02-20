@@ -202,56 +202,34 @@ Facebook tends to find and take down fake business sites. In the eventuality of 
 #### Colour Pallete
 <details>
 <summary></summary>
+
+I have incorporated a carefully selected color palette throughout the website, aimed at creating a visually appealing design, allowing for a more streamlined and user-friendly experience.
+>![Responsive Design](documentation/color_pallete/color-pallete.png "color-pallete")
 </details>
 
 #### Wireframes
+
 <details>
 <summary></summary>
+
+With the idea for the website planned, I began creating wireframes to depict a more narrowed down outlook for how the differnet pages depending on functionality should look throught the site:
+>![Responsive Design](documentation/wireframes/wireframe-shell.png "wireframe-shell")
+>![Responsive Design](documentation/wireframes/wireframe-home.png "wireframe-home")
+>![Responsive Design](documentation/wireframes/wireframe-products.png "wireframe-products")
+>![Responsive Design](documentation/wireframes/wireframe-profiles.png "wireframe-profiles")
+>![Responsive Design](documentation/wireframes/wireframe-cart.png "wireframe-cart")
+>![Responsive Design](documentation/wireframes/wireframe-checkout.png "wireframe-checkout")
 </details>
 
 #### Database
 <details>
 <summary></summary>
+The project relies on a PostgreSQL database hosted on ElephantSQL. Its web interface features a convenient SQL query console. The Database URL, inclusive of the API key, is securely stored as an environment variable within the Heroku platform.
 
-##### Database Schema
-<details>
-<summary></summary>
-</details>
+<br>
+Below you can find the database schema for the site:
 
-##### Bag App
-<details>
-<summary></summary>
-</details>
-
-##### Checkout App
-<details>
-<summary></summary>
-</details>
-
-##### Home App
-<details>
-<summary></summary>
-</details>
-
-##### Newsletter App
-<details>
-<summary></summary>
-</details>
-
-##### Products App 
-<details>
-<summary></summary>
-</details>
-
-##### Profiles App 
-<details>
-<summary></summary>
-</details>
-
-##### Reviews App
-<details>
-<summary></summary>
-</details>
+>![Responsive Design](documentation/database/database-schema.png "database-schema")
 </details>
 
 <br>
