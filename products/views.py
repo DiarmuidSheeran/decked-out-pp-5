@@ -57,7 +57,7 @@ def all_products(request):
         )
     elif filter_type == 'all_offers':
         products = products.filter(
-            Q(is_on_promotion=True) | Q(clearance=True) | Q(new_arrival=True)
+            Q(is_on_promotion=True) | Q(clearance=True)
         )
 
     if request.GET:

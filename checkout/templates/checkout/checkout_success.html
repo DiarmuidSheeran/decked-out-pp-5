@@ -70,11 +70,11 @@
                         <div class="col-12 col-md-8 text-md-right">
                             {% if item.product.is_on_promotion and item.product.promotion_price %}
                                 <p class="small mb-0 text-black">
-                                    {{ item.quantity }} @ ${{ item.product.promotion_price }} each (Promotion)
+                                    {{ item.quantity }} @ €{{ item.product.promotion_price }} each (Promotion)
                                 </p>
                             {% else %}
                                 <p class="small mb-0 text-black">
-                                    {{ item.quantity }} @ ${{ item.product.price }} each
+                                    {{ item.quantity }} @ €{{ item.product.price }} each
                                 </p>
                             {% endif %}
                         </div>
@@ -210,7 +210,7 @@
                                 <p class="mb-0 text-black font-weight-bold">Order Total</p>
                             </div>
                             <div class="col-12 col-md-8 text-md-right">
-                                <p class="mb-0 text-black">{{ order.order_total }}</p>
+                                <p class="mb-0 text-black">€{{ order.order_total }}</p>
                             </div>
                         </div>
                     {% endif %}
@@ -220,7 +220,7 @@
                             <p class="mb-0 text-black font-weight-bold">Delivery</p>
                         </div>
                         <div class="col-12 col-md-8 text-md-right">
-                            <p class="mb-0 text-black">{{ order.delivery_cost }}</p>
+                            <p class="mb-0 text-black">€{{ order.delivery_cost }}</p>
                         </div>
                     </div>
 
@@ -229,7 +229,7 @@
                             <p class="mb-0 text-black font-weight-bold">Grand Total</p>
                         </div>
                         <div class="col-12 col-md-8 text-md-right">
-                            <p class="mb-0 text-warning">{{ order.grand_total }}</p>
+                            <p class="mb-0 text-warning">€{{ order.grand_total }}</p>
                         </div>
                     </div>
                 </div>
