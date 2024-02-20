@@ -406,17 +406,17 @@
 
 #### - Problem Statement: Can a non auth user make an order?
  ##### Test:
-> process an order with a non auth user (verify on stripe)
+> process an order with a non auth user
  ##### Result:
 > PASS
 
 #### - Problem Statement: Can a logged in user make an order?
  ##### Test:
-> process an order with a logged in user (verify on stripe)
+> process an order with a logged in user
  ##### Result:
 > PASS
 
-#### - Problem Statement: Are user redirected back to checkout success page
+#### - Problem Statement: Are users redirected back to checkout success page after payment
  ##### Test:
 > make order and verify redirect location
  ##### Result:
@@ -428,17 +428,14 @@
  ##### Result:
 > PASS
 
-#### - Problem Statement:
+#### - Problem Statement: Is payment intent created on stripe and has payment succeeded?
  ##### Test:
-> 
+> Add items to the shopping bag and proceed to checkout, enter valid shipping and billing information, enter test card payment details submit the payment.
+Verify if a payment intent is created on the Stripe dashboard.
  ##### Result:
-> 
+> PASS
+![Stripe Payment Succeeded](documentation/stripe/payment-succeeded.png "stripe-payment-succeeded")
 
-#### - Problem Statement:
- ##### Test:
-> 
- ##### Result:
-> 
 
 [Back to Top](#table-of-contents)
 </details>

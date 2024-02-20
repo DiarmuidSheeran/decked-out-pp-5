@@ -70,7 +70,12 @@ def index(request):
                     A confirmation email will be sent to: {email}.'
             )
             return redirect(reverse('home'))
-
+        else:
+            messages.error(
+                request, f'You are already \
+                    signed up to our newsletter!'
+            )
+            return redirect(reverse('home'))
     else:
         form = NewsletterSubscriptionForm()
 
