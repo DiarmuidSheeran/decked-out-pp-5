@@ -242,6 +242,23 @@ Below you can find the database schema for the site:
 <details>
 <summary></summary>
 
+#### Home and Navigation
+
+The top section includes a navigation bar with links to different product categories such as All Products, YuGiOh, Pokémon, and Special Offers. A prominent search bar allows for quick product searches. The website header highlights Free Delivery on Orders Over €50 and includes access to the user account and cart, with a clear display of the cart's current value.
+
+The main content area showcases featured products and promotions through visually appealing banners and product slideshows. It is divided into sections for Best Sellers, Promotions, Clearance Products, and New Arrivals, each with its selection of relevant products in a slideshow.
+
+Each product is presented with an image, name, and price, some with labels like Special Offer or Clearance.
+
+A newsletter sign-up form is also available, inviting visitors to subscribe with their name and email address.
+
+The footer is divided into several sections:
+Contact Us provides the physical address of for the store, an email contact, and social media links.
+Social Links directs to the Facebook page of the store.
+FAQ includes helpful links for customer service aspects such as the Cookie Policy, About Us, Returns Policy, and Contact Us.
+Site Navigation gives a structured list of links to navigate the website, including Home, Shop, Cart, and account-related features.
+
+
 ![Home](documentation/site_features/home-one.png "home-one")
 
 ![Home](documentation/site_features/home-two.png "home-two")
@@ -254,9 +271,21 @@ Below you can find the database schema for the site:
 <details>
 <summary></summary>
 
+#### Registration Page
+
+The registration page features a welcoming message "Welcome to Decked Out! Register below" with an arrow pointing to the form fields. It offers a straightforward process for creating a new user account. The form requires the user's email address, email confirmation, a chosen username, and password (entered twice for confirmation). Below the sign-up button, there's a prompt for users who already have an account to sign in, enhancing user navigation.
+
 ![register](documentation/site_features/register.png "register")
 
+#### Login Page
+
+On the login page, users are greeted with "Welcome to Decked Out! Sign in below" and an image of a Poklemon, adding a touch of familiarity and brand consistency. The form asks for the username or email and password. There's a "Remember Me" checkbox for convenience, and a "Forgot Password?" link for account recovery. The page also provides a direct link back to the home page for easy access.
+
 ![login](documentation/site_features/login.png "login")
+
+#### Logout Page
+
+The logout page is minimalist, providing a clear message "Are you sure you want to sign out?" with options to confirm sign out or cancel and return to the home page.
 
 ![logout](documentation/site_features/logout.png "logout")
 
@@ -267,7 +296,21 @@ Below you can find the database schema for the site:
 <details>
 <summary></summary>
 
+#### Overview
+
+The user profile page of the store is a personalized dashboard that provides users, and admins, with a range of functionalities to manage their account and administrative tasks. Note the admin tools is only available and visable to store owner and users with adminstrative rights.
+
+Upon logging in, the admin user is greeted with a personalized message, "Hi, Boss! You are logged in as an admin (name)", if you are an admin of the site or "Hello, (name)!, EXPLORE YOUR PROFILE OPTIONS BELOW, which adds a friendly touch to the user interface. The profile picture section allows for a customized image upload, enhancing the personalization of the users experience.
+
 ![user profile one](documentation/site_features/user-profile-one.png "user-profile-one")
+
+#### Default Delivery Information, Wishlists and Order History
+
+The second image showcases the user's default delivery information section, where personal address details can be entered and updated.
+
+Adjacent to this is the Wishlist panel, which displays a list of products that the user has added to there wishlist. This feature provides a convenient way for users to keep track of desired items and offers potential for targeted marketing and reminders.
+
+On the right side of the wishlist is the Order History section. This panel provides a detailed list of past orders, including order number, date, items purchased, and order total. This comprehensive overview allows users to track their purchase history and facilitates easy reordering or reference to past transactions.
 
 ![user profile two](documentation/site_features/user-profile-two.png "user-profile-two")
 
@@ -278,6 +321,12 @@ Below you can find the database schema for the site:
 <details>
 <summary></summary>
 
+#### Products Page
+
+The products page of the store is a vibrant and organized catalog displaying a variety of YuGiOh and Pokemon trading card game products. It's designed to be user-friendly, allowing customers to easily browse and add items to the shopping bag.
+The page displays a total of "33 Products" as indicated at the top, with items presented in a grid layout. Each product card includes an image, name, price, and the option to add the item to a wishlist, showcasing the site's interactive features. The products are encased in red borders, which helps to differentiate each item and adds to the overall aesthetic.
+Each product card has a clear, easy-to-use quantity selector and an "Add to Bag" button, simplifying the purchasing process.
+
 ![products page](documentation/site_features/products-page.png "products-page")
 
 [Back to Top](#table-of-contents) | [Jump to Credits](#credits)
@@ -286,6 +335,16 @@ Below you can find the database schema for the site:
 ### Product Details
 <details>
 <summary></summary>
+
+#### Products Details
+
+The product details page on the site is designed to provide a comprehensive look at individual items available for purchase. It is both informative and user-friendly, catering to potential buyers.
+
+The page also caters to those with admin status as it allows an admin to delete the product or edit it.
+
+The page features a clean layout with a large image of the product on the left, and a detailed description and purchase options on the right. The design maintains the site's consistent theme with a red and black color scheme.
+
+Below the product description and purchase options, there is a section for Product Reviews. While there are no reviews yet, the page prompts the user with the message "We see that you have purchased this product. Would you like to leave a review?" This interactive feature encourages customer engagement and feedback. This message only applies to customers who have bought the product and is disabled for users who have already left a review.
 
 ![products details](documentation/site_features/products-details.png "products-details")
 
@@ -296,7 +355,15 @@ Below you can find the database schema for the site:
 <details>
 <summary></summary>
 
+#### Add/Edit Product
+
+The Product Management - Add page is a dedicated interface for admins to add new products to the stores inventory. The page is designed for ease of use, with clear input fields and options.
+When a user navigates to an edit product page the fields are pre filled with the products information and can the fields can be edited to 
+
 ![create products](documentation/site_features/create-products.png "create-products")
+
+The admin Products page serves as a control panel for administrators to manage existing products. It lists all the products in a table format, allowing for quick edits.
+The layout is straightforward, listing products with an ID and Name, along with their Price and Action that can be taken. The page maintains the website's theme with a black and red color scheme.
 
 ![admin products](documentation/site_features/admin-products.png "admin-products")
 
@@ -307,6 +374,11 @@ Below you can find the database schema for the site:
 <details>
 <summary></summary>
 
+The Product Statistics page on Decked Out serves as an analytical tool for adminis to track sales performance. The interface is divided into two main sections: the Product Sales Record and the Recommended for Promotion area.
+The left section of the page is dedicated to the Product Sales Record. This segment provides a detailed list of products with corresponding images, sales data, and purchase frequency. It allows admin users to sort products via the drop-down menu.
+
+The right section, titled Recommended for Promotion, identifies products with a poor sales record that may benefit from additional marketing or discounts. Each product in this section includes a product image, the total sold, and the number of times purchased.
+
 ![product statistics](documentation/site_features/product-statistics.png "product-statistics")
 
 [Back to Top](#table-of-contents) | [Jump to Credits](#credits)
@@ -315,6 +387,15 @@ Below you can find the database schema for the site:
 ### Create Discount Codes
 <details>
 <summary></summary>
+
+#### Create Discount Code
+
+The Discount Code Creation page is a specialized adminis interface within the site designed for creating promotional codes that customers can use to obtain discounts.
+
+The page is split into two primary sections:
+
+Create Discount Code: This area occupies the left side of the screen and is where new discount codes are generated.
+Current Discount Codes: On the right side, it lists all active discount codes, providing a quick reference for existing promotions.
 
 ![discount code create](documentation/site_features/discount-code-create.png "discount-code-create")
 
@@ -325,6 +406,17 @@ Below you can find the database schema for the site:
 <details>
 <summary></summary>
 
+#### Newsletter
+
+The Newsletter Sending page is an admin tool within the Decked Out platform that facilitates communication with customers through sending an email newsletters. This feature is crucial for marketing, customer engagement, and updates.
+The page design is simple and open to further customization in the future. The page has a structure for composing and sending a newsletter. It matches the site's overall color scheme of red, black, and white, maintaining the sites consistency.
+
+The admin user can send an email with to subcribers with an email:
+
+Subject: A text field at the top for the admin to input the subject of the newsletter.
+
+Content: A larger text area below the subject field, providing space to compose the main body of the newsletter.
+
 ![newsletters](documentation/site_features/newsletters.png "newsletters")
 
 [Back to Top](#table-of-contents) | [Jump to Credits](#credits)
@@ -334,11 +426,32 @@ Below you can find the database schema for the site:
 <details>
 <summary></summary>
 
+#### About us
+
+The About Us page is an informational section on the Decked Out website, detailing the store's mission, the value it offers to customers, and reasons to choose its services. It presents a welcoming and professional narrative that highlights the company's passion for trading card games and commitment to customer satisfaction.
+
 ![about us](documentation/site_features/about-us.png "about-us")
+
+#### Cookies Ploicy
+
+The Cookies Policy page provides users with information about how cookies are used on the site website. It explains what cookies are, their purpose for remembering login status, analyzing traffic, and customizing user experience. The page outlines users' choices regarding cookie management through their browser settings and invites users to contact the store for any concerns about the cookies policy.
 
 ![cookies policy](documentation/site_features/cookies-policy.png "cookies-policy")
 
+#### Returns Policy
+
+The Returns Policy page outlines the terms and conditions under which purchases can be returned. It details the eligibility criteria for returns, such as the item being in its original packaging and unused condition, and the process for submitting return requests within a specific time frame.
+
 ![returns policy](documentation/site_features/returns-policy.png "returns-policy")
+
+#### Contact Us
+
+The Contact Us page is a customer service feature designed to facilitate communication between the customers and the store. It includes a simple form where customers can submit their inquiries. The form fields include:
+
+* Name
+* Email
+* Category of inquiry
+* Message text area
 
 ![contact us](documentation/site_features/contact-us.png "contact-us")
 
@@ -349,6 +462,10 @@ Below you can find the database schema for the site:
 <details>
 <summary></summary>
 
+#### Admins contact form submissions page view
+
+The admin contact form submissions view page is a dedicated section on the site where admins can review messages sent by customers or visitors through the site's contact form.
+
 ![contact form submission views](documentation/site_features/contact-form-submission-views.png "contact-form-submission-views")
 
 [Back to Top](#table-of-contents) | [Jump to Credits](#credits)
@@ -357,6 +474,24 @@ Below you can find the database schema for the site:
 ### Shopping Bag
 <details>
 <summary></summary>
+
+#### Shopping Bag
+
+The Shopping Cart page on the site offers customers a clear and concise summary of their selected items before proceeding to checkout.
+
+The page keeps with the website's overall aesthetic, featuring a simple and clean layout. The color scheme of red, black, and white and the cart is organized for ease of review and modification.
+
+* Product Info: This section displays the product's name along with an image and the SKU number for reference.
+
+* Price: The individual price of the product is listed beside the product info.
+* Quantity: Customers can adjust the quantity of the product they wish to purchase with a plus and minus button, and clicking the update button.
+* Remove: There's an option to remove the item entirely from the cart if the customer changes their mind.
+* Subtotal: The subtotal for each product line is displayed, providing clarity on the cost of each type of item in the cart.
+
+On the right side, the cart summary includes:
+
+* Bag Total: The total price of the items currently in the cart.
+* Grand Total: The final amount to be paid, which includes additional charges or discounts. It also prompts the customer that they could get free delivery by spending just a little more, incentivizing further purchases.
 
 ![cart](documentation/site_features/cart.png "cart")
 
@@ -367,7 +502,31 @@ Below you can find the database schema for the site:
 <details>
 <summary></summary>
 
+#### Checkout
+
+The checkout page of the site is where customers can finalize their purchases. It's designed to provide a summary of the items in the cart, calculate totals, and gather payment and delivery information.
+
+The customers can enter:
+
+* Personal Information: Customers are prompted to enter their full name, email, and contact number.
+* Delivery Address: There is a series of fields for address details, including street, city, and postal code.
+* Payment Information: A secure field for entering credit card details is provided, though the 
+
+The right hand side shows the customer:
+
+* Product Listing: Shows an image and description of the product(s) being purchased.
+* Pricing Details: Displays the price, quantity, and subtotal for each item.
+* Promotional Code: There's an option to enter a discount code, with an "Apply Code" button next to it.
+* Order Totals: A breakdown of the order total, including any discounts applied and the delivery fee, leading to the grand total.
+
 ![checkout one](documentation/site_features/checkout-one.png "checkout-one")
+
+The second image shows the checkout process after a discount code has been applied:
+
+* Discount Acknowledgment: The page acknowledges the applied discount code "gift" and indicates the amount saved.
+* Adjusted Pricing: The order total is adjusted to reflect the discount, with the new grand total prominently displayed.
+* Remove Discount Option: There's a feature to remove the discount if the customer decides not to use it.
+
 ![Checkout Two](documentation/site_features/checkout-two.png "checkout-two")
 
 [Back to Top](#table-of-contents) | [Jump to Credits](#credits)
@@ -377,7 +536,24 @@ Below you can find the database schema for the site:
 <details>
 <summary></summary>
 
-![](documentation/site_features/checkout-success.png "")
+#### Checkout Success/Order History
+
+The Checkout Success page is the final confirmation step of the customers shopping experience, reassuring the customer that their order has been successfully processed.
+
+The page provides a detailed summary of the order, including:
+
+* Order Number: A unique identifier for the customer's transaction.
+* Order Date: The exact date and time when the order was placed.
+* Order Details: Lists the item(s) purchased, with quantity and price per item.
+* Discounts (if applicable): If a discount code was applied, it shows the code used and the percentage of the discount.
+* Delivery Information: The full name and address to which the order will be delivered.
+* Billing Information: A breakdown of the order total, showing any discounts applied, delivery charges, and the grand total paid.
+
+A confirmation email is sent to user on successfull completion of an order.
+
+The User can also access this page in the future by checking their order history in their profile.
+
+![checkout success](documentation/site_features/checkout-success.png "checkout-success")
 
 [Back to Top](#table-of-contents) | [Jump to Credits](#credits)
 </details>
@@ -385,6 +561,18 @@ Below you can find the database schema for the site:
 ### Responsive Design
 <details>
 <summary></summary>
+
+#### Responsive Design Approach
+
+Key features of the responsive design include:
+
+* A compact navigation bar that collapses into a hamburger menu, making it easy to access different sections of the site without overcrowding the screen.
+* Prominent display of special offers, such as the "Opening Special" with the discount code 'GIFT', which remains clearly visible even on a smaller display.
+* The main branding elements, like the Decked Out logo and the Pokémon banner, are resized appropriately to fit within the confines of a mobile screen while still maintaining their visual impact.
+* Product images and descriptions in the "Best Sellers" section are scaled down to fit the mobile format without sacrificing detail, ensuring that the products are still attractively presented.
+* Calls to action, such as the "Shop Now" button, are prominently placed and sized for easy tapping with a finger, which is critical for the mobile shopping experience.
+
+The mobile-responsive design of the site is to demonstrates a commitment to accessibility and a good user experience across different devices. It allows users to interact with the site effectively.
 
 ![mobile one](documentation/site_features/mobile-one.png "mobile-one")
 ![mobile-two](documentation/site_features/mobile-two.png "mobile-two")
