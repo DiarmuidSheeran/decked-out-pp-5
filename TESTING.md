@@ -20,6 +20,8 @@
 
 ## Automated Testing 
 
+### Due to time constraints imposed by the project deadline, automated testing was not implemented in this project. However, it's crucial to acknowledge the significance of automated testing in real-world applications. Automated testing not only ensures the reliability and stability of the codebase but also helps in identifying and mitigating potential issues early in the development cycle, thereby saving time and resources in the long run. Recognizing its importance, I am fully committed to integrating automated testing into this project once the grading process is complete. Furthermore, I am eager to incorporate automated testing practices into future code that I develop, as I understand its pivotal role in delivering high-quality and maintainable software solutions.
+
 [Back to Top](#table-of-contents)
 
 ## Manual Testing

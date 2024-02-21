@@ -735,8 +735,61 @@ The mobile-responsive design of the site is to demonstrates a commitment to acce
 
 ## Future Features
 
+After the grading process, I envision creating some enhancements to my e-commerce platform that will elevate the user experience and drive engagement. 
+
+* Firstly, I aim to implement a more sophisticated newsletter template, designed to captivate users' attention and deliver personalized content tailored to their interests. This will involve incorporating dynamic elements and leveraging data analytics to optimize newsletter effectiveness.
+
+* Additionally, I plan to introduce a robust messaging system to streamline communication with users, particularly in response to contact form submissions. This feature will enable prompt and efficient resolution of inquiries and feedback, enhancing customer satisfaction and fostering positive interactions.
+
+* To foster customer loyalty and incentivize repeat purchases, I intend to develop a points-based loyalty program. Users will earn points for transactions, which can be redeemed for discounts or exclusive rewards, thereby cultivating a loyal customer base and driving sales.
+
+* Expanding on our discount code options, I aim to introduce a variety of new codes, including fixed-rate discounts and free delivery codes, in addition to the existing percentage-based discounts. This will provide users with more flexibility and choice when redeeming promotions, further enhancing their shopping experience.
+
+* Lastly, I aim to enhance the product options system for administrators, enabling them to manage product variations, such as different card sets, rarities, and conditions, more comprehensively. This will empower administrators to provide users with a diverse range of choices and ensure accurate product representation on the platform.
+
 [Back to Top](#table-of-contents) | [Jump to Credits](#credits)
 
 ## Credits
 
+1. **Books**
+    * [Python Crash Course for Begginers](https://www.amazon.co.uk/Python-Crash-Course-2nd-Edition/dp/1593279280/ref=sr_1_3?crid=1NT3V3JDTP1FO&keywords=python+programming+for+beginners&qid=1699623185&sprefix=python%2Caps%2C51&sr=8-3)
+
+    * [Django 3 By Example third edition](https://www.amazon.co.uk/Django-Example-powerful-reliable-applications/dp/1838981950/ref=sr_1_2?crid=TAF89G4S8IY1&dib=eyJ2IjoiMSJ9.cCwPhr961_YSYkz3ppvf1BAflFg5qHa8O6kmMOT4XRf1VSRoOG1QeXU5ICFLzBg3JJc2XgCed-15QXezh03-ivAA_xSw3vbzDGu05P5sY8wRJllMj8VnTx-jF7z5CLkKwf_e3s0IdIO4zwz6UuvXNE7rxT1CufUPuuYJdivtcSZ8Rpgaq-Nhc164363mT8uvxdOtY6ei1ZAScPNrYVh4zJFhTdZTWm6RS2WP1k7VHLY.CVy7NirQpWPCelLq7jDlS_rSayfIoLshu5Aui4rar5k&dib_tag=se&keywords=django+by+example&qid=1708474722&sprefix=django+by+example%2Caps%2C47&sr=8-2-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1)
+
+2. **Online Resources**
+    * [Code Institutes Course Content](https://codeinstitute.net/ie/)
+
+    * [W3 School](https://www.w3schools.com/)
+
+    * [Stackoverflow](https://stackoverflow.com/)
+
+    * [Bootstrap](https://getbootstrap.com/)
+
+    * [Coolors](https://coolors.co/)
+
+    * [Codemy's Online Courses](https://codemy.com/)
+
+    * [Django Documentaion](https://docs.djangoproject.com/en/5.0/)
+
+3. **Video Resources**
+    * [Codemy Django e-commerce](https://www.youtube.com/playlist?list=PLCC34OHNcOtpRfBYk-8y0GMO4i1p1zn50)
+
+    * [Dennis Ivy's Django Tutorial Youtube Playlist](https://www.youtube.com/watch?v=xv_bwpA_aEA&list=PL-51WBLyFTg2vW-_6XBoUpE7vpmoR3ztO)
+
+    * [Dennis Ivys Django e-commerce tutorial](https://www.youtube.com/playlist?list=PL-51WBLyFTg0omnamUjL1TCVov7yDTRng)
+
+4. **Images**
+    * [Yugioh Product Images](https://www.yugioh-card.com/en/)
+    * [Pokemon Product Images](https://www.pokemoncenter.com/)
+
+
 [Back to Top](#table-of-contents)
+
+## Acknowledgements
+
+* I extend my most sencire gratitude to my course leader, **Alan Bushell**, for his invaluable support and guidance throughout the project and the year.
+His insightful suggestions and unwavering assistance were instrumental in steering the project to successful completion. Thank you sincerely for your contribution.
+
+* I extend my sincere appreciation to the **tutor support team at the Code Institute** for their exceptional assistance throughout the past year. Their unwavering dedication in resolving issues and, most importantly, aiding in my comprehension of challenging concepts has been invaluable. Thank you for your unwavering support and guidance.
+
+* I am immensely grateful to the dedicated team at the **Code Institute** for their unwavering support and the wealth of valuable content provided over the past year. Your commitment and expertise have been invaluable on this journey. Thank you for your continuous support.
