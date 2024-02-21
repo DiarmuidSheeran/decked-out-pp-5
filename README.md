@@ -33,10 +33,7 @@
     - [User Profiles](#user-profiles)
     - [Store](#store)
     - [Product Details](#product-details)
-    - [Product Reviews](#product-reviews)
-    - [Wishlists](#wishlists)
-    - [Create Products](#create-products)
-    - [Edit Products](#edit-products)
+    - [Create and Edit Products](#create-and-edit-products)
     - [View Product Statistics](#view-product-statistics)
     - [Create Discount Codes](#create-discount-codes)
     - [Send Newsletters](#send-newsletters)
@@ -45,6 +42,8 @@
     - [Shopping Bag](#shopping-bag)
     - [Checkout](#checkout)
     - [Checkout Success and Order History](#checkout-success-and-order-history)
+    - [Responsive Design](#responsive-design)
+
 6. [Testing](#testing)
 7. [Technologies Used](#technologies-used)
     - [Languages](#languages)
@@ -53,6 +52,7 @@
 8. [Deployment](#deployment)
 9. [Future Features](#future-features)
 10. [Credits](#credits)
+11. [Acknowledgements](#acknowledgements)
 
 ## Site Description
 * The goal of Decked out is to be an e-commerce store that allows users to purchase YuGioh and Pokemon products. 
@@ -351,7 +351,7 @@ Below the product description and purchase options, there is a section for Produ
 [Back to Top](#table-of-contents) | [Jump to Credits](#credits)
 </details>
 
-### Create/Edit Products
+### Create and Edit Products
 <details>
 <summary></summary>
 
@@ -793,3 +793,5 @@ His insightful suggestions and unwavering assistance were instrumental in steeri
 * I extend my sincere appreciation to the **tutor support team at the Code Institute** for their exceptional assistance throughout the past year. Their unwavering dedication in resolving issues and, most importantly, aiding in my comprehension of challenging concepts has been invaluable. Thank you for your unwavering support and guidance.
 
 * I am immensely grateful to the dedicated team at the **Code Institute** for their unwavering support and the wealth of valuable content provided over the past year. Your commitment and expertise have been invaluable on this journey. Thank you for your continuous support.
+
+[Back to Top](#table-of-contents)

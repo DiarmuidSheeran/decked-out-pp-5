@@ -14,245 +14,245 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-12 d-flex justify-content-center align-items-center">
-                <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <a href="{% url 'products' %}?category=yugioh-booster-box,yugioh-booster-pack,yugioh-deck,yugioh-tin,yugioh-special-edition,yugioh-accessories">
-                                <img src="{{ MEDIA_URL }}yugi-and-kaiba.png" class="img-fluid" alt="YuGiOh Logo" style="height: 200px;" loading="lazy">
-                            </a>
-                        </div>
-                        <div class="carousel-item">
-                            <a href="{% url 'products' %}?category=pokemon-booster-box,pokemon-booster-pack,pokemon-decks,pokemon-tin,pokemon-special-edition,pokemon-toys,pokemon-accessories">
-                                <img src="{{ MEDIA_URL }}pokemon-logo-pikachu.png" class="img-fluid" alt="Pokemon Logo" style="height: 200px;" loading="lazy">
-                            </a>
-                        </div>
-                        <div class="carousel-item">
-                            <a href="{% url 'products' %}?filter_type=all_offers">
-                                <img src="{{ MEDIA_URL }}special-offer.png" class="img-fluid" alt="Special Offer" style="height: 200px;" loading="lazy">
-                            </a>
-                        </div>
+<div class="container">
+    <div class="row">
+        <div class="col-12 d-flex justify-content-center align-items-center">
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <a href="{% url 'products' %}?category=yugioh-booster-box,yugioh-booster-pack,yugioh-deck,yugioh-tin,yugioh-special-edition,yugioh-accessories">
+                            <img src="{{ MEDIA_URL }}yugi-and-kaiba.png" class="img-fluid" alt="YuGiOh Logo" style="height: 200px;" loading="lazy">
+                        </a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="{% url 'products' %}?category=pokemon-booster-box,pokemon-booster-pack,pokemon-decks,pokemon-tin,pokemon-special-edition,pokemon-toys,pokemon-accessories">
+                            <img src="{{ MEDIA_URL }}pokemon-logo-pikachu.png" class="img-fluid" alt="Pokemon Logo" style="height: 200px;" loading="lazy">
+                        </a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="{% url 'products' %}?filter_type=all_offers">
+                            <img src="{{ MEDIA_URL }}special-offer.png" class="img-fluid" alt="Special Offer" style="height: 200px;" loading="lazy">
+                        </a>
                     </div>
                 </div>
-                <a class="carousel-control-prev mt-4" href="#carouselExampleSlidesOnly" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon bg-danger border border-light" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next mt-4" href="#carouselExampleSlidesOnly" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon bg-danger border border-light" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
             </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-12 text-center">
-                <a href="{% url 'home' %}"><h2 class="logo-font text-center text-white mt-2"><strong>Decked Out</strong></h2></a>
-                <p class="logo-font text-center text-white font-italic">YuGioH! and Pokemon TCG store</p>
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-12  text-center mb-4">
-                <a href="{% url 'products' %}" class="shop-now-button btn btn-md rounded-0 text-uppercase py-3 border border-light mb-4" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">
-                    <strong class="logo-font">Shop Now</strong>
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 col-lg-3 text-center mb-4">
-                <div class="card h-100 product-card">
-                    <h3 class="card-header mb-2 text-white logo-font" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">Best Sellers</h3>
-                    <div id="bestSeller" class="carousel slide" data-ride="carousel" data-interval="10000">
-                        <div class="carousel-inner">
-                            {% for product in best_sellers %}
-                                <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                                    <div class="card-body pb-0">
-                                        <h4 class="text-black">{{ product.name }}</h4>
-                                        <a href="{% url 'product_detail' product.id %}">
-                                            <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
-                                        </a>
-                                    </div>
-                                    <div class="card-footer pb-0">
-                                        <p class="lead mb-0 text-center font-weight-bold mb-4" style="color:black">
-                                            {% if product.is_on_promotion and product.promotion_price and product.clearance %}
-                                                <span class="original-price text-muted"><del>€{{ product.price }}</del></span>
-                                                <span class="promotion-price text-danger">€{{ product.promotion_price }}</span>
-                                                
-                                                <span class="badge badge-warning text-black">Clearance!</span>
-                                            {% elif product.is_on_promotion and product.promotion_price %}
-                                                <span class="original-price text-muted"><del>€{{ product.price }}</del></span>
-                                                <span class="promotion-price text-danger">€{{ product.promotion_price }}</span>
-                                                
-                                                <span class="badge badge-danger text-warning">Special Offer!</span>
-                                            {% else %}
-                                                Only €{{ product.price }}
-                                            {% endif %}
-                                        </p>
-                                    </div>
-                                </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                    <a class="carousel-control-prev" href="#bestSeller" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon bg-danger border border-dark" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#bestSeller" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon bg-danger border border-dark" aria-hidden="true"></span>
-                        <span class="sr-only text-warning">Next</span>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 text-center mb-4">
-                <div class="card h-100 product-card">
-                    <h3 class="card-header mb-2 text-white logo-font" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">Promotions</h3>
-                    <div id="specialOffer" class="carousel slide" data-ride="carousel" data-interval="10000">
-                        <div class="carousel-inner">
-                            {% for product in special_offer_products %}
-                                <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                                    <div class="card-body pb-0">
-                                        <h4 class="text-black">{{ product.name }}</h4>
-                                        <a href="{% url 'product_detail' product.id %}">
-                                            <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
-                                        </a>
-                                    </div>
-                                    <div class="card-footer pb-0">
-                                        <p class="lead mb-0 text-center font-weight-bold mb-4" style="color:black">
-                                            {% if product.is_on_promotion and product.promotion_price and product.clearance %}
-                                                <span class="original-price text-muted"><del>€{{ product.price }}</del></span>
-                                                <span class="promotion-price text-danger">€{{ product.promotion_price }}</span>
-                                                
-                                                <span class="badge badge-warning text-black">Clearance!</span>
-                                            {% elif product.is_on_promotion and product.promotion_price %}
-                                                <span class="original-price text-muted"><del>€{{ product.price }}</del></span>
-                                                <span class="promotion-price text-danger">€{{ product.promotion_price }}</span>
-                                                
-                                                <span class="badge badge-danger text-warning">Special Offer!</span>
-                                            {% else %}
-                                                Only €{{ product.price }}
-                                            {% endif %}
-                                        </p>
-                                    </div>
-                                </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                    <a class="carousel-control-prev" href="#specialOffer" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon bg-danger border border-dark" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#specialOffer" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon bg-danger border border-dark" aria-hidden="true"></span>
-                        <span class="sr-only text-warning">Next</span>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 text-center mb-4">
-                <div class="card h-100 product-card">
-                    <h3 class="card-header mb-2 text-white logo-font" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">Clearance Products</h3>
-                    <div id="clearance" class="carousel slide" data-ride="carousel" data-interval="10000">
-                        <div class="carousel-inner">
-                            {% for product in clearance_products %}
-                                <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                                    <div class="card-body pb-0">
-                                        <h4 class="text-black">{{ product.name }}</h4>
-                                        <a href="{% url 'product_detail' product.id %}">
-                                            <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
-                                        </a>
-                                    </div>
-                                    <div class="card-footer pb-0">
-                                        <p class="lead mb-0 text-center font-weight-bold mb-4" style="color:black">
-                                            {% if product.is_on_promotion and product.promotion_price and product.clearance %}
-                                                <span class="original-price text-muted"><del>€{{ product.price }}</del></span>
-                                                <span class="promotion-price text-danger">€{{ product.promotion_price }}</span>
-                                                
-                                                <span class="badge badge-warning text-black">Clearance!</span>
-                                            {% elif product.is_on_promotion and product.promotion_price %}
-                                                <span class="original-price text-muted"><del>€{{ product.price }}</del></span>
-                                                <span class="promotion-price text-danger">€{{ product.promotion_price }}</span>
-                                                
-                                                <span class="badge badge-danger text-warning">Special Offer!</span>
-                                            {% else %}
-                                                Only €{{ product.price }}
-                                            {% endif %}
-                                        </p>
-                                    </div>
-                                </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                    <a class="carousel-control-prev" href="#clearance" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon bg-danger border border-dark" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#clearance" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon bg-danger border border-dark" aria-hidden="true"></span>
-                        <span class="sr-only text-warning">Next</span>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 text-center mb-4">
-                <div class="card h-100 product-card">
-                    <h3 class="card-header mb-2 text-white logo-font" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">New Arrivals</h3>
-                    <div id="new" class="carousel slide" data-ride="carousel" data-interval="10000">
-                        <div class="carousel-inner">
-                            {% for product in new_arrival_products %}
-                                <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                                    <div class="card-body pb-0">
-                                        <h4 class="text-black">{{ product.name }}</h4>
-                                        <a href="{% url 'product_detail' product.id %}">
-                                            <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
-                                        </a>
-                                    </div>
-                                    <div class="card-footer pb-0">
-                                        <p class="lead mb-0 text-center font-weight-bold mb-4" style="color:black">
-                                            {% if product.is_on_promotion and product.promotion_price and product.clearance %}
-                                                <span class="original-price text-muted"><del>€{{ product.price }}</del></span>
-                                                <span class="promotion-price text-danger">€{{ product.promotion_price }}</span>
-                                                
-                                                <span class="badge badge-warning text-black">Clearance!</span>
-                                            {% elif product.is_on_promotion and product.promotion_price %}
-                                                <span class="original-price text-muted"><del>€{{ product.price }}</del></span>
-                                                <span class="promotion-price text-danger">€{{ product.promotion_price }}</span>
-                                                
-                                                <span class="badge badge-danger text-warning">Special Offer!</span>
-                                            {% else %}
-                                                Only €{{ product.price }}
-                                            {% endif %}
-                                        </p>
-                                    </div>
-                                </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                    <a class="carousel-control-prev" href="#new" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon bg-danger border border-dark" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#new" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon bg-danger border border-dark" aria-hidden="true"></span>
-                        <span class="sr-only text-warning">Next</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="row justify-content-center align-items-center">
-            <div class="col-md-4">&nbsp;</div>
-            <div class="col-md-4 border border-light p-4 mb-2 mt-2" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">
-                <h3 class="logo-font text-center">Sign Up to our Newsletter <i class="fa-solid fa-envelope fa-beat-fade" style="color: #ffffff;"></i></h3>
-                <form method="post">
-                    {% csrf_token %}
-                    {{ form|crispy }}
-                    <button type="submit" class="bg-warning border border-dark btn-lg">Subscribe</button>
-                </form>
-            </div>
-            <div class="col-md-2">
-                <img src="{{ MEDIA_URL }}dragonite.png" alt="Dragonite" class="img-fluid ml-4" loading="lazy">
-            </div>
-            <div class="col-md-2">&nbsp;</div>
+            <a class="carousel-control-prev mt-4" href="#carouselExampleSlidesOnly" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon bg-danger border border-light" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next mt-4" href="#carouselExampleSlidesOnly" role="button" data-slide="next">
+                <span class="carousel-control-next-icon bg-danger border border-light" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
     </div>
+    <br>
+    <div class="row">
+        <div class="col-12 text-center">
+            <a href="{% url 'home' %}"><h2 class="logo-font text-center text-white mt-2"><strong>Decked Out</strong></h2></a>
+            <p class="logo-font text-center text-white font-italic">YuGioH! and Pokemon TCG store</p>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-12  text-center mb-4">
+            <a href="{% url 'products' %}" class="shop-now-button btn btn-md rounded-0 text-uppercase py-3 border border-light mb-4" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">
+                <strong class="logo-font">Shop Now</strong>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-lg-3 text-center mb-4">
+            <div class="card h-100 product-card">
+                <h3 class="card-header mb-2 text-white logo-font" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">Best Sellers</h3>
+                <div id="bestSeller" class="carousel slide" data-ride="carousel" data-interval="10000">
+                    <div class="carousel-inner">
+                        {% for product in best_sellers %}
+                            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                <div class="card-body pb-0">
+                                    <h4 class="text-black">{{ product.name }}</h4>
+                                    <a href="{% url 'product_detail' product.id %}">
+                                        <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
+                                    </a>
+                                </div>
+                                <div class="card-footer pb-0">
+                                    <p class="lead mb-0 text-center font-weight-bold mb-4" style="color:black">
+                                        {% if product.is_on_promotion and product.promotion_price and product.clearance %}
+                                            <span class="original-price text-muted"><del>€{{ product.price }}</del></span>
+                                            <span class="promotion-price text-danger">€{{ product.promotion_price }}</span>
+                                            
+                                            <span class="badge badge-warning text-black">Clearance!</span>
+                                        {% elif product.is_on_promotion and product.promotion_price %}
+                                            <span class="original-price text-muted"><del>€{{ product.price }}</del></span>
+                                            <span class="promotion-price text-danger">€{{ product.promotion_price }}</span>
+                                            
+                                            <span class="badge badge-danger text-warning">Special Offer!</span>
+                                        {% else %}
+                                            Only €{{ product.price }}
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#bestSeller" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon bg-danger border border-dark" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#bestSeller" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon bg-danger border border-dark" aria-hidden="true"></span>
+                    <span class="sr-only text-warning">Next</span>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3 text-center mb-4">
+            <div class="card h-100 product-card">
+                <h3 class="card-header mb-2 text-white logo-font" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">Promotions</h3>
+                <div id="specialOffer" class="carousel slide" data-ride="carousel" data-interval="10000">
+                    <div class="carousel-inner">
+                        {% for product in special_offer_products %}
+                            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                <div class="card-body pb-0">
+                                    <h4 class="text-black">{{ product.name }}</h4>
+                                    <a href="{% url 'product_detail' product.id %}">
+                                        <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
+                                    </a>
+                                </div>
+                                <div class="card-footer pb-0">
+                                    <p class="lead mb-0 text-center font-weight-bold mb-4" style="color:black">
+                                        {% if product.is_on_promotion and product.promotion_price and product.clearance %}
+                                            <span class="original-price text-muted"><del>€{{ product.price }}</del></span>
+                                            <span class="promotion-price text-danger">€{{ product.promotion_price }}</span>
+                                            
+                                            <span class="badge badge-warning text-black">Clearance!</span>
+                                        {% elif product.is_on_promotion and product.promotion_price %}
+                                            <span class="original-price text-muted"><del>€{{ product.price }}</del></span>
+                                            <span class="promotion-price text-danger">€{{ product.promotion_price }}</span>
+                                            
+                                            <span class="badge badge-danger text-warning">Special Offer!</span>
+                                        {% else %}
+                                            Only €{{ product.price }}
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#specialOffer" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon bg-danger border border-dark" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#specialOffer" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon bg-danger border border-dark" aria-hidden="true"></span>
+                    <span class="sr-only text-warning">Next</span>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3 text-center mb-4">
+            <div class="card h-100 product-card">
+                <h3 class="card-header mb-2 text-white logo-font" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">Clearance Products</h3>
+                <div id="clearance" class="carousel slide" data-ride="carousel" data-interval="10000">
+                    <div class="carousel-inner">
+                        {% for product in clearance_products %}
+                            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                <div class="card-body pb-0">
+                                    <h4 class="text-black">{{ product.name }}</h4>
+                                    <a href="{% url 'product_detail' product.id %}">
+                                        <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
+                                    </a>
+                                </div>
+                                <div class="card-footer pb-0">
+                                    <p class="lead mb-0 text-center font-weight-bold mb-4" style="color:black">
+                                        {% if product.is_on_promotion and product.promotion_price and product.clearance %}
+                                            <span class="original-price text-muted"><del>€{{ product.price }}</del></span>
+                                            <span class="promotion-price text-danger">€{{ product.promotion_price }}</span>
+                                            
+                                            <span class="badge badge-warning text-black">Clearance!</span>
+                                        {% elif product.is_on_promotion and product.promotion_price %}
+                                            <span class="original-price text-muted"><del>€{{ product.price }}</del></span>
+                                            <span class="promotion-price text-danger">€{{ product.promotion_price }}</span>
+                                            
+                                            <span class="badge badge-danger text-warning">Special Offer!</span>
+                                        {% else %}
+                                            Only €{{ product.price }}
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#clearance" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon bg-danger border border-dark" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#clearance" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon bg-danger border border-dark" aria-hidden="true"></span>
+                    <span class="sr-only text-warning">Next</span>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3 text-center mb-4">
+            <div class="card h-100 product-card">
+                <h3 class="card-header mb-2 text-white logo-font" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">New Arrivals</h3>
+                <div id="new" class="carousel slide" data-ride="carousel" data-interval="10000">
+                    <div class="carousel-inner">
+                        {% for product in new_arrival_products %}
+                            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                <div class="card-body pb-0">
+                                    <h4 class="text-black">{{ product.name }}</h4>
+                                    <a href="{% url 'product_detail' product.id %}">
+                                        <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
+                                    </a>
+                                </div>
+                                <div class="card-footer pb-0">
+                                    <p class="lead mb-0 text-center font-weight-bold mb-4" style="color:black">
+                                        {% if product.is_on_promotion and product.promotion_price and product.clearance %}
+                                            <span class="original-price text-muted"><del>€{{ product.price }}</del></span>
+                                            <span class="promotion-price text-danger">€{{ product.promotion_price }}</span>
+                                            
+                                            <span class="badge badge-warning text-black">Clearance!</span>
+                                        {% elif product.is_on_promotion and product.promotion_price %}
+                                            <span class="original-price text-muted"><del>€{{ product.price }}</del></span>
+                                            <span class="promotion-price text-danger">€{{ product.promotion_price }}</span>
+                                            
+                                            <span class="badge badge-danger text-warning">Special Offer!</span>
+                                        {% else %}
+                                            Only €{{ product.price }}
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#new" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon bg-danger border border-dark" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#new" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon bg-danger border border-dark" aria-hidden="true"></span>
+                    <span class="sr-only text-warning">Next</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-4">&nbsp;</div>
+        <div class="col-md-4 border border-light p-4 mb-2 mt-2" style="background-image: linear-gradient(45deg, #2c2c2c, #ce1313);">
+            <h3 class="logo-font text-center">Sign Up to our Newsletter <i class="fa-solid fa-envelope fa-beat-fade" style="color: #ffffff;"></i></h3>
+            <form method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="bg-warning border border-dark btn-lg">Subscribe</button>
+            </form>
+        </div>
+        <div class="col-md-2">
+            <img src="{{ MEDIA_URL }}dragonite.png" alt="Dragonite" class="img-fluid ml-4" loading="lazy">
+        </div>
+        <div class="col-md-2">&nbsp;</div>
+    </div>
+</div>
 {% endblock %}
