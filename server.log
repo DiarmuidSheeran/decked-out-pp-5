@@ -1,0 +1,19 @@
+/home/vscode/.local/lib/python3.11/site-packages/django_countries/fields.py:4: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/home/vscode/.local/lib/python3.11/site-packages/django_countries/fields.py:4: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+Watching for file changes with StatReloader
+[08/Nov/2025 22:33:34] "GET / HTTP/1.1" 200 29194
+[08/Nov/2025 22:35:25] "GET / HTTP/1.1" 200 29194
+/workspaces/decked-out-pp-5/bag/contexts.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+November 08, 2025 - 22:33:28
+Django version 3.2.23, using settings 'decked_out.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+/home/vscode/.local/lib/python3.11/site-packages/django_countries/fields.py:4: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+Watching for file changes with StatReloader
+[08/Nov/2025 23:15:06] "GET /products/ HTTP/1.1" 200 330140

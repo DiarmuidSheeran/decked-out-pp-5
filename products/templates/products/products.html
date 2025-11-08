@@ -65,7 +65,11 @@
                             {% elif product.is_on_promotion%}
                             <span class="badge badge-danger" style="width: 20%; margin-top: 5px; margin-left: 5px;">Sale!</span>   
                             {% endif %}
-                            {% if product.image %}
+                            {% if product.image_url %}
+                            <a href="{% url 'product_detail' product.id %}">
+                                <img class="card-img-top img-fluid" src="{{ product.image_url }}" alt="{{ product.name }}">
+                            </a>
+                            {% elif product.image %}
                             <a href="{% url 'product_detail' product.id %}">
                                 <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
                             </a>

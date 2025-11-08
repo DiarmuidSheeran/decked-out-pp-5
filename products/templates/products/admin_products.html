@@ -33,7 +33,7 @@
                             <br><br>
                             {% if product.image %}
                             <a href="{% url 'product_detail' product.id %}">
-                                    <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 30%; height: 30%;">
+                                    <img class="card-img-top img-fluid" src="{% if product.image_url %}{{ product.image_url }}{% elif product.image %}{{ product.image.url }}{% else %}{{ MEDIA_URL }}no-product-image.png{% endif %}" alt="{{ product.name }}" style="width: 30%; height: 30%;">
                                 </a>
                             {% else %}
                                 <a href="">

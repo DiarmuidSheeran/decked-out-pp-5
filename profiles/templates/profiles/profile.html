@@ -116,7 +116,7 @@
                                     </td>
                                     <td>
                                         <a href="{% url 'product_detail' product.id %}" style="text-decoration: none; color: #fff;">
-                                            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid" style="width: 100px; height: 100px;">
+                                            <img src="{% if product.image_url %}{{ product.image_url }}{% elif product.image %}{{ product.image.url }}{% else %}{{ MEDIA_URL }}no-product-image.png{% endif %}" alt="{{ product.name }}" class="img-fluid" style="width: 100px; height: 100px;">
                                         </a>
                                     </td>
                                 </tr>

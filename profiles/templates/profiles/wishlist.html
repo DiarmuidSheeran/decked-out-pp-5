@@ -30,7 +30,7 @@
                         <div class="product-image">
                             <a href="{% url 'product_detail' product.id %}" style="text-decoration: none; color: #fff;">
                                 <p class="product-name">{{ product.name }}</p>
-                                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid" style="width: 100px; height: 100px;">
+                                <img src="{% if product.image_url %}{{ product.image_url }}{% elif product.image %}{{ product.image.url }}{% else %}{{ MEDIA_URL }}no-product-image.png{% endif %}" alt="{{ product.name }}" class="img-fluid" style="width: 100px; height: 100px;">
                             </a>
                             <form class="d-inline like-form" action="{% url 'wishlist' sku=product.sku %}" method="POST" data-product-sku="{{ product.sku }}">
                                 {% csrf_token %}

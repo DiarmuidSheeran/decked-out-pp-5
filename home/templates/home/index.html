@@ -72,7 +72,7 @@
                                 <div class="card-body pb-0">
                                     <h4 class="text-black">{{ product.name }}</h4>
                                     <a href="{% url 'product_detail' product.id %}">
-                                        <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
+                                        <img class="img-fluid" src="{% if product.image_url %}{{ product.image_url }}{% elif product.image %}{{ product.image.url }}{% else %}{{ MEDIA_URL }}no-product-image.png{% endif %}" alt="{{ product.name }}" loading="lazy">
                                     </a>
                                 </div>
                                 <div class="card-footer pb-0">
@@ -116,7 +116,7 @@
                                 <div class="card-body pb-0">
                                     <h4 class="text-black">{{ product.name }}</h4>
                                     <a href="{% url 'product_detail' product.id %}">
-                                        <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
+                                        <img class="img-fluid" src="{% if product.image_url %}{{ product.image_url }}{% elif product.image %}{{ product.image.url }}{% else %}{{ MEDIA_URL }}no-product-image.png{% endif %}" alt="{{ product.name }}" loading="lazy">
                                     </a>
                                 </div>
                                 <div class="card-footer pb-0">
@@ -160,7 +160,7 @@
                                 <div class="card-body pb-0">
                                     <h4 class="text-black">{{ product.name }}</h4>
                                     <a href="{% url 'product_detail' product.id %}">
-                                        <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
+                                        <img class="img-fluid" src="{% if product.image_url %}{{ product.image_url }}{% elif product.image %}{{ product.image.url }}{% else %}{{ MEDIA_URL }}no-product-image.png{% endif %}" alt="{{ product.name }}" loading="lazy">
                                     </a>
                                 </div>
                                 <div class="card-footer pb-0">
@@ -204,7 +204,7 @@
                                 <div class="card-body pb-0">
                                     <h4 class="text-black">{{ product.name }}</h4>
                                     <a href="{% url 'product_detail' product.id %}">
-                                        <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
+                                        <img class="img-fluid" src="{% if product.image_url %}{{ product.image_url }}{% elif product.image %}{{ product.image.url }}{% else %}{{ MEDIA_URL }}no-product-image.png{% endif %}" alt="{{ product.name }}" loading="lazy">
                                     </a>
                                 </div>
                                 <div class="card-footer pb-0">
